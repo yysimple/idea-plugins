@@ -1,0 +1,2 @@
+com/simple/plugin/MyAction.java
+ com.simple.plugin.MyAction

@@ -1,0 +1,31 @@
+<application>
+  <component name="ActionsLocalSummary">
+    <e n="EditorBackSpace">
+      <i c="9" l="1645601785400" />
+    </e>
+    <e n="EditorCopy">
+      <i c="1" l="1645601605357" />
+    </e>
+    <e n="EditorNextWord">
+      <i c="1" l="1645601591209" />
+    </e>
+    <e n="EditorPaste">
+      <i c="1" l="1645601606821" />
+    </e>
+    <e n="EditorPreviousWord">
+      <i c="1" l="1645601587383" />
+    </e>
+    <e n="EditorStartNewLine">
+      <i c="1" l="1645601653356" />
+    </e>
+    <e n="EditorTab">
+      <i c="1" l="1645601770814" />
+    </e>
+    <e n="NewClass">
+      <i c="2" l="1645601777352" />
+    </e>
+    <e n="WelcomeScreen.CreateNewProject">
+      <i c="1" l="1645601565152" />
+    </e>
+  </component>
+</application>

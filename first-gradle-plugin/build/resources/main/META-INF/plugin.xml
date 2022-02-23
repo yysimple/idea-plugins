@@ -1,0 +1,22 @@
+<idea-plugin>
+  <id>cn.bugstack.guide.idea.plugin</id>
+  <name>CreateProjectByPlatform</name>
+  <version>1.0-SNAPSHOT</version>
+  <vendor email="184172133@qq.com" url="https://bugstack.cn">小傅哥</vendor>
+  <description>
+      基于IDEA插件模板方式创建测试工程&lt;br&gt;
+      &lt;em&gt;1. 学习IDEA插件工程搭建&lt;/em&gt;
+      &lt;em&gt;2. 验证插件基础功能实现&lt;/em&gt;
+    </description>
+  <change-notes>
+      Add change notes here.&lt;br&gt;
+      &lt;em&gt;most HTML tags may be used&lt;/em&gt;</change-notes>
+  <idea-version since-build="203.7148" until-build="203.*"/>
+  <depends>com.intellij.modules.platform</depends>
+  <extensions defaultExtensionNs="com.intellij"/>
+  <actions>
+    <action id="MyAction" class="com.simple.plugin.MyAction" text="MyAction" description="MyAction">
+      <add-to-group group-id="FileMenu" anchor="first"/>
+    </action>
+  </actions>
+</idea-plugin>
