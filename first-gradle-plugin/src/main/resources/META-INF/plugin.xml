@@ -1,8 +1,8 @@
 <idea-plugin>
-    <id>cn.bugstack.guide.idea.plugin</id>
-    <name>CreateProjectByPlatform</name>
+    <id>com.simple.plugin</id>
+    <name>FirstGradlePlugin</name>
     <version>1.0</version>
-    <vendor email="184172133@qq.com" url="https://bugstack.cn">小傅哥</vendor>
+    <vendor email="1449697757@qq.com">小傅哥</vendor>
 
     <description><![CDATA[
       基于IDEA插件模板方式创建测试工程<br>
