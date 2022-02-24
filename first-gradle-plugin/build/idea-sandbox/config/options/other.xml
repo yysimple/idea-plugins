@@ -11,6 +11,8 @@
     </option>
   </component>
   <component name="PropertiesComponent">
+    <property name="InstalledPluginsSearchHistory" value="/organization:小傅哥" />
+    <property name="PluginConfigurable.selectionTab" value="1" />
     <property name="com.intellij.openapi.roots.ui.configuration.TabbedModuleEditor.selectedEditor" value="Sources" />
     <property name="defaultJdkConfigured" value="true" />
     <property name="file.chooser.recent.files" value="E:/personal-project" />

@@ -2,7 +2,7 @@
     <id>com.simple.plugin</id>
     <name>FirstGradlePlugin</name>
     <version>1.0</version>
-    <vendor email="1449697757@qq.com">小傅哥</vendor>
+    <vendor email="1449697757@qq.com">wcx</vendor>
 
     <description><![CDATA[
       基于IDEA插件模板方式创建测试工程<br>

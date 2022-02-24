@@ -24,8 +24,17 @@
     <e n="NewClass">
       <i c="2" l="1645601777352" />
     </e>
+    <e n="ShowSettings">
+      <i c="5" l="1645681935631" />
+    </e>
     <e n="WelcomeScreen.CreateNewProject">
       <i c="1" l="1645601565152" />
+    </e>
+    <e n="com.intellij.ide.plugins.newui.PluginDetailsPageComponent$UninstallAction">
+      <i c="1" l="1645681806498" />
+    </e>
+    <e n="com.intellij.ide.plugins.newui.TabbedPaneHeaderComponent$3">
+      <i c="1" l="1645681805339" />
     </e>
   </component>
 </application>

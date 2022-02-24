@@ -1,0 +1,25 @@
+<idea-plugin>
+    <id>com.simple.siderAndWindow</id>
+    <name>wuchengxing</name>
+    <vendor email="1449697757@qq.com">wcx</vendor>
+
+    <description>开发小窗口和侧边栏控件，完成自己自定义的插件开发！！！！！！！！！！！！！！！！！！！！！！！！</description>
+
+    <!-- please see https://www.jetbrains.org/intellij/sdk/docs/basics/getting_started/plugin_compatibility.html
+         on how to target different products -->
+    <depends>com.intellij.modules.platform</depends>
+
+    <extensions defaultExtensionNs="com.intellij">
+        <!-- Add your extensions here -->
+        <!-- 配置 File -> Settings -> Tools -->
+        <projectConfigurable groupId="tools" displayName="My Test Config" id="test.id"
+                             instance="com.simple.idea.plugin.factory.SettingFactory"/>
+
+        <!-- 窗体 (IDEA 界面右侧) -->
+        <toolWindow id="Read-Book" secondary="false" anchor="right" icon="/icons/logo.png"
+                    factoryClass="com.simple.idea.plugin.factory.ReadFactory"/>
+    </extensions>
+    <actions>
+        <!-- Add your actions here -->
+    </actions>
+</idea-plugin>
