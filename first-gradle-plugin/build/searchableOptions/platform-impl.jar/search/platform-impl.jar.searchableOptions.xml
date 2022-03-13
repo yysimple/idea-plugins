@@ -9082,6 +9082,7 @@
     <option name="light" hit="macOS Light Theme" />
     <option name="macos" hit="macOS Light Theme" />
     <option name="theme" hit="macOS Light Theme" />
+    <option name="wcx" hit="wcx" />
     <option name="manage" hit="Manage Plugin Repositories..." />
     <option name="plugin" hit="Manage Plugin Repositories..." />
     <option name="repositories" hit="Manage Plugin Repositories..." />

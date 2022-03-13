@@ -352,6 +352,13 @@
     <option name="3" hit="Bundled (Maven 3)" />
     <option name="bundled" hit="Bundled (Maven 3)" />
     <option name="maven" hit="Bundled (Maven 3)" />
+    <option name="1" hit="C:/devtools/maven/apache-maven-3.8.1-bin/apache-maven-3.8.1" />
+    <option name="1-bin" hit="C:/devtools/maven/apache-maven-3.8.1-bin/apache-maven-3.8.1" />
+    <option name="8" hit="C:/devtools/maven/apache-maven-3.8.1-bin/apache-maven-3.8.1" />
+    <option name="apache-maven-3" hit="C:/devtools/maven/apache-maven-3.8.1-bin/apache-maven-3.8.1" />
+    <option name="c" hit="C:/devtools/maven/apache-maven-3.8.1-bin/apache-maven-3.8.1" />
+    <option name="devtools" hit="C:/devtools/maven/apache-maven-3.8.1-bin/apache-maven-3.8.1" />
+    <option name="maven" hit="C:/devtools/maven/apache-maven-3.8.1-bin/apache-maven-3.8.1" />
     <option name="checksum" hit="Checksum policy:" />
     <option name="policy" hit="Checksum policy:" />
     <option name="debug" hit="Debug" />
@@ -361,13 +368,6 @@
     <option name="execute" hit="Execute goals recursively" />
     <option name="goals" hit="Execute goals recursively" />
     <option name="recursively" hit="Execute goals recursively" />
-    <option name="2" hit="F:/tools/maven/apache-maven-3.5.2-bin/apache-maven-3.5.2" />
-    <option name="2-bin" hit="F:/tools/maven/apache-maven-3.5.2-bin/apache-maven-3.5.2" />
-    <option name="5" hit="F:/tools/maven/apache-maven-3.5.2-bin/apache-maven-3.5.2" />
-    <option name="apache-maven-3" hit="F:/tools/maven/apache-maven-3.5.2-bin/apache-maven-3.5.2" />
-    <option name="f" hit="F:/tools/maven/apache-maven-3.5.2-bin/apache-maven-3.5.2" />
-    <option name="maven" hit="F:/tools/maven/apache-maven-3.5.2-bin/apache-maven-3.5.2" />
-    <option name="tools" hit="F:/tools/maven/apache-maven-3.5.2-bin/apache-maven-3.5.2" />
     <option name="fail" hit="Fail" />
     <option name="at" hit="Fail At End" />
     <option name="end" hit="Fail At End" />

@@ -1,40 +1,16 @@
 <application>
   <component name="ActionsLocalSummary">
-    <e n="EditorBackSpace">
-      <i c="9" l="1645601785400" />
-    </e>
-    <e n="EditorCopy">
-      <i c="1" l="1645601605357" />
-    </e>
-    <e n="EditorNextWord">
-      <i c="1" l="1645601591209" />
-    </e>
-    <e n="EditorPaste">
-      <i c="1" l="1645601606821" />
-    </e>
-    <e n="EditorPreviousWord">
-      <i c="1" l="1645601587383" />
-    </e>
-    <e n="EditorStartNewLine">
-      <i c="1" l="1645601653356" />
-    </e>
-    <e n="EditorTab">
-      <i c="1" l="1645601770814" />
-    </e>
-    <e n="NewClass">
-      <i c="2" l="1645601777352" />
-    </e>
     <e n="ShowSettings">
-      <i c="5" l="1645681935631" />
+      <i c="2" l="1647166444843" />
     </e>
-    <e n="WelcomeScreen.CreateNewProject">
-      <i c="1" l="1645601565152" />
-    </e>
-    <e n="com.intellij.ide.plugins.newui.PluginDetailsPageComponent$UninstallAction">
-      <i c="1" l="1645681806498" />
+    <e n="WelcomeScreen.OpenProject">
+      <i c="1" l="1647160256061" />
     </e>
     <e n="com.intellij.ide.plugins.newui.TabbedPaneHeaderComponent$3">
-      <i c="1" l="1645681805339" />
+      <i c="1" l="1647165903263" />
+    </e>
+    <e n="com.intellij.openapi.wm.impl.ToolWindowHeader$HideAction">
+      <i c="1" l="1647165386523" />
     </e>
   </component>
 </application>

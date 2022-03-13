@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <options>
   <configurable id="preferences.keymap" configurable_name="Keymap">
-    <option name="myaction" path="ActionManager" hit="MyAction" />
+    <option name="myaction1" path="ActionManager" hit="MyAction1" />
+    <option name="myaction2" path="ActionManager" hit="MyAction2" />
   </configurable>
 </options>
 

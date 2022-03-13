@@ -2,20 +2,19 @@
   <component name="RecentProjectsManager">
     <option name="additionalInfo">
       <map>
-        <entry key="E:/personal-project/idea-plugins-test">
+        <entry key="C:/source-code/java/test/idea-test">
           <value>
-            <RecentProjectMetaInfo frameTitle="idea-plugins-test – OtherTest.java Administrator" opened="true" projectWorkspaceId="25V9uaViKDlbF2hvnshqPn5LQdl">
+            <RecentProjectMetaInfo frameTitle="idea-test – TestDemo.java" opened="true" projectWorkspaceId="25isvP1zkE9dkfN5MZ9dbTYbhie">
               <option name="binFolder" value="$APPLICATION_HOME_DIR$/bin" />
               <option name="build" value="IC-203.7148.57" />
-              <option name="buildTimestamp" value="1611627855443" />
-              <frame x="260" y="39" width="1400" height="1001" />
+              <option name="buildTimestamp" value="1611627892399" />
+              <frame x="260" y="40" width="1400" height="1000" />
               <option name="productionCode" value="IC" />
-              <option name="projectOpenTimestamp" value="1645601609869" />
+              <option name="projectOpenTimestamp" value="1647160262591" />
             </RecentProjectMetaInfo>
           </value>
         </entry>
       </map>
     </option>
-    <option name="lastProjectLocation" value="E:/personal-project" />
   </component>
 </application>

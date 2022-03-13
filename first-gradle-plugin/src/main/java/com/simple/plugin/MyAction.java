@@ -23,7 +23,7 @@ public class MyAction extends AnAction {
         Project project = e.getData(PlatformDataKeys.PROJECT);
         PsiFile psiFile = e.getData(CommonDataKeys.PSI_FILE);
         String classPath = psiFile.getVirtualFile().getPath();
-
+        // 这里的 project：对应的是后面内容将会在 窗体中展示；title：这个是窗体的标题
         Messages.showMessageDialog(project, "guide-idea-plugin-create-project-by-gradle: " + classPath, "Hi IDEA Plugin", Messages.getInformationIcon());
     }
 }

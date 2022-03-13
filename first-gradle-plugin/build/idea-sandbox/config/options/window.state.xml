@@ -1,6 +1,6 @@
 <application>
   <component name="WindowManager">
-    <frame x="260" y="39" width="1400" height="1001" />
+    <frame x="260" y="40" width="1400" height="1000" />
     <layout>
       <window_info content_ui="combo" id="Project" order="0" weight="0.25" />
       <window_info anchor="bottom" id="Version Control" order="0" />
@@ -11,13 +11,9 @@
     </layout>
   </component>
   <component name="WindowStateApplicationService">
-    <state x="748" y="209" width="440" height="518" key="FileChooserDialogImpl" timestamp="1645601603996">
+    <state x="748" y="223" width="440" height="490" key="FileChooserDialogImpl" timestamp="1647160261811">
       <screen x="0" y="0" width="1920" height="1080" />
     </state>
-    <state x="748" y="209" width="440" height="518" key="FileChooserDialogImpl/0.0.1920.1080" timestamp="1645601603996" />
-    <state x="559" y="78" width="818" height="780" key="new project wizard" timestamp="1645601609090">
-      <screen x="0" y="0" width="1920" height="1080" />
-    </state>
-    <state x="559" y="78" width="818" height="780" key="new project wizard/0.0.1920.1080" timestamp="1645601609090" />
+    <state x="748" y="223" width="440" height="490" key="FileChooserDialogImpl/0.0.1920.1080" timestamp="1647160261811" />
   </component>
 </application>

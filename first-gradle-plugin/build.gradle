@@ -1,5 +1,6 @@
 plugins {
     id 'java'
+    // 这里选择使用 0.6.3;当然也可以选择其他的版本，我的idea版本是2020-3.2
     id 'org.jetbrains.intellij' version '0.6.3'
 }
 
@@ -10,7 +11,8 @@ repositories {
     mavenCentral()
 }
 
-sourceCompatibility = 1.8
+// 这里配置idea的版本的话，我使用的是jdk11的版本
+sourceCompatibility = 11.0
 
 dependencies {
     testCompile group: 'junit', name: 'junit', version: '4.12'
