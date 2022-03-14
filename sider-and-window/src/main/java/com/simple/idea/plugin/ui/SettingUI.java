@@ -24,7 +24,9 @@ public class SettingUI {
             JFileChooser fileChooser = new JFileChooser();
             fileChooser.setFileSelectionMode(JFileChooser.FILES_ONLY);
             fileChooser.showOpenDialog(settingPanel);
+            // 这里是上传一个文件路径
             File file = fileChooser.getSelectedFile();
+            // 设置到组件属性中，之后通过这个属性拿到对应的文件流
             urlTextField.setText(file.getPath());
         });
     }
