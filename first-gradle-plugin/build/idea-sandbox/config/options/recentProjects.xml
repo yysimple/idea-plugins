@@ -4,7 +4,7 @@
       <map>
         <entry key="C:/source-code/java/test/idea-test">
           <value>
-            <RecentProjectMetaInfo frameTitle="idea-test – TestDemo.java" opened="true" projectWorkspaceId="25isvP1zkE9dkfN5MZ9dbTYbhie">
+            <RecentProjectMetaInfo frameTitle="idea-test – TestDemo.java" projectWorkspaceId="25isvP1zkE9dkfN5MZ9dbTYbhie">
               <option name="binFolder" value="$APPLICATION_HOME_DIR$/bin" />
               <option name="build" value="IC-203.7148.57" />
               <option name="buildTimestamp" value="1611627892399" />
@@ -14,7 +14,20 @@
             </RecentProjectMetaInfo>
           </value>
         </entry>
+        <entry key="$USER_HOME$/project/person-project/idea-plugins-test">
+          <value>
+            <RecentProjectMetaInfo frameTitle="idea-plugins-test – IdeaPluginsTest.java" projectWorkspaceId="26L0TO5Acpyh76jgo1WpBXOojgG">
+              <option name="binFolder" value="$APPLICATION_HOME_DIR$/bin" />
+              <option name="build" value="IC-203.7148.57" />
+              <option name="buildTimestamp" value="1611627873567" />
+              <frame x="0" y="0" width="1440" height="900" fullScreen="true" />
+              <option name="productionCode" value="IC" />
+              <option name="projectOpenTimestamp" value="1647187845479" />
+            </RecentProjectMetaInfo>
+          </value>
+        </entry>
       </map>
     </option>
+    <option name="lastProjectLocation" value="$USER_HOME$/project/person-project" />
   </component>
 </application>
