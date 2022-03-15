@@ -1,0 +1,28 @@
+<idea-plugin>
+    <id>com.simple.stock-on-tab</id>
+    <name>wuchengxing</name>
+    <vendor email="1449697757@qq.com">wcx</vendor>
+
+    <description>开发股票查看小插件，完成自己自定义的插件开发！！！！！！！！！！！！！！！！！！！！！！！！</description>
+
+    <!-- please see https://www.jetbrains.org/intellij/sdk/docs/basics/getting_started/plugin_compatibility.html
+         on how to target different products -->
+    <depends>com.intellij.modules.platform</depends>
+
+    <extensions defaultExtensionNs="com.intellij">
+        <!-- Add your extensions here -->
+        <toolWindow id="XUtil"
+                    canCloseContents="true"
+                    anchor="bottom"
+                    factoryClass="com.simple.idea.plugin.factory.TabFactory"
+                    icon="/icons/stock.png"
+        />
+
+        <applicationService serviceImplementation="com.simple.idea.plugin.infrastructure.DataSetting"/>
+
+    </extensions>
+
+    <actions>
+        <!-- Add your actions here -->
+    </actions>
+</idea-plugin>
