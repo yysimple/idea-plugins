@@ -2,7 +2,10 @@
 /gradlew.bat
 /.idea/
 /.gradle/
+.gradle/
 /build/
+build/
+# Compiled class file
 # Compiled class file
 *.class
 
