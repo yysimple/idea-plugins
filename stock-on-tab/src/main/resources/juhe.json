@@ -1,0 +1,60 @@
+{
+  "resultcode": "200",
+  "reason": "SUCCESSED!",
+  "result": [
+    {
+      "data": {
+        "buyFive": "15700",
+        "buyFivePri": "9.470",
+        "buyFour": "16800",
+        "buyFourPri": "9.480",
+        "buyOne": "1700",
+        "buyOnePri": "9.510",
+        "buyThree": "25200",
+        "buyThreePri": "9.490",
+        "buyTwo": "7900",
+        "buyTwoPri": "9.500",
+        "competitivePri": "9.510",
+        "date": "2022-03-16",
+        "gid": "sh601009",
+        "increPer": "-0.52",
+        "increase": "-0.05",
+        "name": "南京银行",
+        "nowPri": "9.510",
+        "reservePri": "9.530",
+        "sellFive": "16000",
+        "sellFivePri": "9.570",
+        "sellFour": "5000",
+        "sellFourPri": "9.560",
+        "sellOne": "4200",
+        "sellOnePri": "9.530",
+        "sellThree": "77400",
+        "sellThreePri": "9.550",
+        "sellTwo": "13300",
+        "sellTwoPri": "9.540",
+        "time": "09:32:04",
+        "todayMax": "9.670",
+        "todayMin": "9.460",
+        "todayStartPri": "9.580",
+        "traAmount": "29079973.000",
+        "traNumber": "30409",
+        "yestodEndPri": "9.560"
+      },
+      "dapandata": {
+        "dot": "9.510",
+        "name": "南京银行",
+        "nowPic": "-0.050",
+        "rate": "-0.52",
+        "traAmount": "2908",
+        "traNumber": "30409"
+      },
+      "gopicture": {
+        "minurl": "http://image.sinajs.cn/newchart/min/n/sh601009.gif",
+        "dayurl": "http://image.sinajs.cn/newchart/daily/n/sh601009.gif",
+        "weekurl": "http://image.sinajs.cn/newchart/weekly/n/sh601009.gif",
+        "monthurl": "http://image.sinajs.cn/newchart/monthly/n/sh601009.gif"
+      }
+    }
+  ],
+  "error_code": 0
+}

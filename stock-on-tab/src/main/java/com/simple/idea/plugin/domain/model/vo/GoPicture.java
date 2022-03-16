@@ -3,7 +3,7 @@ package com.simple.idea.plugin.domain.model.vo;
 /**
  * 项目: idea-plugins
  * <p>
- * 功能描述:
+ * 功能描述: k线信息
  *
  * @author: WuChengXing
  * @create: 2022-03-15 16:33

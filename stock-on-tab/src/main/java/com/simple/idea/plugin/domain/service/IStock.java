@@ -14,7 +14,17 @@ import java.util.List;
  * @create: 2022-03-15 16:31
  **/
 public interface IStock {
+    /**
+     * 查询股票的数据
+     * @param gids
+     * @return
+     */
     List<Data> queryPresetStockData(List<String> gids);
 
+    /**
+     * 股票的k线
+     * @param gid
+     * @return
+     */
     GoPicture queryGidGoPicture(String gid);
 }
