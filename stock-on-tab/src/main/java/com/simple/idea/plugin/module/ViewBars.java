@@ -11,7 +11,7 @@ import com.simple.idea.plugin.ui.ConsoleUI;
 /**
  * 项目: idea-plugins
  * <p>
- * 功能描述:
+ * 功能描述: 这个是用来展示的主体内容
  *
  * @author: WuChengXing
  * @create: 2022-03-15 16:34
@@ -23,6 +23,7 @@ public class ViewBars extends SimpleToolWindowPanel {
     public ViewBars(Project project) {
         super(false, true);
         this.project = project;
+        // 实际构建数据逻辑在此
         consoleUI = new ConsoleUI();
 
         // 设置窗体侧边栏按钮

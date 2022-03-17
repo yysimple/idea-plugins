@@ -16,7 +16,7 @@ import org.jetbrains.annotations.NotNull;
  * @create: 2022-03-15 16:34
  **/
 public class SettingBar extends DumbAwareAction {
-    private ViewBars panel;
+    private final ViewBars panel;
 
     public SettingBar(ViewBars panel) {
         super("配置股票", "Click to setting", IconLoader.getIcon("/icons/config.svg"));

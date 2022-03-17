@@ -22,8 +22,14 @@ public class RefreshBar extends DumbAwareAction {
         this.panel = panel;
     }
 
+    /**
+     * 执行刷新动作
+     *
+     * @param e
+     */
     @Override
     public void actionPerformed(@NotNull AnActionEvent e) {
+        // 点击的时候，这里是会去刷新数据的
         panel.getConsoleUI().addRows(DataSetting.getInstance().getGids());
     }
 }

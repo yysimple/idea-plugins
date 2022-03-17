@@ -36,6 +36,9 @@ public class ConsoleUI {
      */
     private IStock stock = new StockImpl();
 
+    /**
+     * 构建表格的表头
+     */
     private DefaultTableModel defaultTableModel = new DefaultTableModel(new Object[][]{}, new String[]{"股票", "代码", "最新", "涨跌", "涨幅"});
 
     public ConsoleUI() {
@@ -43,12 +46,15 @@ public class ConsoleUI {
         table.setModel(defaultTableModel);
         addRows(DataSetting.getInstance().getGids());
 
-        // 添加事件
+        // 这里是对表格添加监听事件
         table.addMouseListener(new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {
+                // 选中对应的行
                 int row = table.getSelectedRow();
+                // 拿到表格第一列的值，也是股票gid，然后找到对应的K线
                 Object value = table.getValueAt(row, 1);
+                // 这里就是去获取k线
                 GoPicture goPicture = stock.queryGidGoPicture(value.toString());
                 try {
                     // 分钟K线
@@ -69,17 +75,22 @@ public class ConsoleUI {
         return tabbedPane1;
     }
 
+    /**
+     * 这里是填充表格数据
+     *
+     * @param gids
+     */
     public void addRows(List<String> gids) {
-        // 查询
+        // 查询股票的数据
         List<Data> dataList = stock.queryPresetStockData(gids);
 
-        // 清空
+        // 清空之前的数据
         int rowCount = defaultTableModel.getRowCount();
         for (int i = 0; i < rowCount; i++) {
             defaultTableModel.removeRow(0);
         }
 
-        // 添加
+        // 添加最新的数据
         for (Data data : dataList) {
             defaultTableModel.addRow(new String[]{data.getName(), data.getGid(), data.getNowPri(), data.getIncrease(), data.getIncrePer()});
             table.setModel(defaultTableModel);
