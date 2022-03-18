@@ -15,6 +15,9 @@ import java.io.IOException;
  **/
 public class FreemarkerConfiguration extends Configuration {
 
+    /**
+     * 这里是去初始化我们自己设置的模板应该从哪里去读取
+     */
     public FreemarkerConfiguration() {
         this("/template");
     }
@@ -25,6 +28,12 @@ public class FreemarkerConfiguration extends Configuration {
         setClassForTemplateLoading(getClass(), basePackagePath);
     }
 
+    /**
+     * 通过配置模版文件名称拿到对应的模版信息
+     * @param ftl
+     * @return
+     * @throws IOException
+     */
     @Override
     public Template getTemplate(String ftl) throws IOException {
         return this.getTemplate(ftl, "UTF-8");

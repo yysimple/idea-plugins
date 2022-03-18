@@ -23,6 +23,12 @@ import java.io.StringWriter;
  **/
 public abstract class AbstractProjectGenerator extends FreemarkerConfiguration implements IProjectGenerator {
 
+    /**
+     * 定义整个生成流程，具体的生成流程继续传递给子类实现
+     * @param project
+     * @param entryPath
+     * @param projectConfig
+     */
     @Override
     public void doGenerator(Project project, String entryPath, ProjectConfigVO projectConfig) {
 
@@ -59,7 +65,9 @@ public abstract class AbstractProjectGenerator extends FreemarkerConfiguration i
             virtualFile = createPackageDir(packageName, entryPath).createChildData(project, name);
             StringWriter stringWriter = new StringWriter();
             Template template = super.getTemplate(ftl);
+            // 会将上面ftl文件对应的内容转换成对应的字符串信息
             template.process(dataModel, stringWriter);
+            // 然后这里交由Idea的api去完成目录的创建；其实也是通过文件的输出流完成
             virtualFile.setBinaryContent(stringWriter.toString().getBytes("UTF-8"));
         } catch (IOException | TemplateException e) {
             e.printStackTrace();
@@ -68,6 +76,7 @@ public abstract class AbstractProjectGenerator extends FreemarkerConfiguration i
 
     private static VirtualFile createPackageDir(String packageName, String entryPath) {
         String path = FileUtil.toSystemIndependentName(entryPath + "/" + StringUtil.replace(packageName, ".", "/"));
+        // 这里会去创建实际的文件
         new File(path).mkdirs();
         return LocalFileSystem.getInstance().refreshAndFindFileByPath(path);
     }

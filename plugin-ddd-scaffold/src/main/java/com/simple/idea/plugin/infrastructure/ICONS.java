@@ -14,6 +14,11 @@ import javax.swing.*;
  **/
 public class ICONS {
 
+    /**
+     * 获取资源文件下面的图片信息
+     * @param path
+     * @return
+     */
     private static Icon load(String path) {
         return IconLoader.getIcon(path, ICONS.class);
     }

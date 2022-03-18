@@ -12,6 +12,8 @@
     <artifactId>${_artifactId}</artifactId>
     <version>${_version}</version>
 
+    <description>初始化项目</description>
+
     <properties>
         <java.version>1.8</java.version>
     </properties>

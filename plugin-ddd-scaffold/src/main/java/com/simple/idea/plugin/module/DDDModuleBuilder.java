@@ -47,6 +47,11 @@ public class DDDModuleBuilder extends ModuleBuilder {
         return ICONS.SPRING_BOOT;
     }
 
+    /**
+     * 这里返回空就行，根据官网来写的，具体的逻辑是啥自行研究
+     *
+     * @return
+     */
     @Override
     public ModuleType<?> getModuleType() {
         return ModuleType.EMPTY;
@@ -104,6 +109,7 @@ public class DDDModuleBuilder extends ModuleBuilder {
         Runnable r = () -> new WriteCommandAction<VirtualFile>(project) {
             @Override
             protected void run(@NotNull Result<VirtualFile> result) throws Throwable {
+                // 调用生成文件方法
                 projectGenerator.doGenerator(project, getContentEntryPath(), DataSetting.getInstance().getProjectConfig());
             }
         }.execute();

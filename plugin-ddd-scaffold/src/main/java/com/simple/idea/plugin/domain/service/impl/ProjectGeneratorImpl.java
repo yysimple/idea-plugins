@@ -14,11 +14,25 @@ import com.simple.idea.plugin.domain.service.AbstractProjectGenerator;
  **/
 public class ProjectGeneratorImpl extends AbstractProjectGenerator {
 
+    /**
+     * 在指定目录生成pom文件
+     *
+     * @param project
+     * @param entryPath
+     * @param projectConfig
+     */
     @Override
     protected void generateProjectPOM(Project project, String entryPath, ProjectConfigVO projectConfig) {
         writeFile(project, "/", entryPath, "pom.xml", "pom.ftl", projectConfig);
     }
 
+    /**
+     * 这里是为每个文件夹生成对应的包信息，也即是对应的 package-info 信息
+     *
+     * @param project
+     * @param entryPath
+     * @param projectConfig
+     */
     @Override
     protected void generateProjectDDD(Project project, String entryPath, ProjectConfigVO projectConfig) {
         // create application
@@ -37,9 +51,17 @@ public class ProjectGeneratorImpl extends AbstractProjectGenerator {
         writeFile(project, "src/main/java/" + projectConfig.get_package() + ".interfaces", entryPath, "package-info.java", "interfaces/package-info.ftl", projectConfig);
     }
 
+    /**
+     * 生成Springboot的主启动类
+     *
+     * @param project
+     * @param entryPath
+     * @param projectConfig
+     */
     @Override
     protected void generateApplication(Project project, String entryPath, ProjectConfigVO projectConfig) {
-        writeFile(project, "src/main/java/" + projectConfig.get_package(), entryPath, projectConfig.get_artifactId() + "Application.java", "application.ftl", projectConfig);
+        String artifactId = projectConfig.get_artifactId();
+        writeFile(project, "src/main/java/" + projectConfig.get_package(), entryPath, (artifactId.substring(0, 1).toUpperCase() + artifactId.substring(1)) + "Application.java", "application.ftl", projectConfig);
     }
 
     @Override

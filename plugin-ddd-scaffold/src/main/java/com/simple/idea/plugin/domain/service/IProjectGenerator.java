@@ -15,6 +15,7 @@ public interface IProjectGenerator {
 
     /**
      *
+     * 这里只是一个触发点，供后面调用，具体实现交由子类去做
      * @param project
      * @param entryPath
      * @param projectConfig

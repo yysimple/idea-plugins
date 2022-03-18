@@ -11,6 +11,9 @@ import com.simple.idea.plugin.domain.model.vo.ProjectConfigVO;
  * @create: 2022-03-17 19:38
  **/
 public class DataState {
+    /**
+     * 这里的数据就是存储项目的一些初始化配置
+     */
     private ProjectConfigVO projectConfigVO = new ProjectConfigVO();
 
     public ProjectConfigVO getProjectConfigVO() {
