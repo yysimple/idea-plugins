@@ -1,0 +1,20 @@
+<idea-plugin>
+    <id>com.simple.plugin-ddd-scaffold</id>
+    <name>wuchengxing</name>
+    <vendor email="1449697757@qq.com">wcx</vendor>
+
+    <description>开发DDD框架生成小插件，完成自己自定义的插件开发！！！！！！！！！！！！！！！！！！！！！！！！</description>
+
+    <!-- please see https://www.jetbrains.org/intellij/sdk/docs/basics/getting_started/plugin_compatibility.html
+         on how to target different products -->
+    <depends>com.intellij.modules.platform</depends>
+
+    <extensions defaultExtensionNs="com.intellij">
+        <projectTemplatesFactory implementation="com.simple.idea.plugin.factory.TemplateFactory"/>
+        <applicationService serviceImplementation="com.simple.idea.plugin.infrastructure.DataSetting"/>
+    </extensions>
+
+    <actions>
+
+    </actions>
+</idea-plugin>
