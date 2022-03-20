@@ -1,0 +1,25 @@
+<idea-plugin>
+    <id>com.simple.plugin-orm</id>
+    <name>wuchengxing</name>
+    <vendor email="1449697757@qq.com">wcx</vendor>
+
+    <description>开发DDD框架生成小插件，完成自己自定义的插件开发！！！！！！！！！！！！！！！！！！！！！！！！</description>
+
+    <!-- please see https://www.jetbrains.org/intellij/sdk/docs/basics/getting_started/plugin_compatibility.html
+         on how to target different products -->
+    <depends>com.intellij.modules.platform</depends>
+    <extensions defaultExtensionNs="com.intellij">
+        <!-- Add your extensions here -->
+        <projectService serviceImplementation="com.simple.idea.plugin.orm.infrastructure.data.DataSetting"/>
+    </extensions>
+
+    <actions>
+        <!-- Add your actions here -->
+        <action id="CodeGenerateAction" class="com.simple.idea.plugin.orm.action.CodeGenerateAction"
+                text="ORMCodeGenerate" description="Code Generate ORM" icon="/icons/logo.png">
+            <!-- 这里是我门触发操作的位置，这里是光标选中选中，然后右键点击，就能触发 -->
+            <add-to-group group-id="ProjectViewPopupMenu" anchor="last"/>
+        </action>
+
+    </actions>
+</idea-plugin>
