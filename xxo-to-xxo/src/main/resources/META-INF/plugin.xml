@@ -1,0 +1,31 @@
+<idea-plugin>
+    <id>com.simple.xxo-to-xxo</id>
+    <name>wuchengxing</name>
+    <vendor email="1449697757@qq.com">wcx</vendor>
+
+    <description>开发DDD框架各种OO的转换生成小插件，完成自己自定义的插件开发！！！！！！！！！！！！！！！！！！！！！！！！</description>
+
+    <!-- please see https://www.jetbrains.org/intellij/sdk/docs/basics/getting_started/plugin_compatibility.html
+         on how to target different products -->
+    <depends>com.intellij.modules.platform</depends>
+    <depends>com.intellij.modules.lang</depends>
+    <depends>com.intellij.modules.java</depends>
+
+    <extensions defaultExtensionNs="com.intellij">
+        <!-- Add your extensions here -->
+        <projectService serviceImplementation="com.simple.idea.plugin.xo2xo.infrastructure.DataSetting"/>
+
+        <!-- 配置 File -> Settings -> Tools -->
+        <projectConfigurable groupId="tools" displayName="Vo2Dto Config" id="vo2dto"
+                             instance="com.simple.idea.plugin.xo2xo.action.ConfigSettingFactory"/>
+    </extensions>
+
+    <actions>
+        <!-- Add your actions here -->
+        <action id="Vo2DtoGenerateAction" class="com.simple.idea.plugin.xo2xo.action.Xxo2XxoGenerateAction"
+                text="Vo2Dto - 小傅哥" description="Vo2Dto generate util">
+            <add-to-group group-id="GenerateGroup" anchor="last"/>
+            <keyboard-shortcut keymap="$default" first-keystroke="ctrl shift K"/>
+        </action>
+    </actions>
+</idea-plugin>
