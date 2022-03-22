@@ -23,7 +23,7 @@ public class Xxo2XxoGenerateAction extends AnAction {
     @Override
     public void actionPerformed(@NotNull AnActionEvent event) {
         try {
-            // 织入代码
+            // 织入代码，也就是生成新代码的主流程
             generateVo2Dto.doGenerate(event.getProject(), event.getDataContext(), event.getData(LangDataKeys.PSI_FILE));
         } catch (Exception e) {
             Messages.showErrorDialog(event.getProject(), "请按规：先复制对象后，例如：A a，再光标放到需要织入的对象上，例如：B b！", "错误提示");

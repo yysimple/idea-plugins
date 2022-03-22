@@ -28,6 +28,7 @@ import java.util.regex.Pattern;
  * @create: 2022-03-20 20:00
  **/
 public abstract class AbstractGenerateXxo2Xxo implements IGenerateXxo2Xxo {
+    public static final String SHOW_STATUS = "hide";
     protected final String setRegex = "set(\\w+)";
     protected final String getRegex = "get(\\w+)";
 
@@ -45,7 +46,8 @@ public abstract class AbstractGenerateXxo2Xxo implements IGenerateXxo2Xxo {
         // 4. 弹框选择，织入代码。分为弹窗提醒和非弹窗提醒
         DataSetting.DataState state = DataSetting.getInstance(project).getState();
         assert state != null;
-        if ("hide".equals(state.getConfigRadio())) {
+        if (SHOW_STATUS.equals(state.getConfigRadio())) {
+            // 如果是隐藏的话，这里就不会展示对比边框，直接会织入代码，也就是直接生成在代码的上下文
             this.weavingSetGetCode(generateContext, setObjConfigDO, getObjConfigDO);
         } else {
             this.convertSetting(project, generateContext, setObjConfigDO, getObjConfigDO);
@@ -63,17 +65,35 @@ public abstract class AbstractGenerateXxo2Xxo implements IGenerateXxo2Xxo {
 
     protected abstract void weavingSetGetCode(GenerateContext generateContext, SetObjConfigDO setObjConfigDO, GetObjConfigDO getObjConfigDO);
 
+    /**
+     * 获取当前类的所有父类（除Objects之外）
+     *
+     * @param psiClass
+     * @return
+     */
     protected List<PsiClass> getPsiClassLinkList(PsiClass psiClass) {
         List<PsiClass> psiClassList = new ArrayList<>();
+        // 这里的PsiClass跟我们通过反射拿到类信息的原理很像
         PsiClass currentClass = psiClass;
         while (null != currentClass && !"Object".equals(currentClass.getName())) {
             psiClassList.add(currentClass);
+            // 一直递归获取其父类
             currentClass = currentClass.getSuperClass();
         }
+        // 然后将最开始的子类放到集合最前面
         Collections.reverse(psiClassList);
+        // 返回类列表
         return psiClassList;
     }
 
+    /**
+     * 获取该类对应的一些方法
+     *
+     * @param psiClass
+     * @param regex
+     * @param typeStr
+     * @return
+     */
     protected List<String> getMethods(PsiClass psiClass, String regex, String typeStr) {
         PsiMethod[] methods = psiClass.getMethods();
         List<String> methodList = new ArrayList<>();
@@ -119,10 +139,22 @@ public abstract class AbstractGenerateXxo2Xxo implements IGenerateXxo2Xxo {
         return methodList;
     }
 
+    /**
+     * 判断是否使用了lombok注解
+     *
+     * @param psiClass
+     * @return
+     */
     private boolean isUsedLombok(PsiClass psiClass) {
         return null != psiClass.getAnnotation("lombok.Data");
     }
 
+    /**
+     * 获取对应类的导入包的列表
+     *
+     * @param docText
+     * @return
+     */
     protected List<String> getImportList(String docText) {
         List<String> list = new ArrayList<>();
         Pattern p = Pattern.compile("import(.*?);");

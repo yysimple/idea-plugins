@@ -36,6 +36,10 @@ public class ConfigSettingUI {
         return main;
     }
 
+    /**
+     *
+     * @return
+     */
     public String getRadioVal() {
         return showRadioButton.isSelected() ? "show" : "hide";
     }

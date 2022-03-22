@@ -41,6 +41,7 @@ public class GenerateXxo2XxoImpl extends AbstractGenerateXxo2Xxo {
         Editor editor = CommonDataKeys.EDITOR.getData(dataContext);
         PsiElement psiElement = CommonDataKeys.PSI_ELEMENT.getData(dataContext);
         assert editor != null;
+        // 这里面有整个类的信息，例如该java文件里面所有的文字信息等
         Document document = editor.getDocument();
 
         ((PsiJavaFileImpl) psiFile).getImportList();
@@ -52,9 +53,11 @@ public class GenerateXxo2XxoImpl extends AbstractGenerateXxo2Xxo {
         generateContext.setDataContext(dataContext);
         generateContext.setEditor(editor);
         generateContext.setPsiElement(psiElement);
+        // 关于offset：https://plugins.jetbrains.com/docs/intellij/coordinates-system.html
         generateContext.setOffset(editor.getCaretModel().getOffset());
         generateContext.setDocument(document);
         generateContext.setLineNumber(document.getLineNumber(generateContext.getOffset()));
+        // 开始行数，这里指的是我们在生成代码的那行的上一行，比如我们光标在第6行生成，那么这里的开始行数是第5行
         generateContext.setStartOffset(document.getLineStartOffset(generateContext.getLineNumber()));
         generateContext.setEditorText(document.getCharsSequence());
 
@@ -66,7 +69,7 @@ public class GenerateXxo2XxoImpl extends AbstractGenerateXxo2Xxo {
         int repair = 0;
         PsiClass psiClass = null;
         String clazzParamName = null;
-
+        // 光标定位到的元素（这里举个例子，User user；如果光标在User上，就是PsiClass，否则就是属性）
         PsiElement psiElement = generateContext.getPsiElement();
 
         // 鼠标定位到类
@@ -134,7 +137,7 @@ public class GenerateXxo2XxoImpl extends AbstractGenerateXxo2Xxo {
         Pattern setMtd = Pattern.compile(setRegex);
         // 获取类的set方法并存放起来
         List<String> paramList = new ArrayList<>();
-        Map<String, String> paramMtdMap = new HashMap<>();
+        Map<String, String> paramMtdMap = new HashMap<>(16);
 
         List<PsiClass> psiClassLinkList = getPsiClassLinkList(psiClass);
         for (PsiClass psi : psiClassLinkList) {
@@ -158,7 +161,7 @@ public class GenerateXxo2XxoImpl extends AbstractGenerateXxo2Xxo {
 
         // 按照默认规则提取信息，例如：UserDto userDto
         String[] split = systemClipboardText.split("\\s");
-
+        // 这里是判断，我们上次复制的是否是完整的 类 + 实例变量，如果不是则构造空的Get对象
         if (split.length < 2) {
             return new GetObjConfigDO("", null, null, new HashMap<>());
         }
@@ -169,7 +172,7 @@ public class GenerateXxo2XxoImpl extends AbstractGenerateXxo2Xxo {
 
         String clazzNameImport = "";
         String clazzNameStr = split[0].trim();
-        if (clazzNameStr.indexOf(".") > 0) {
+        if (clazzNameStr.indexOf(".") > 0) {//这里的判断也很简单，就是出现com.simple.Xxo xxo 这种情况也是可以的
             clazzName = clazzNameStr.substring(clazzNameStr.lastIndexOf(".") + 1);
             clazzNameImport = clazzNameStr;
         } else {
@@ -229,7 +232,7 @@ public class GenerateXxo2XxoImpl extends AbstractGenerateXxo2Xxo {
                 paramMtdMap.put(param, methodName);
             }
         }
-
+        // 构建好需要注入的get方法
         return new GetObjConfigDO(psiContextClass.getQualifiedName(), clazzName, clazzParam, paramMtdMap);
     }
 
@@ -238,6 +241,13 @@ public class GenerateXxo2XxoImpl extends AbstractGenerateXxo2Xxo {
         ShowSettingsUtil.getInstance().editConfigurable(project, new ConvertSettingUI(project, generateContext, setObjConfigDO, getObjConfigDO));
     }
 
+    /**
+     * 这种是直接织入代码的，不需要自己去选择框里面选择指定的字段去get/set
+     *
+     * @param generateContext
+     * @param setObjConfigDO
+     * @param getObjConfigDO
+     */
     @Override
     protected void weavingSetGetCode(GenerateContext generateContext, SetObjConfigDO setObjConfigDO, GetObjConfigDO getObjConfigDO) {
         Application application = ApplicationManager.getApplication();
@@ -245,9 +255,11 @@ public class GenerateXxo2XxoImpl extends AbstractGenerateXxo2Xxo {
         // 获取空格位置长度
         int distance = Utils.getWordStartOffset(generateContext.getEditorText(), generateContext.getOffset()) - generateContext.getStartOffset() - setObjConfigDO.getRepair();
 
+        // 下面这段代码，其实也可以抽出来
         application.runWriteAction(() -> {
             StringBuilder blankSpace = new StringBuilder();
             for (int i = 0; i < distance; i++) {
+                // 这里是以
                 blankSpace.append(" ");
             }
 

@@ -21,7 +21,7 @@ public class Utils {
         String ret = "";
         Clipboard sysClip = Toolkit.getDefaultToolkit().getSystemClipboard();
 
-        // 获取剪切板中的内容
+        // 获取剪切板中的内容（这里需要复制将复制的对象完全复制，）
         Transferable clipTf = sysClip.getContents(null);
 
         if (null == clipTf) {

@@ -51,10 +51,16 @@ public class ConfigSettingFactory implements SearchableConfigurable {
         return true;
     }
 
+    /**
+     * 这里很简单，这里只是简答的一个设置的地方；就是配置项 File -> Settings -> tools
+     *
+     * @throws ConfigurationException
+     */
     @Override
     public void apply() throws ConfigurationException {
         DataSetting.DataState state = DataSetting.getInstance(project).getState();
         assert state != null;
+        // 设置的时候，将此次状态记录到DataState中
         state.setConfigRadio(configSettingUI.getRadioVal());
     }
 }

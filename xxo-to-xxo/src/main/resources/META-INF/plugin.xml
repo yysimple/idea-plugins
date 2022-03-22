@@ -16,14 +16,14 @@
         <projectService serviceImplementation="com.simple.idea.plugin.xo2xo.infrastructure.DataSetting"/>
 
         <!-- 配置 File -> Settings -> Tools -->
-        <projectConfigurable groupId="tools" displayName="Vo2Dto Config" id="vo2dto"
+        <projectConfigurable groupId="tools" displayName="Xxo2Xxo Config" id="Xxo2Xxo"
                              instance="com.simple.idea.plugin.xo2xo.action.ConfigSettingFactory"/>
     </extensions>
 
     <actions>
         <!-- Add your actions here -->
         <action id="Vo2DtoGenerateAction" class="com.simple.idea.plugin.xo2xo.action.Xxo2XxoGenerateAction"
-                text="Vo2Dto - 小傅哥" description="Vo2Dto generate util">
+                text="Xxo2Xxo" description="Xxo2Xxo generate util">
             <add-to-group group-id="GenerateGroup" anchor="last"/>
             <keyboard-shortcut keymap="$default" first-keystroke="ctrl shift K"/>
         </action>
