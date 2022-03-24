@@ -1,1 +1,1 @@
-package ${_package + '.application'};
+package ${_package + '.controller'};

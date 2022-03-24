@@ -72,6 +72,6 @@ public class ProjectGeneratorImpl extends AbstractProjectGenerator {
 
     @Override
     protected void generateCommon(Project project, String entryPath, ProjectConfigVO projectConfig) {
-        writeFile(project, "src/main/java/" + projectConfig.get_package() + "/common", entryPath, "Constants.java", "common/Constants.ftl", projectConfig);
+        writeFile(project, "src/main/java/" + projectConfig.get_package() + "/common", entryPath, "Constants.java", "common/SimpleResponse.ftl", projectConfig);
     }
 }

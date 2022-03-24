@@ -1,1 +1,1 @@
-package ${_package + '.interfaces'};
+package ${_package + '.mapper'};

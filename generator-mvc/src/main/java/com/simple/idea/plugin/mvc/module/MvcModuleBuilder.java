@@ -22,7 +22,6 @@ import com.simple.idea.plugin.mvc.infrastructure.DataSetting;
 import com.simple.idea.plugin.mvc.infrastructure.ICONS;
 import com.simple.idea.plugin.mvc.infrastructure.MsgBundle;
 import com.simple.idea.plugin.mvc.ui.ProjectConfigUI;
-import com.simple.idea.plugin.mvc.ui.TestStep2;
 import org.jetbrains.annotations.Nls;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
@@ -139,8 +138,7 @@ public class MvcModuleBuilder extends ModuleBuilder {
 
         // 添加工程配置步骤，可以自己定义需要的步骤，如果有多个可以依次添加
         MvcModuleConfigStep moduleConfigStep = new MvcModuleConfigStep(new ProjectConfigUI());
-        MvcStep2 mvcStep2 = new MvcStep2(new TestStep2());
 
-        return new ModuleWizardStep[]{moduleConfigStep, mvcStep2};
+        return new ModuleWizardStep[]{moduleConfigStep};
     }
 }

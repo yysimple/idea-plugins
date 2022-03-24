@@ -1,1 +1,1 @@
-package ${_package + '.infrastructure'};
+package ${_package + '.service'};
