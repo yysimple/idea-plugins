@@ -46,8 +46,10 @@ public abstract class AbstractProjectGenerator extends FreemarkerConfiguration i
 
         // 5. 创建 Common
         generateCommon(project, entryPath, projectConfig);
-    }
 
+        // 6. 创建对应的 Demo类，后续可自行更新
+        generateDemoClass(project, entryPath, projectConfig);
+    }
 
     protected abstract void generateProjectPOM(Project project, String entryPath, ProjectConfigVO projectConfig);
 
@@ -58,6 +60,8 @@ public abstract class AbstractProjectGenerator extends FreemarkerConfiguration i
     protected abstract void generateYml(Project project, String entryPath, ProjectConfigVO projectConfig);
 
     protected abstract void generateCommon(Project project, String entryPath, ProjectConfigVO projectConfig);
+
+    protected abstract void generateDemoClass(Project project, String entryPath, ProjectConfigVO projectConfig);
 
     public void writeFile(Project project, String packageName, String entryPath, String name, String ftl, Object dataModel) {
         VirtualFile virtualFile = null;

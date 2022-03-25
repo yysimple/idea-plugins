@@ -49,6 +49,7 @@ public class MvcModuleConfigStep extends ModuleWizardStep {
         projectConfig.set_artifactId(projectConfigUI.getArtifactIdField().getText());
         projectConfig.set_version(projectConfigUI.getVersionField().getText());
         projectConfig.set_package(projectConfigUI.getPackageField().getText());
+        projectConfig.set_author(projectConfigUI.getAuthorField().getText());
 
         return super.validate();
     }

@@ -18,6 +18,11 @@ public class ProjectConfigVO {
     private String _version;
     private String _package;
 
+    /**
+     * 作者名称
+     */
+    private String _author;
+
     public String get_groupId() {
         return _groupId;
     }
@@ -50,4 +55,11 @@ public class ProjectConfigVO {
         this._package = _package;
     }
 
+    public String get_author() {
+        return _author;
+    }
+
+    public void set_author(String _author) {
+        this._author = _author;
+    }
 }

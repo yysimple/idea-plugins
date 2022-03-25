@@ -16,6 +16,7 @@ public class ProjectConfigUI {
     private JTextField artifactIdField;
     private JTextField versionField;
     private JTextField packageField;
+    private JTextField authorField;
 
     public JComponent getComponent(){
         return mainPanel;
@@ -35,5 +36,9 @@ public class ProjectConfigUI {
 
     public JTextField getPackageField() {
         return packageField;
+    }
+
+    public JTextField getAuthorField() {
+        return authorField;
     }
 }

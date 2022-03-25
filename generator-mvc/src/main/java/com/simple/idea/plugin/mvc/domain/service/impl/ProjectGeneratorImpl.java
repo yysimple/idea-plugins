@@ -78,4 +78,14 @@ public class ProjectGeneratorImpl extends AbstractProjectGenerator {
         writeFile(project, "src/main/java/" + projectConfig.get_package() + "/common", entryPath, "SimpleResponse.java", "common/SimpleResponse.ftl", projectConfig);
         writeFile(project, "src/main/java/" + projectConfig.get_package() + "/common", entryPath, "AirResponse.java", "common/AirResponse.ftl", projectConfig);
     }
+
+    @Override
+    protected void generateDemoClass(Project project, String entryPath, ProjectConfigVO projectConfig) {
+        String baseJavaPath = "src/main/java/" + projectConfig.get_package();
+        writeFile(project, baseJavaPath + "/controller", entryPath, "DemoController.java", "demo/DemoController.ftl", projectConfig);
+        writeFile(project, baseJavaPath + "/domain", entryPath, "DemoController.java", "demo/Demo.ftl", projectConfig);
+        writeFile(project, baseJavaPath + "/service", entryPath, "DemoService.java", "demo/DemoService.ftl", projectConfig);
+        writeFile(project, baseJavaPath + "/service/impl", entryPath, "DemoServiceImpl.java", "demo/impl/DemoServiceImpl.ftl", projectConfig);
+        writeFile(project, baseJavaPath + "/mapper", entryPath, "DemoMapper.java", "demo/DemoMapper.ftl", projectConfig);
+    }
 }
