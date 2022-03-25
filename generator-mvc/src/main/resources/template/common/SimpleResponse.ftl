@@ -21,7 +21,7 @@ public class SimpleResponse<T> extends AirResponse<T> {
         SimpleResponse<T> response = new SimpleResponse<T>();
         response.returnCode(code);
         response.returnMsg(msg);
-        response.setStatus(FALSE);
+        response.setStatus(Boolean.FALSE);
         return response;
     }
 

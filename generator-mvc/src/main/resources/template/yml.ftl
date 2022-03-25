@@ -9,7 +9,7 @@ spring:
         password: 123456
 
 mybatis-plus:
-    type-aliases-package: com.simple.${_artifactId}.domain
+    type-aliases-package: com.simple.${_package}.domain
     mapper-locations: classpath*:mapper/*.xml
     # mybatis-plus 的全局配置
     global-config:

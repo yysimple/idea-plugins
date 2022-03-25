@@ -35,7 +35,7 @@ public class ProjectGeneratorImpl extends AbstractProjectGenerator {
      */
     @Override
     protected void generateProjectMvc(Project project, String entryPath, ProjectConfigVO projectConfig) {
-        // create application
+        // create controller
         writeFile(project, "src/main/java/" + projectConfig.get_package() + ".controller", entryPath, "package-info.java", "controller/package-info.ftl", projectConfig);
 
         // create common
@@ -44,10 +44,13 @@ public class ProjectGeneratorImpl extends AbstractProjectGenerator {
         // create domain
         writeFile(project, "src/main/java/" + projectConfig.get_package() + ".domain", entryPath, "package-info.java", "domain/package-info.ftl", projectConfig);
 
-        // create infrastructure
+        // create service
         writeFile(project, "src/main/java/" + projectConfig.get_package() + ".service", entryPath, "package-info.java", "service/package-info.ftl", projectConfig);
 
-        // create interfaces
+        // create service impl
+        writeFile(project, "src/main/java/" + projectConfig.get_package() + ".service.impl", entryPath, "package-info.java", "service/impl/package-info.ftl", projectConfig);
+
+        // create mapper
         writeFile(project, "src/main/java/" + projectConfig.get_package() + ".mapper", entryPath, "package-info.java", "mapper/package-info.ftl", projectConfig);
     }
 
@@ -72,6 +75,7 @@ public class ProjectGeneratorImpl extends AbstractProjectGenerator {
 
     @Override
     protected void generateCommon(Project project, String entryPath, ProjectConfigVO projectConfig) {
-        writeFile(project, "src/main/java/" + projectConfig.get_package() + "/common", entryPath, "Constants.java", "common/SimpleResponse.ftl", projectConfig);
+        writeFile(project, "src/main/java/" + projectConfig.get_package() + "/common", entryPath, "SimpleResponse.java", "common/SimpleResponse.ftl", projectConfig);
+        writeFile(project, "src/main/java/" + projectConfig.get_package() + "/common", entryPath, "AirResponse.java", "common/AirResponse.ftl", projectConfig);
     }
 }

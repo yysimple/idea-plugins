@@ -35,7 +35,7 @@ public abstract class AbstractProjectGenerator extends FreemarkerConfiguration i
         // 1.创建工程主POM文件
         generateProjectPOM(project, entryPath, projectConfig);
 
-        // 2.创建四层架构
+        // 2.创建Mvc的框架
         generateProjectMvc(project, entryPath, projectConfig);
 
         // 3.创建 Application

@@ -15,9 +15,6 @@
     <description>初始化项目</description>
 
     <properties>
-        <mybatis.version>3.5.5</mybatis.version>
-        <mybatis-spring-boot-autoconfigure.version>2.1.3</mybatis-spring-boot-autoconfigure.version>
-        <druid.version>1.1.23</druid.version>
         <java.version>1.8</java.version>
     </properties>
 
@@ -42,20 +39,20 @@
         <dependency>
             <groupId>org.mybatis.spring.boot</groupId>
             <artifactId>mybatis-spring-boot-autoconfigure</artifactId>
-            <version>${mybatis-spring-boot-autoconfigure.version}</version>
+            <version>2.1.3</version>
             <optional>true</optional>
         </dependency>
 
         <dependency>
             <groupId>com.alibaba</groupId>
             <artifactId>druid</artifactId>
-            <version>${druid.version}</version>
+            <version>1.1.23</version>
         </dependency>
 
         <dependency>
             <groupId>org.mybatis</groupId>
             <artifactId>mybatis</artifactId>
-            <version>${mybatis.version}</version>
+            <version>3.5.5</version>
             <optional>true</optional>
         </dependency>
 

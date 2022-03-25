@@ -136,7 +136,7 @@ public class MvcModuleBuilder extends ModuleBuilder {
     @Override
     public ModuleWizardStep[] createWizardSteps(@NotNull WizardContext wizardContext, @NotNull ModulesProvider modulesProvider) {
 
-        // 添加工程配置步骤，可以自己定义需要的步骤，如果有多个可以依次添加
+        // 添加工程配置步骤，可以自己定义需要的步骤，如果有多个可以依次添加 可以参考这里：https://plugins.jetbrains.com/docs/intellij/adding-new-steps.html
         MvcModuleConfigStep moduleConfigStep = new MvcModuleConfigStep(new ProjectConfigUI());
 
         return new ModuleWizardStep[]{moduleConfigStep};
