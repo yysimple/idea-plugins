@@ -2,7 +2,7 @@ package ${_package}.mapper;
 
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 import ${_package}.domain.Demo;
-import org.mapstruct.Mapper;
+import org.apache.ibatis.annotations.Mapper;
 
 /**
 * 项目: ${_artifactId}
