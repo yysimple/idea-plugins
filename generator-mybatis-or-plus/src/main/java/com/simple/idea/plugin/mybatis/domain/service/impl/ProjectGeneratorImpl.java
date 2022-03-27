@@ -4,6 +4,7 @@ import com.google.common.base.CaseFormat;
 import com.intellij.openapi.project.Project;
 import com.simple.idea.plugin.mybatis.domain.model.vo.CodeGenContextVO;
 import com.simple.idea.plugin.mybatis.domain.service.AbstractProjectGenerator;
+import com.simple.idea.plugin.mybatis.infrastructure.data.GenerateOptions;
 import com.simple.idea.plugin.mybatis.infrastructure.po.*;
 import com.simple.idea.plugin.mybatis.infrastructure.utils.JavaType;
 
@@ -21,7 +22,7 @@ import java.util.List;
 public class ProjectGeneratorImpl extends AbstractProjectGenerator {
 
     @Override
-    protected void generateORM(Project project, CodeGenContextVO codeGenContext) {
+    protected void generateORM(Project project, CodeGenContextVO codeGenContext, GenerateOptions options) {
 
         List<Table> tables = codeGenContext.getTables();
         for (Table table : tables) {

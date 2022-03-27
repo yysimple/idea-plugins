@@ -10,12 +10,12 @@
     <depends>com.intellij.modules.platform</depends>
     <extensions defaultExtensionNs="com.intellij">
         <!-- Add your extensions here -->
-        <projectService serviceImplementation="com.simple.idea.plugin.orm.infrastructure.data.DataSetting"/>
+        <projectService serviceImplementation="com.simple.idea.plugin.mybatis.infrastructure.data.DataSetting"/>
     </extensions>
 
     <actions>
         <!-- Add your actions here -->
-        <action id="CodeGenerateAction" class="com.simple.idea.plugin.orm.action.CodeGenerateAction"
+        <action id="CodeGenerateAction" class="com.simple.idea.plugin.mybatis.action.CodeGenerateAction"
                 text="ORMCodeGenerate" description="Code Generate ORM" icon="/icons/logo.png">
             <!-- 这里是我门触发操作的位置，这里是光标选中选中，然后右键点击，就能触发 -->
             <add-to-group group-id="ProjectViewPopupMenu" anchor="last"/>

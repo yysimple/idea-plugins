@@ -9,7 +9,10 @@ import com.simple.idea.plugin.mybatis.domain.model.vo.CodeGenContextVO;
 import com.simple.idea.plugin.mybatis.domain.model.vo.ORMConfigVO;
 import com.simple.idea.plugin.mybatis.domain.service.IProjectGenerator;
 import com.simple.idea.plugin.mybatis.infrastructure.data.DataSetting;
+import com.simple.idea.plugin.mybatis.infrastructure.data.DataState;
+import com.simple.idea.plugin.mybatis.infrastructure.data.GenerateOptions;
 import com.simple.idea.plugin.mybatis.infrastructure.po.Table;
+import com.simple.idea.plugin.mybatis.infrastructure.utils.Constants;
 import com.simple.idea.plugin.mybatis.infrastructure.utils.DBHelper;
 import com.simple.idea.plugin.mybatis.module.FileChooserComponent;
 import org.jetbrains.annotations.Nls;
@@ -53,8 +56,18 @@ public class ORMSettingsUI implements Configurable {
     private JTextField xmlPath;
     private JButton xmlButton;
     private JTable table1;
-    private JRadioButton mybatisPlusField;
-    private JRadioButton mybatisField;
+    private JRadioButton mybatisPlusButton;
+    private JRadioButton mybatisButton;
+    private JTextField mybatisPlusField;
+    private JTextField serviceField;
+    private JRadioButton serviceYes;
+    private JRadioButton serviceNo;
+    private JTextField controllerField;
+    private JRadioButton controllerYes;
+    private JRadioButton controllerNo;
+    private JTextField isCreateDir;
+    private JRadioButton createDirYes;
+    private JRadioButton createDirNo;
 
     /**
      * 我们自己的一些配置信息
@@ -72,6 +85,9 @@ public class ORMSettingsUI implements Configurable {
     private IProjectGenerator projectGenerator;
 
     public ORMSettingsUI(Project project, IProjectGenerator projectGenerator) {
+        // 获取我们之前设置的配置项
+        settingButtonStatus(project);
+
         this.project = project;
         // 相当于注入文件生成的bean
         this.projectGenerator = projectGenerator;
@@ -171,6 +187,64 @@ public class ORMSettingsUI implements Configurable {
 
     }
 
+    /**
+     * 设置按钮的选取状态
+     */
+    public void settingButtonStatus(Project project) {
+        setIsPlus(project);
+        setIsCreateDir(project);
+        setIsCreateController(project);
+        setIsCreateService(project);
+    }
+
+    private void setIsPlus(Project project) {
+        ButtonGroup isPlusGroup = new ButtonGroup();
+        isPlusGroup.add(mybatisButton);
+        isPlusGroup.add(mybatisPlusButton);
+        DataState state = DataSetting.getInstance(project).getState();
+        if (Constants.IS_PLUS.equals(state.getIsPlus())) {
+            mybatisPlusButton.setSelected(true);
+        } else {
+            mybatisButton.setSelected(true);
+        }
+    }
+
+    private void setIsCreateDir(Project project) {
+        ButtonGroup isCreateDirGroup = new ButtonGroup();
+        isCreateDirGroup.add(createDirYes);
+        isCreateDirGroup.add(createDirNo);
+        DataState state = DataSetting.getInstance(project).getState();
+        if (Constants.YES.equals(state.getIsCreateDir())) {
+            createDirYes.setSelected(true);
+        } else {
+            createDirNo.setSelected(true);
+        }
+    }
+
+    private void setIsCreateService(Project project) {
+        ButtonGroup isCreateService = new ButtonGroup();
+        isCreateService.add(serviceYes);
+        isCreateService.add(serviceNo);
+        DataState state = DataSetting.getInstance(project).getState();
+        if (Constants.YES.equals(state.getIsCreateService())) {
+            serviceYes.setSelected(true);
+        } else {
+            serviceNo.setSelected(true);
+        }
+    }
+
+    private void setIsCreateController(Project project) {
+        ButtonGroup isCreateController = new ButtonGroup();
+        isCreateController.add(controllerYes);
+        isCreateController.add(controllerNo);
+        DataState state = DataSetting.getInstance(project).getState();
+        if (Constants.YES.equals(state.getIsCreateController())) {
+            controllerYes.setSelected(true);
+        } else {
+            controllerNo.setSelected(true);
+        }
+    }
+
     @Override
     public @Nullable JComponent createComponent() {
         return main;
@@ -210,8 +284,16 @@ public class ORMSettingsUI implements Configurable {
         }
         codeGenContext.setTables(tables);
 
+        /**
+         * 全局配置项
+         */
+        GenerateOptions options = new GenerateOptions();
+        options.setIsPlus(getIsPlus());
+        options.setIsCreateController(getIsCreateController());
+        options.setIsCreateService(getIsCreateService());
+        options.setIsCreateDir(getIsCreateDir());
         // 生成代码
-        projectGenerator.generation(project, codeGenContext);
+        projectGenerator.generation(project, codeGenContext, options);
     }
 
     @Override
@@ -219,4 +301,24 @@ public class ORMSettingsUI implements Configurable {
         return "Config";
     }
 
+    /**
+     * 获取当前按钮的状态
+     *
+     * @return
+     */
+    public String getIsPlus() {
+        return mybatisPlusButton.isSelected() ? Constants.IS_PLUS : "";
+    }
+
+    public String getIsCreateDir() {
+        return createDirYes.isSelected() ? Constants.YES : "";
+    }
+
+    public String getIsCreateService() {
+        return serviceYes.isSelected() ? Constants.YES : "";
+    }
+
+    public String getIsCreateController() {
+        return controllerYes.isSelected() ? Constants.YES : "";
+    }
 }

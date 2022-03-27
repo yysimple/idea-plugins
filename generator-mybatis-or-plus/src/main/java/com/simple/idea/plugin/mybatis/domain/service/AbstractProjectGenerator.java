@@ -6,6 +6,7 @@ import com.intellij.openapi.util.text.StringUtil;
 import com.intellij.openapi.vfs.LocalFileSystem;
 import com.intellij.openapi.vfs.VirtualFile;
 import com.simple.idea.plugin.mybatis.domain.model.vo.CodeGenContextVO;
+import com.simple.idea.plugin.mybatis.infrastructure.data.GenerateOptions;
 import freemarker.template.Template;
 import freemarker.template.TemplateException;
 
@@ -25,9 +26,9 @@ import java.nio.charset.StandardCharsets;
 public abstract class AbstractProjectGenerator extends GeneratorConfig implements IProjectGenerator {
 
     @Override
-    public void generation(Project project, CodeGenContextVO codeGenContext) {
+    public void generation(Project project, CodeGenContextVO codeGenContext, GenerateOptions options) {
         // 生成orm代码
-        generateORM(project, codeGenContext);
+        generateORM(project, codeGenContext, options);
     }
 
     /**
@@ -35,8 +36,9 @@ public abstract class AbstractProjectGenerator extends GeneratorConfig implement
      *
      * @param project
      * @param codeGenContext
+     * @param options
      */
-    protected abstract void generateORM(Project project, CodeGenContextVO codeGenContext);
+    protected abstract void generateORM(Project project, CodeGenContextVO codeGenContext, GenerateOptions options);
 
     /**
      * 这里就是实际的写文件，都是同样的模板

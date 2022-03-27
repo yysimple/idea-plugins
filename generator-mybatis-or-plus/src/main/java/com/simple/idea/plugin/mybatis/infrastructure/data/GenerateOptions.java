@@ -1,46 +1,23 @@
 package com.simple.idea.plugin.mybatis.infrastructure.data;
 
-import com.simple.idea.plugin.mybatis.domain.model.vo.ORMConfigVO;
-import com.simple.idea.plugin.mybatis.infrastructure.utils.Constants;
-
 /**
  * 项目: idea-plugins
  * <p>
- * 功能描述: 这个就是一个数据聚合模型，之后之后用来存放数据的
+ * 功能描述: 生成文件的一些选项
  *
  * @author: WuChengXing
- * @create: 2022-03-19 10:55
+ * @create: 2022-03-27 13:53
  **/
-public class DataState {
-    private ORMConfigVO ormConfigVO = new ORMConfigVO();
+public class GenerateOptions {
 
     /**
      * 是否生成plus模板
      */
-    private String isPlus = Constants.IS_PLUS;
+    private String isPlus;
 
-    /**
-     * 是否生成前置目录，比如生成类 User，并未其生成目录 domain/pojo/entity等
-     */
     private String isCreateDir;
-
-    /**
-     * 是否生成 service 相关类
-     */
     private String isCreateService;
-
-    /**
-     * 是否生成Controller 相关类
-     */
     private String isCreateController;
-
-    public ORMConfigVO getOrmConfigVO() {
-        return ormConfigVO;
-    }
-
-    public void setOrmConfigVO(ORMConfigVO ormConfigVO) {
-        this.ormConfigVO = ormConfigVO;
-    }
 
     public String getIsPlus() {
         return isPlus;

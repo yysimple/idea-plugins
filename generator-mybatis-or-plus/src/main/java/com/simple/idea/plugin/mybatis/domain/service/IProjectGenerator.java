@@ -2,6 +2,7 @@ package com.simple.idea.plugin.mybatis.domain.service;
 
 import com.intellij.openapi.project.Project;
 import com.simple.idea.plugin.mybatis.domain.model.vo.CodeGenContextVO;
+import com.simple.idea.plugin.mybatis.infrastructure.data.GenerateOptions;
 
 /**
  * 项目: idea-plugins
@@ -18,6 +19,7 @@ public interface IProjectGenerator {
      *
      * @param project
      * @param codeGenContext
+     * @param options
      */
-    void generation(Project project, CodeGenContextVO codeGenContext);
+    void generation(Project project, CodeGenContextVO codeGenContext, GenerateOptions options);
 }
