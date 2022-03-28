@@ -1,6 +1,6 @@
 <idea-plugin>
     <id>com.simple.generator-mvc</id>
-    <name>wuchengxing</name>
+    <name>generator-mvc</name>
     <vendor email="1449697757@qq.com">wcx</vendor>
 
     <description>开发MVC框架生成小插件，完成自己自定义的插件开发！！！！！！！！！！！！！！！！！！！！！！！！</description>
@@ -8,6 +8,7 @@
     <!-- please see https://www.jetbrains.org/intellij/sdk/docs/basics/getting_started/plugin_compatibility.html
          on how to target different products -->
     <depends>com.intellij.modules.platform</depends>
+    <depends>org.freemarker.template</depends>
 
     <extensions defaultExtensionNs="com.intellij">
         <projectTemplatesFactory implementation="com.simple.idea.plugin.mvc.factory.TemplateFactory"/>
