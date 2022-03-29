@@ -1,6 +1,6 @@
 <idea-plugin>
     <id>com.simple.plugin-orm</id>
-    <name>wuchengxing</name>
+    <name>generator-orm</name>
     <vendor email="1449697757@qq.com">wcx</vendor>
 
     <description>开发DDD框架生成小插件，完成自己自定义的插件开发！！！！！！！！！！！！！！！！！！！！！！！！</description>
