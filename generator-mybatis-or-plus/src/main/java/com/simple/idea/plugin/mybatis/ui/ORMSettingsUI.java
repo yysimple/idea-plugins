@@ -57,32 +57,25 @@ public class ORMSettingsUI implements Configurable {
     private JButton xmlButton;
     private JTable table1;
     private JRadioButton mybatisPlusButton;
-    private JRadioButton mybatisButton;
-    private JTextField mybatisPlusField;
-    private JTextField serviceField;
     private JRadioButton serviceYes;
-    private JRadioButton serviceNo;
-    private JTextField controllerField;
     private JRadioButton controllerYes;
-    private JRadioButton controllerNo;
-    private JTextField isCreateDir;
     private JRadioButton createDirYes;
-    private JRadioButton createDirNo;
+    private JRadioButton swaggerYes;
 
     /**
      * 我们自己的一些配置信息
      */
-    private ORMConfigVO config;
+    private final ORMConfigVO config;
 
     /**
      * 这里包含一个项目的基本信息
      */
-    private Project project;
+    private final Project project;
 
     /**
      * 我们自己代码生成逻辑
      */
-    private IProjectGenerator projectGenerator;
+    private final IProjectGenerator projectGenerator;
 
     public ORMSettingsUI(Project project, IProjectGenerator projectGenerator) {
         // 获取我们之前设置的配置项
@@ -199,50 +192,42 @@ public class ORMSettingsUI implements Configurable {
 
     private void setIsPlus(Project project) {
         ButtonGroup isPlusGroup = new ButtonGroup();
-        isPlusGroup.add(mybatisButton);
         isPlusGroup.add(mybatisPlusButton);
         DataState state = DataSetting.getInstance(project).getState();
-        if (Constants.IS_PLUS.equals(state.getIsPlus())) {
-            mybatisPlusButton.setSelected(true);
-        } else {
-            mybatisButton.setSelected(true);
-        }
+        assert state != null;
+        mybatisPlusButton.setSelected(Constants.IS_PLUS.equals(state.getIsPlus()));
     }
 
     private void setIsCreateDir(Project project) {
         ButtonGroup isCreateDirGroup = new ButtonGroup();
         isCreateDirGroup.add(createDirYes);
-        isCreateDirGroup.add(createDirNo);
         DataState state = DataSetting.getInstance(project).getState();
-        if (Constants.YES.equals(state.getIsCreateDir())) {
-            createDirYes.setSelected(true);
-        } else {
-            createDirNo.setSelected(true);
-        }
+        assert state != null;
+        createDirYes.setSelected(Constants.YES.equals(state.getIsCreateDir()));
     }
 
     private void setIsCreateService(Project project) {
         ButtonGroup isCreateService = new ButtonGroup();
         isCreateService.add(serviceYes);
-        isCreateService.add(serviceNo);
         DataState state = DataSetting.getInstance(project).getState();
-        if (Constants.YES.equals(state.getIsCreateService())) {
-            serviceYes.setSelected(true);
-        } else {
-            serviceNo.setSelected(true);
-        }
+        assert state != null;
+        serviceYes.setSelected(Constants.YES.equals(state.getIsCreateService()));
     }
 
     private void setIsCreateController(Project project) {
         ButtonGroup isCreateController = new ButtonGroup();
         isCreateController.add(controllerYes);
-        isCreateController.add(controllerNo);
         DataState state = DataSetting.getInstance(project).getState();
-        if (Constants.YES.equals(state.getIsCreateController())) {
-            controllerYes.setSelected(true);
-        } else {
-            controllerNo.setSelected(true);
-        }
+        assert state != null;
+        controllerYes.setSelected(Constants.YES.equals(state.getIsCreateController()));
+    }
+
+    private void setIsCreateSwagger(Project project) {
+        ButtonGroup isCreateController = new ButtonGroup();
+        isCreateController.add(controllerYes);
+        DataState state = DataSetting.getInstance(project).getState();
+        assert state != null;
+        controllerYes.setSelected(Constants.YES.equals(state.getIsCreateController()));
     }
 
     @Override

@@ -92,14 +92,6 @@ public class ORMConfigVO {
 
     private String database;
 
-    /**
-     * 是否生成plus模板
-     */
-    private String isPlus;
-    private String isCreateDir;
-    private String isCreateService;
-    private String isCreateController;
-
     public String getUrl() {
         return url;
     }
@@ -236,35 +228,4 @@ public class ORMConfigVO {
         this.database = database;
     }
 
-    public String getIsPlus() {
-        return isPlus;
-    }
-
-    public void setIsPlus(String isPlus) {
-        this.isPlus = isPlus;
-    }
-
-    public String getIsCreateDir() {
-        return isCreateDir;
-    }
-
-    public void setIsCreateDir(String isCreateDir) {
-        this.isCreateDir = isCreateDir;
-    }
-
-    public String getIsCreateService() {
-        return isCreateService;
-    }
-
-    public void setIsCreateService(String isCreateService) {
-        this.isCreateService = isCreateService;
-    }
-
-    public String getIsCreateController() {
-        return isCreateController;
-    }
-
-    public void setIsCreateController(String isCreateController) {
-        this.isCreateController = isCreateController;
-    }
 }

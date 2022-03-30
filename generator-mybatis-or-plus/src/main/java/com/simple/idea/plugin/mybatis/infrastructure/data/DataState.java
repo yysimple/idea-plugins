@@ -12,7 +12,16 @@ import com.simple.idea.plugin.mybatis.infrastructure.utils.Constants;
  * @create: 2022-03-19 10:55
  **/
 public class DataState {
+
+    /**
+     * orm相关的配置项
+     */
     private ORMConfigVO ormConfigVO = new ORMConfigVO();
+
+    /**
+     * 一些配置项
+     */
+    private GenerateOptions options = new GenerateOptions();
 
     /**
      * 是否生成plus模板
