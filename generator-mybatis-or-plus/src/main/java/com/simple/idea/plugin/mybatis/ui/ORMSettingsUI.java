@@ -61,6 +61,12 @@ public class ORMSettingsUI implements Configurable {
     private JRadioButton controllerYes;
     private JRadioButton createDirYes;
     private JRadioButton swaggerYes;
+    private JTextField controllerPath;
+    private JButton controllerButton;
+    private JTextField servicePath;
+    private JTextField implPath;
+    private JButton serviceButton;
+    private JButton implButton;
 
     /**
      * 我们自己的一些配置信息

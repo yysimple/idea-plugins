@@ -74,9 +74,19 @@ public class ORMConfigVO {
     private String daoPath;
 
     /**
-     * 待扩展，service层的生成路径
+     * service层的生成路径
      */
     private String servicePath;
+
+    /**
+     * service实现类生成路径
+     */
+    private String implPath;
+
+    /**
+     * controller生成类
+     */
+    private String controllerPath;
 
     /**
      * xml文件的生成路径
@@ -228,4 +238,19 @@ public class ORMConfigVO {
         this.database = database;
     }
 
+    public String getImplPath() {
+        return implPath;
+    }
+
+    public void setImplPath(String implPath) {
+        this.implPath = implPath;
+    }
+
+    public String getControllerPath() {
+        return controllerPath;
+    }
+
+    public void setControllerPath(String controllerPath) {
+        this.controllerPath = controllerPath;
+    }
 }
