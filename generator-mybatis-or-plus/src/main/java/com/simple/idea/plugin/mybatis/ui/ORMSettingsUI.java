@@ -99,39 +99,16 @@ public class ORMSettingsUI implements Configurable {
         this.database.setText(config.getDatabase());
         this.host.setText(config.getHost());
         this.port.setText(config.getPort());
+        // 设置各种路径
         this.poPath.setText(config.getPoPath());
         this.daoPath.setText(config.getDaoPath());
         this.xmlPath.setText(config.getXmlPath());
+        this.controllerPath.setText(config.getControllerPath());
+        this.servicePath.setText(config.getServicePath());
+        this.implPath.setText(config.getImplPath());
 
-        // 选择PO生成目录
-        this.poButton.addActionListener(e -> {
-            FileChooserComponent component = FileChooserComponent.getInstance(project);
-            VirtualFile baseDir = project.getBaseDir();
-            VirtualFile virtualFile = component.showFolderSelectionDialog("选择PO生成目录", baseDir, baseDir);
-            if (null != virtualFile) {
-                ORMSettingsUI.this.poPath.setText(virtualFile.getPath());
-            }
-        });
-
-        // 选择DAO生成目录
-        this.daoButton.addActionListener(e -> {
-            FileChooserComponent component = FileChooserComponent.getInstance(project);
-            VirtualFile baseDir = project.getBaseDir();
-            VirtualFile virtualFile = component.showFolderSelectionDialog("选择DAO生成目录", baseDir, baseDir);
-            if (null != virtualFile) {
-                ORMSettingsUI.this.daoPath.setText(virtualFile.getPath());
-            }
-        });
-
-        // 选择XMl生成目录
-        this.xmlButton.addActionListener(e -> {
-            FileChooserComponent component = FileChooserComponent.getInstance(project);
-            VirtualFile baseDir = project.getBaseDir();
-            VirtualFile virtualFile = component.showFolderSelectionDialog("选择XML生成目录", baseDir, baseDir);
-            if (null != virtualFile) {
-                ORMSettingsUI.this.xmlPath.setText(virtualFile.getPath());
-            }
-        });
+        // 文件生成目录回显
+        chooseFiles();
 
         // 查询数据库表列表
         this.selectButton.addActionListener(e -> {
@@ -186,6 +163,68 @@ public class ORMSettingsUI implements Configurable {
 
     }
 
+    public void chooseFiles() {
+        // 选择PO生成目录
+        this.poButton.addActionListener(e -> {
+            FileChooserComponent component = FileChooserComponent.getInstance(project);
+            VirtualFile baseDir = project.getBaseDir();
+            VirtualFile virtualFile = component.showFolderSelectionDialog("选择PO生成目录", baseDir, baseDir);
+            if (null != virtualFile) {
+                ORMSettingsUI.this.poPath.setText(virtualFile.getPath());
+            }
+        });
+
+        // 选择DAO生成目录
+        this.daoButton.addActionListener(e -> {
+            FileChooserComponent component = FileChooserComponent.getInstance(project);
+            VirtualFile baseDir = project.getBaseDir();
+            VirtualFile virtualFile = component.showFolderSelectionDialog("选择DAO生成目录", baseDir, baseDir);
+            if (null != virtualFile) {
+                ORMSettingsUI.this.daoPath.setText(virtualFile.getPath());
+            }
+        });
+
+        // 选择XMl生成目录
+        this.xmlButton.addActionListener(e -> {
+            FileChooserComponent component = FileChooserComponent.getInstance(project);
+            VirtualFile baseDir = project.getBaseDir();
+            VirtualFile virtualFile = component.showFolderSelectionDialog("选择XML生成目录", baseDir, baseDir);
+            if (null != virtualFile) {
+                ORMSettingsUI.this.xmlPath.setText(virtualFile.getPath());
+            }
+        });
+
+        // 选择Controller生成目录
+        this.controllerButton.addActionListener(e -> {
+            FileChooserComponent component = FileChooserComponent.getInstance(project);
+            VirtualFile baseDir = project.getBaseDir();
+            VirtualFile virtualFile = component.showFolderSelectionDialog("选择Controller生成目录", baseDir, baseDir);
+            if (null != virtualFile) {
+                ORMSettingsUI.this.controllerPath.setText(virtualFile.getPath());
+            }
+        });
+
+        // 选择Service生成目录
+        this.serviceButton.addActionListener(e -> {
+            FileChooserComponent component = FileChooserComponent.getInstance(project);
+            VirtualFile baseDir = project.getBaseDir();
+            VirtualFile virtualFile = component.showFolderSelectionDialog("选择Service生成目录", baseDir, baseDir);
+            if (null != virtualFile) {
+                ORMSettingsUI.this.servicePath.setText(virtualFile.getPath());
+            }
+        });
+
+        // 选择Impl生成目录
+        this.implButton.addActionListener(e -> {
+            FileChooserComponent component = FileChooserComponent.getInstance(project);
+            VirtualFile baseDir = project.getBaseDir();
+            VirtualFile virtualFile = component.showFolderSelectionDialog("选择Impl生成目录", baseDir, baseDir);
+            if (null != virtualFile) {
+                ORMSettingsUI.this.implPath.setText(virtualFile.getPath());
+            }
+        });
+    }
+
     /**
      * 设置按钮的选取状态
      */
@@ -194,6 +233,7 @@ public class ORMSettingsUI implements Configurable {
         setIsCreateDir(project);
         setIsCreateController(project);
         setIsCreateService(project);
+        setIsCreateSwagger(project);
     }
 
     private void setIsPlus(Project project) {
@@ -256,9 +296,13 @@ public class ORMSettingsUI implements Configurable {
         config.setDatabase(this.database.getText());
         config.setHost(this.host.getText());
         config.setPort(this.port.getText() != null ? this.port.getText() : "3306");
+        // 设置文件路径
         config.setPoPath(this.poPath.getText());
         config.setDaoPath(this.daoPath.getText());
         config.setXmlPath(this.xmlPath.getText());
+        config.setControllerPath(this.controllerPath.getText());
+        config.setServicePath(this.servicePath.getText());
+        config.setImplPath(this.implPath.getText());
 
         // 链接DB
         DBHelper dbHelper = new DBHelper(config.getHost(), Integer.parseInt(config.getPort()), config.getUser(), config.getPassword(), config.getDatabase());

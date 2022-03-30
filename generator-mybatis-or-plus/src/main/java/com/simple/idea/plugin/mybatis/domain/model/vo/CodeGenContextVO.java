@@ -17,6 +17,9 @@ public class CodeGenContextVO {
     private String modelPackage;
     private String daoPackage;
     private String mapperDir;
+    private String controllerPackage;
+    private String servicePackage;
+    private String implPackage;
 
     private List<Table> tables;
 
@@ -50,5 +53,29 @@ public class CodeGenContextVO {
 
     public void setTables(List<Table> tables) {
         this.tables = tables;
+    }
+
+    public String getControllerPackage() {
+        return controllerPackage;
+    }
+
+    public void setControllerPackage(String controllerPackage) {
+        this.controllerPackage = controllerPackage;
+    }
+
+    public String getServicePackage() {
+        return servicePackage;
+    }
+
+    public void setServicePackage(String servicePackage) {
+        this.servicePackage = servicePackage;
+    }
+
+    public String getImplPackage() {
+        return implPackage;
+    }
+
+    public void setImplPackage(String implPackage) {
+        this.implPackage = implPackage;
     }
 }
