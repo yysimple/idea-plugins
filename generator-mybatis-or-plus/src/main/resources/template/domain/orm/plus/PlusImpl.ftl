@@ -15,7 +15,7 @@ import ${import};
 * @create: ${.now?string('yyyy-MM-dd HH:mm:ss')}
 **/
 @Service
-public class ${simpleName} implements ${service.simpleName} {
+public class ${simpleName} extends ServiceImpl<${mapper.simpleName}, ${model.simpleName}}> implements ${service.simpleName} {
 
     @Resource
     private ${mapper.simpleName} ${mapper.varName}
