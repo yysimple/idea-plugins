@@ -39,4 +39,8 @@ public class DataSetting implements PersistentStateComponent<DataState> {
     public ORMConfigVO getORMConfig() {
         return state.getOrmConfigVO();
     }
+
+    public GenerateOptions getOptions() {
+        return state.getOptions();
+    }
 }

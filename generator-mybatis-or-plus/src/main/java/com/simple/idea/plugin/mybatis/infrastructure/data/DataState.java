@@ -1,7 +1,6 @@
 package com.simple.idea.plugin.mybatis.infrastructure.data;
 
 import com.simple.idea.plugin.mybatis.domain.model.vo.ORMConfigVO;
-import com.simple.idea.plugin.mybatis.infrastructure.utils.Constants;
 
 /**
  * 项目: idea-plugins
@@ -23,25 +22,6 @@ public class DataState {
      */
     private GenerateOptions options = new GenerateOptions();
 
-    /**
-     * 是否生成plus模板
-     */
-    private String isPlus = Constants.IS_PLUS;
-
-    /**
-     * 是否生成前置目录，比如生成类 User，并未其生成目录 domain/pojo/entity等
-     */
-    private String isCreateDir;
-
-    /**
-     * 是否生成 service 相关类
-     */
-    private String isCreateService;
-
-    /**
-     * 是否生成Controller 相关类
-     */
-    private String isCreateController;
 
     public ORMConfigVO getOrmConfigVO() {
         return ormConfigVO;
@@ -51,35 +31,11 @@ public class DataState {
         this.ormConfigVO = ormConfigVO;
     }
 
-    public String getIsPlus() {
-        return isPlus;
+    public GenerateOptions getOptions() {
+        return options;
     }
 
-    public void setIsPlus(String isPlus) {
-        this.isPlus = isPlus;
-    }
-
-    public String getIsCreateDir() {
-        return isCreateDir;
-    }
-
-    public void setIsCreateDir(String isCreateDir) {
-        this.isCreateDir = isCreateDir;
-    }
-
-    public String getIsCreateService() {
-        return isCreateService;
-    }
-
-    public void setIsCreateService(String isCreateService) {
-        this.isCreateService = isCreateService;
-    }
-
-    public String getIsCreateController() {
-        return isCreateController;
-    }
-
-    public void setIsCreateController(String isCreateController) {
-        this.isCreateController = isCreateController;
+    public void setOptions(GenerateOptions options) {
+        this.options = options;
     }
 }

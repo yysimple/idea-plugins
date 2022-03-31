@@ -310,7 +310,7 @@
           </component>
         </children>
       </scrollpane>
-      <grid id="9c5ec" layout-manager="GridLayoutManager" row-count="2" column-count="4" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
+      <grid id="9c5ec" layout-manager="GridLayoutManager" row-count="2" column-count="3" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
         <margin top="0" left="0" bottom="0" right="0"/>
         <constraints>
           <grid row="1" column="0" row-span="1" col-span="6" vsize-policy="3" hsize-policy="3" anchor="0" fill="3" indent="0" use-parent-layout="false"/>
@@ -320,7 +320,7 @@
         </properties>
         <border type="none" title="Options"/>
         <children>
-          <component id="9de6a" class="javax.swing.JRadioButton" binding="mybatisPlusButton">
+          <component id="f39b4" class="javax.swing.JCheckBox" binding="mybatisPlusYes">
             <constraints>
               <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
             </constraints>
@@ -328,36 +328,36 @@
               <text value="mybatisPlus"/>
             </properties>
           </component>
-          <component id="f8668" class="javax.swing.JRadioButton" binding="createDirYes">
+          <component id="531d6" class="javax.swing.JCheckBox" binding="serviceYes">
             <constraints>
-              <grid row="0" column="3" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
-            </constraints>
-            <properties>
-              <text value="是否生成前置包"/>
-            </properties>
-          </component>
-          <component id="2d4b7" class="javax.swing.JRadioButton" binding="serviceYes">
-            <constraints>
-              <grid row="0" column="1" row-span="1" col-span="2" vsize-policy="0" hsize-policy="3" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
+              <grid row="0" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
             </constraints>
             <properties>
               <text value="是否生成Service"/>
             </properties>
           </component>
-          <component id="ecea8" class="javax.swing.JRadioButton" binding="swaggerYes">
-            <constraints>
-              <grid row="1" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
-            </constraints>
-            <properties>
-              <text value="是否生成Swagger"/>
-            </properties>
-          </component>
-          <component id="d6de7" class="javax.swing.JRadioButton" binding="controllerYes">
+          <component id="20d22" class="javax.swing.JCheckBox" binding="controllerYes">
             <constraints>
               <grid row="1" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
             </constraints>
             <properties>
               <text value="是否生成controller"/>
+            </properties>
+          </component>
+          <component id="2bcef" class="javax.swing.JCheckBox" binding="createDirYes">
+            <constraints>
+              <grid row="0" column="2" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
+            </constraints>
+            <properties>
+              <text value="是否生成前置包"/>
+            </properties>
+          </component>
+          <component id="a1afb" class="javax.swing.JCheckBox" binding="swaggerYes">
+            <constraints>
+              <grid row="1" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
+            </constraints>
+            <properties>
+              <text value="是否生成Swagger"/>
             </properties>
           </component>
         </children>

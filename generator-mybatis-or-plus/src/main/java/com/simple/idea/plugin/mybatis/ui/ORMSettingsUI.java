@@ -56,22 +56,27 @@ public class ORMSettingsUI implements Configurable {
     private JTextField xmlPath;
     private JButton xmlButton;
     private JTable table1;
-    private JRadioButton mybatisPlusButton;
-    private JRadioButton serviceYes;
-    private JRadioButton controllerYes;
-    private JRadioButton createDirYes;
-    private JRadioButton swaggerYes;
     private JTextField controllerPath;
     private JButton controllerButton;
     private JTextField servicePath;
     private JTextField implPath;
     private JButton serviceButton;
     private JButton implButton;
+    private JCheckBox mybatisPlusYes;
+    private JCheckBox serviceYes;
+    private JCheckBox createDirYes;
+    private JCheckBox controllerYes;
+    private JCheckBox swaggerYes;
 
     /**
      * 我们自己的一些配置信息
      */
     private final ORMConfigVO config;
+
+    /**
+     * 配置项
+     */
+    private final GenerateOptions options;
 
     /**
      * 这里包含一个项目的基本信息
@@ -84,22 +89,22 @@ public class ORMSettingsUI implements Configurable {
     private final IProjectGenerator projectGenerator;
 
     public ORMSettingsUI(Project project, IProjectGenerator projectGenerator) {
-        // 获取我们之前设置的配置项
-        settingButtonStatus(project);
 
         this.project = project;
         // 相当于注入文件生成的bean
         this.projectGenerator = projectGenerator;
         // 这里是拿到配置信息（这里是通过在idea的缓存中拿到的，第一次初始化插件是没有的）
         config = DataSetting.getInstance(null != project ? project : ProjectManager.getInstance().getDefaultProject()).getORMConfig();
+        options = DataSetting.getInstance(null != project ? project : ProjectManager.getInstance().getDefaultProject()).getOptions();
         // 下面开始就是拿到上次初始化过后的一些值重新赋值
+        assert project != null;
         this.projectName.setText(project.getName());
         this.classpath.setText(project.getBasePath());
 
         this.database.setText(config.getDatabase());
         this.host.setText(config.getHost());
         this.port.setText(config.getPort());
-        // 设置各种路径
+        // 回显设置的各种路径
         this.poPath.setText(config.getPoPath());
         this.daoPath.setText(config.getDaoPath());
         this.xmlPath.setText(config.getXmlPath());
@@ -107,8 +112,14 @@ public class ORMSettingsUI implements Configurable {
         this.servicePath.setText(config.getServicePath());
         this.implPath.setText(config.getImplPath());
 
+        // 设置之前的按钮选择状态
+        settingButtonStatus(project);
+
         // 文件生成目录回显
         chooseFiles();
+
+        // 重新选择按钮并重新赋值
+        reSelectButton();
 
         // 查询数据库表列表
         this.selectButton.addActionListener(e -> {
@@ -161,6 +172,22 @@ public class ORMSettingsUI implements Configurable {
             }
         });
 
+    }
+
+    private void reSelectButton() {
+        this.controllerYes.addActionListener(e -> {
+            ORMSettingsUI.this.controllerYes.setSelected(!Constants.YES.equals(getIsCreateController()));
+        });
+        this.serviceYes.addChangeListener(e -> {
+            ORMSettingsUI.this.serviceYes.setSelected(!Constants.YES.equals(getIsCreateService()));
+        });
+        this.swaggerYes.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mouseClicked(MouseEvent e) {
+                ORMSettingsUI.this.swaggerYes.setSelected(!Constants.YES.equals(getIsCreateSwagger()));
+                System.out.println(swaggerYes.isSelected());
+            }
+        });
     }
 
     public void chooseFiles() {
@@ -238,10 +265,10 @@ public class ORMSettingsUI implements Configurable {
 
     private void setIsPlus(Project project) {
         ButtonGroup isPlusGroup = new ButtonGroup();
-        isPlusGroup.add(mybatisPlusButton);
+        isPlusGroup.add(mybatisPlusYes);
         DataState state = DataSetting.getInstance(project).getState();
         assert state != null;
-        mybatisPlusButton.setSelected(Constants.IS_PLUS.equals(state.getIsPlus()));
+        mybatisPlusYes.setSelected(Constants.IS_PLUS.equals(options.getIsPlus()));
     }
 
     private void setIsCreateDir(Project project) {
@@ -249,7 +276,7 @@ public class ORMSettingsUI implements Configurable {
         isCreateDirGroup.add(createDirYes);
         DataState state = DataSetting.getInstance(project).getState();
         assert state != null;
-        createDirYes.setSelected(Constants.YES.equals(state.getIsCreateDir()));
+        createDirYes.setSelected(Constants.YES.equals(options.getIsCreateDir()));
     }
 
     private void setIsCreateService(Project project) {
@@ -257,7 +284,7 @@ public class ORMSettingsUI implements Configurable {
         isCreateService.add(serviceYes);
         DataState state = DataSetting.getInstance(project).getState();
         assert state != null;
-        serviceYes.setSelected(Constants.YES.equals(state.getIsCreateService()));
+        serviceYes.setSelected(Constants.YES.equals(options.getIsCreateService()));
     }
 
     private void setIsCreateController(Project project) {
@@ -265,15 +292,15 @@ public class ORMSettingsUI implements Configurable {
         isCreateController.add(controllerYes);
         DataState state = DataSetting.getInstance(project).getState();
         assert state != null;
-        controllerYes.setSelected(Constants.YES.equals(state.getIsCreateController()));
+        controllerYes.setSelected(Constants.YES.equals(options.getIsCreateController()));
     }
 
     private void setIsCreateSwagger(Project project) {
         ButtonGroup isCreateController = new ButtonGroup();
-        isCreateController.add(controllerYes);
+        isCreateController.add(swaggerYes);
         DataState state = DataSetting.getInstance(project).getState();
         assert state != null;
-        controllerYes.setSelected(Constants.YES.equals(state.getIsCreateController()));
+        swaggerYes.setSelected(Constants.YES.equals(options.getIsCreateController()));
     }
 
     @Override
@@ -307,11 +334,25 @@ public class ORMSettingsUI implements Configurable {
         // 链接DB
         DBHelper dbHelper = new DBHelper(config.getHost(), Integer.parseInt(config.getPort()), config.getUser(), config.getPassword(), config.getDatabase());
 
+        /**
+         * 全局配置项
+         */
+        options.setIsPlus(getIsPlus());
+        options.setIsCreateController(getIsCreateController());
+        options.setIsCreateService(getIsCreateService());
+        options.setIsCreateDir(getIsCreateDir());
+        options.setIsCreateSwagger(getIsCreateSwagger());
+
         // 组装代码生产上下文
         CodeGenContextVO codeGenContext = new CodeGenContextVO();
-        codeGenContext.setModelPackage(config.getPoPath() + "/po/");
-        codeGenContext.setDaoPackage(config.getDaoPath() + "/mapper/");
-        codeGenContext.setMapperDir(config.getXmlPath() + "/mapper/");
+
+        // 这里是去判断是否需要生成前置目录（先将所有的目录生成上下文组装好，留下是否需要生成service等选项之后判断）
+        codeGenContext.setModelPackage((Constants.YES.equals(getIsCreateDir())) ? config.getPoPath() + "/model/" : config.getPoPath());
+        codeGenContext.setDaoPackage((Constants.YES.equals(getIsCreateDir())) ? config.getDaoPath() + "/mapper/" : config.getDaoPath());
+        codeGenContext.setMapperDir((Constants.YES.equals(getIsCreateDir())) ? config.getXmlPath() + "/mapper/" : config.getXmlPath());
+        codeGenContext.setMapperDir((Constants.YES.equals(getIsCreateDir())) ? config.getControllerPath() + "/controller/" : config.getControllerPath());
+        codeGenContext.setMapperDir((Constants.YES.equals(getIsCreateDir())) ? config.getServicePath() + "/service/" : config.getServicePath());
+        codeGenContext.setMapperDir((Constants.YES.equals(getIsCreateDir())) ? config.getImplPath() + "/impl/" : config.getImplPath());
         List<Table> tables = new ArrayList<>();
         Set<String> tableNames = config.getTableNames();
         for (String tableName : tableNames) {
@@ -319,16 +360,8 @@ public class ORMSettingsUI implements Configurable {
         }
         codeGenContext.setTables(tables);
 
-        /**
-         * 全局配置项
-         */
-        GenerateOptions options = new GenerateOptions();
-        options.setIsPlus(getIsPlus());
-        options.setIsCreateController(getIsCreateController());
-        options.setIsCreateService(getIsCreateService());
-        options.setIsCreateDir(getIsCreateDir());
         // 生成代码
-        projectGenerator.generation(project, codeGenContext, options);
+        // projectGenerator.generation(project, codeGenContext, options);
     }
 
     @Override
@@ -342,7 +375,7 @@ public class ORMSettingsUI implements Configurable {
      * @return
      */
     public String getIsPlus() {
-        return mybatisPlusButton.isSelected() ? Constants.IS_PLUS : "";
+        return mybatisPlusYes.isSelected() ? Constants.IS_PLUS : "";
     }
 
     public String getIsCreateDir() {
@@ -355,5 +388,9 @@ public class ORMSettingsUI implements Configurable {
 
     public String getIsCreateController() {
         return controllerYes.isSelected() ? Constants.YES : "";
+    }
+
+    public String getIsCreateSwagger() {
+        return swaggerYes.isSelected() ? Constants.YES : "";
     }
 }
