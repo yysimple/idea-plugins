@@ -113,13 +113,10 @@ public class ORMSettingsUI implements Configurable {
         this.implPath.setText(config.getImplPath());
 
         // 设置之前的按钮选择状态
-        settingButtonStatus(project);
+        settingButtonStatus();
 
         // 文件生成目录回显
         chooseFiles();
-
-        // 重新选择按钮并重新赋值
-        reSelectButton();
 
         // 查询数据库表列表
         this.selectButton.addActionListener(e -> {
@@ -172,22 +169,6 @@ public class ORMSettingsUI implements Configurable {
             }
         });
 
-    }
-
-    private void reSelectButton() {
-        this.controllerYes.addActionListener(e -> {
-            ORMSettingsUI.this.controllerYes.setSelected(!Constants.YES.equals(getIsCreateController()));
-        });
-        this.serviceYes.addChangeListener(e -> {
-            ORMSettingsUI.this.serviceYes.setSelected(!Constants.YES.equals(getIsCreateService()));
-        });
-        this.swaggerYes.addMouseListener(new MouseAdapter() {
-            @Override
-            public void mouseClicked(MouseEvent e) {
-                ORMSettingsUI.this.swaggerYes.setSelected(!Constants.YES.equals(getIsCreateSwagger()));
-                System.out.println(swaggerYes.isSelected());
-            }
-        });
     }
 
     public void chooseFiles() {
@@ -255,51 +236,11 @@ public class ORMSettingsUI implements Configurable {
     /**
      * 设置按钮的选取状态
      */
-    public void settingButtonStatus(Project project) {
-        setIsPlus(project);
-        setIsCreateDir(project);
-        setIsCreateController(project);
-        setIsCreateService(project);
-        setIsCreateSwagger(project);
-    }
-
-    private void setIsPlus(Project project) {
-        ButtonGroup isPlusGroup = new ButtonGroup();
-        isPlusGroup.add(mybatisPlusYes);
-        DataState state = DataSetting.getInstance(project).getState();
-        assert state != null;
+    public void settingButtonStatus() {
         mybatisPlusYes.setSelected(Constants.IS_PLUS.equals(options.getIsPlus()));
-    }
-
-    private void setIsCreateDir(Project project) {
-        ButtonGroup isCreateDirGroup = new ButtonGroup();
-        isCreateDirGroup.add(createDirYes);
-        DataState state = DataSetting.getInstance(project).getState();
-        assert state != null;
         createDirYes.setSelected(Constants.YES.equals(options.getIsCreateDir()));
-    }
-
-    private void setIsCreateService(Project project) {
-        ButtonGroup isCreateService = new ButtonGroup();
-        isCreateService.add(serviceYes);
-        DataState state = DataSetting.getInstance(project).getState();
-        assert state != null;
         serviceYes.setSelected(Constants.YES.equals(options.getIsCreateService()));
-    }
-
-    private void setIsCreateController(Project project) {
-        ButtonGroup isCreateController = new ButtonGroup();
-        isCreateController.add(controllerYes);
-        DataState state = DataSetting.getInstance(project).getState();
-        assert state != null;
         controllerYes.setSelected(Constants.YES.equals(options.getIsCreateController()));
-    }
-
-    private void setIsCreateSwagger(Project project) {
-        ButtonGroup isCreateController = new ButtonGroup();
-        isCreateController.add(swaggerYes);
-        DataState state = DataSetting.getInstance(project).getState();
-        assert state != null;
         swaggerYes.setSelected(Constants.YES.equals(options.getIsCreateController()));
     }
 
