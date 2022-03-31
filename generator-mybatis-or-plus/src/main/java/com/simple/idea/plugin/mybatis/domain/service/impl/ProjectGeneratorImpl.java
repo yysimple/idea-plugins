@@ -37,14 +37,18 @@ public class ProjectGeneratorImpl extends AbstractProjectGenerator {
 
             // 生成PO
             Model model = new Model(table.getComment(), codeGenContext.getModelPackage() + CaseFormat.UPPER_UNDERSCORE.to(CaseFormat.UPPER_CAMEL, table.getName()), table.getName(), fields);
+            model.setAuthor(codeGenContext.getAuthor());
+            model.setProjectName(codeGenContext.getProjectName());
+            // freeMarkerData.setModel(model);
             writeFile(project, codeGenContext.getModelPackage(), model.getSimpleName() + ".java", "domain/orm/model.ftl", model);
 
             // 生成DAO
-            Mapper mapper = new Mapper(table.getComment(), codeGenContext.getDaoPackage() + "I" + CaseFormat.UPPER_UNDERSCORE.to(CaseFormat.UPPER_CAMEL, table.getName()) + "Mapper", model);
-            writeFile(project, codeGenContext.getDaoPackage(), mapper.getSimpleName() + ".java", "domain/orm/dao.ftl", mapper);
-
-            // 生成Mapper
-            writeFile(project, codeGenContext.getMapperDir(), mapper.getModel().getSimpleName() + "Mapper.xml", "domain/orm/mapper.ftl", mapper);
+//            Mapper mapper = new Mapper(table.getComment(), codeGenContext.getDaoPackage() + "I" + CaseFormat.UPPER_UNDERSCORE.to(CaseFormat.UPPER_CAMEL, table.getName()) + "Mapper", model);
+//            freeMarkerData.setMapper(mapper);
+//            writeFile(project, codeGenContext.getDaoPackage(), mapper.getSimpleName() + ".java", "domain/orm/dao.ftl", freeMarkerData);
+//
+//            // 生成Mapper
+//            writeFile(project, codeGenContext.getMapperDir(), mapper.getModel().getSimpleName() + "Mapper.xml", "domain/orm/mapper.ftl", mapper);
         }
 
     }

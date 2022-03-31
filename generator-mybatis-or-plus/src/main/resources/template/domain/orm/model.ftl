@@ -6,8 +6,13 @@ import ${import};
 </#list>
 
 /**
- * ${comment}
- */
+* 项目: ${projectName}
+*
+* 功能描述: ${comment}
+*
+* @author: ${author}
+* @create: ${.now?string('yyyy-MM-dd HH:mm:ss')}
+**/
 @Data
 public class ${simpleName} {
 <#list fields as field>

@@ -17,6 +17,8 @@ public abstract class Base {
     private int ormType;
     private String comment;
     private String name;
+    private String author;
+    private String projectName;
 
     public Base(String comment, String name) {
         this.comment = comment;
@@ -58,5 +60,29 @@ public abstract class Base {
 
     public int getOrmType() {
         return ormType;
+    }
+
+    public void setComment(String comment) {
+        this.comment = comment;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public String getAuthor() {
+        return author;
+    }
+
+    public void setAuthor(String author) {
+        this.author = author;
+    }
+
+    public String getProjectName() {
+        return projectName;
+    }
+
+    public void setProjectName(String projectName) {
+        this.projectName = projectName;
     }
 }

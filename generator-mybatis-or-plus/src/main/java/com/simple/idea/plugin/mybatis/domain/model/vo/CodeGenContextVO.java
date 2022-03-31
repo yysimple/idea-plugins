@@ -20,6 +20,8 @@ public class CodeGenContextVO {
     private String controllerPackage;
     private String servicePackage;
     private String implPackage;
+    private String author;
+    private String projectName;
 
     private List<Table> tables;
 
@@ -77,5 +79,21 @@ public class CodeGenContextVO {
 
     public void setImplPackage(String implPackage) {
         this.implPackage = implPackage;
+    }
+
+    public String getAuthor() {
+        return author;
+    }
+
+    public void setAuthor(String author) {
+        this.author = author;
+    }
+
+    public String getProjectName() {
+        return projectName;
+    }
+
+    public void setProjectName(String projectName) {
+        this.projectName = projectName;
     }
 }

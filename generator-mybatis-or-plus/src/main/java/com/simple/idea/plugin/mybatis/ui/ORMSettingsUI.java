@@ -9,7 +9,6 @@ import com.simple.idea.plugin.mybatis.domain.model.vo.CodeGenContextVO;
 import com.simple.idea.plugin.mybatis.domain.model.vo.ORMConfigVO;
 import com.simple.idea.plugin.mybatis.domain.service.IProjectGenerator;
 import com.simple.idea.plugin.mybatis.infrastructure.data.DataSetting;
-import com.simple.idea.plugin.mybatis.infrastructure.data.DataState;
 import com.simple.idea.plugin.mybatis.infrastructure.data.GenerateOptions;
 import com.simple.idea.plugin.mybatis.infrastructure.po.Table;
 import com.simple.idea.plugin.mybatis.infrastructure.utils.Constants;
@@ -67,6 +66,7 @@ public class ORMSettingsUI implements Configurable {
     private JCheckBox createDirYes;
     private JCheckBox controllerYes;
     private JCheckBox swaggerYes;
+    private JTextField authorField;
 
     /**
      * 我们自己的一些配置信息
@@ -104,6 +104,7 @@ public class ORMSettingsUI implements Configurable {
         this.database.setText(config.getDatabase());
         this.host.setText(config.getHost());
         this.port.setText(config.getPort());
+        this.authorField.setText(config.getAuthor());
         // 回显设置的各种路径
         this.poPath.setText(config.getPoPath());
         this.daoPath.setText(config.getDaoPath());
@@ -271,6 +272,7 @@ public class ORMSettingsUI implements Configurable {
         config.setControllerPath(this.controllerPath.getText());
         config.setServicePath(this.servicePath.getText());
         config.setImplPath(this.implPath.getText());
+        config.setAuthor(this.authorField.getText());
 
         // 链接DB
         DBHelper dbHelper = new DBHelper(config.getHost(), Integer.parseInt(config.getPort()), config.getUser(), config.getPassword(), config.getDatabase());
@@ -288,12 +290,15 @@ public class ORMSettingsUI implements Configurable {
         CodeGenContextVO codeGenContext = new CodeGenContextVO();
 
         // 这里是去判断是否需要生成前置目录（先将所有的目录生成上下文组装好，留下是否需要生成service等选项之后判断）
-        codeGenContext.setModelPackage((Constants.YES.equals(getIsCreateDir())) ? config.getPoPath() + "/model/" : config.getPoPath());
+        codeGenContext.setModelPackage((Constants.YES.equals(getIsCreateDir())) ? config.getPoPath() + "/domain/" : config.getPoPath());
         codeGenContext.setDaoPackage((Constants.YES.equals(getIsCreateDir())) ? config.getDaoPath() + "/mapper/" : config.getDaoPath());
         codeGenContext.setMapperDir((Constants.YES.equals(getIsCreateDir())) ? config.getXmlPath() + "/mapper/" : config.getXmlPath());
-        codeGenContext.setMapperDir((Constants.YES.equals(getIsCreateDir())) ? config.getControllerPath() + "/controller/" : config.getControllerPath());
-        codeGenContext.setMapperDir((Constants.YES.equals(getIsCreateDir())) ? config.getServicePath() + "/service/" : config.getServicePath());
-        codeGenContext.setMapperDir((Constants.YES.equals(getIsCreateDir())) ? config.getImplPath() + "/impl/" : config.getImplPath());
+        codeGenContext.setControllerPackage((Constants.YES.equals(getIsCreateDir())) ? config.getControllerPath() + "/controller/" : config.getControllerPath());
+        codeGenContext.setServicePackage((Constants.YES.equals(getIsCreateDir())) ? config.getServicePath() + "/service/" : config.getServicePath());
+        codeGenContext.setImplPackage((Constants.YES.equals(getIsCreateDir())) ? config.getImplPath() + "/service/impl/" : config.getImplPath());
+        codeGenContext.setAuthor(config.getAuthor());
+        codeGenContext.setProjectName(config.getProjectName());
+
         List<Table> tables = new ArrayList<>();
         Set<String> tableNames = config.getTableNames();
         for (String tableName : tableNames) {
@@ -302,7 +307,7 @@ public class ORMSettingsUI implements Configurable {
         codeGenContext.setTables(tables);
 
         // 生成代码
-        // projectGenerator.generation(project, codeGenContext, options);
+        projectGenerator.generation(project, codeGenContext, options);
     }
 
     @Override

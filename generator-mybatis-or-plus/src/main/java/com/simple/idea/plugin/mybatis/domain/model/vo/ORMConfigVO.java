@@ -94,6 +94,11 @@ public class ORMConfigVO {
     private String xmlPath;
 
     /**
+     * 作者名称
+     */
+    private String author;
+
+    /**
      * 下面这些是连接信息
      */
     private String host;
@@ -252,5 +257,13 @@ public class ORMConfigVO {
 
     public void setControllerPath(String controllerPath) {
         this.controllerPath = controllerPath;
+    }
+
+    public String getAuthor() {
+        return author;
+    }
+
+    public void setAuthor(String author) {
+        this.author = author;
     }
 }
