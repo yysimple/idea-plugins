@@ -238,7 +238,7 @@ public class ORMSettingsUI implements Configurable {
      * 设置按钮的选取状态
      */
     public void settingButtonStatus() {
-        mybatisPlusYes.setSelected(Constants.IS_PLUS.equals(options.getIsPlus()));
+        mybatisPlusYes.setSelected(Constants.YES.equals(options.getIsPlus()));
         createDirYes.setSelected(Constants.YES.equals(options.getIsCreateDir()));
         serviceYes.setSelected(Constants.YES.equals(options.getIsCreateService()));
         controllerYes.setSelected(Constants.YES.equals(options.getIsCreateController()));
@@ -290,12 +290,12 @@ public class ORMSettingsUI implements Configurable {
         CodeGenContextVO codeGenContext = new CodeGenContextVO();
 
         // 这里是去判断是否需要生成前置目录（先将所有的目录生成上下文组装好，留下是否需要生成service等选项之后判断）
-        codeGenContext.setModelPackage((Constants.YES.equals(getIsCreateDir())) ? config.getPoPath() + "/domain/" : config.getPoPath());
-        codeGenContext.setDaoPackage((Constants.YES.equals(getIsCreateDir())) ? config.getDaoPath() + "/mapper/" : config.getDaoPath());
-        codeGenContext.setMapperDir((Constants.YES.equals(getIsCreateDir())) ? config.getXmlPath() + "/mapper/" : config.getXmlPath());
-        codeGenContext.setControllerPackage((Constants.YES.equals(getIsCreateDir())) ? config.getControllerPath() + "/controller/" : config.getControllerPath());
-        codeGenContext.setServicePackage((Constants.YES.equals(getIsCreateDir())) ? config.getServicePath() + "/service/" : config.getServicePath());
-        codeGenContext.setImplPackage((Constants.YES.equals(getIsCreateDir())) ? config.getImplPath() + "/service/impl/" : config.getImplPath());
+        codeGenContext.setModelPackage((Constants.YES.equals(getIsCreateDir())) ? config.getPoPath() + "/domain/" : config.getPoPath() + "/");
+        codeGenContext.setDaoPackage((Constants.YES.equals(getIsCreateDir())) ? config.getDaoPath() + "/mapper/" : config.getDaoPath() + "/");
+        codeGenContext.setMapperDir((Constants.YES.equals(getIsCreateDir())) ? config.getXmlPath() + "/mapper/" : config.getXmlPath() + "/");
+        codeGenContext.setControllerPackage((Constants.YES.equals(getIsCreateDir())) ? config.getControllerPath() + "/controller/" : config.getControllerPath() + "/");
+        codeGenContext.setServicePackage((Constants.YES.equals(getIsCreateDir())) ? config.getServicePath() + "/service/" : config.getServicePath() + "/");
+        codeGenContext.setImplPackage((Constants.YES.equals(getIsCreateDir())) ? config.getImplPath() + "/service/impl/" : config.getImplPath() + "/");
         codeGenContext.setAuthor(config.getAuthor());
         codeGenContext.setProjectName(config.getProjectName());
 
@@ -321,7 +321,7 @@ public class ORMSettingsUI implements Configurable {
      * @return
      */
     public String getIsPlus() {
-        return mybatisPlusYes.isSelected() ? Constants.IS_PLUS : "";
+        return mybatisPlusYes.isSelected() ? Constants.YES : "";
     }
 
     public String getIsCreateDir() {
