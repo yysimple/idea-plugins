@@ -43,14 +43,31 @@ public class ProjectGeneratorImpl extends AbstractProjectGenerator {
             writeFile(project, codeGenContext.getModelPackage(), model.getSimpleName() + ".java", "domain/orm/model.ftl", model);
 
             // 生成DAO
-            Mapper mapper = new Mapper(table.getComment(), codeGenContext.getDaoPackage() + "I" + CaseFormat.UPPER_UNDERSCORE.to(CaseFormat.UPPER_CAMEL, table.getName()) + "Mapper", model);
+            Mapper mapper = new Mapper(table.getComment(), codeGenContext.getDaoPackage() + CaseFormat.UPPER_UNDERSCORE.to(CaseFormat.UPPER_CAMEL, table.getName()) + "Mapper", model);
             mapper.setAuthor(codeGenContext.getAuthor());
             mapper.setProjectName(codeGenContext.getProjectName());
             String fileDaoName = Constants.YES.equals(options.getIsPlus()) ? "domain/orm/plus/PlusDao.ftl" : "domain/orm/dao.ftl";
             writeFile(project, codeGenContext.getDaoPackage(), mapper.getSimpleName() + ".java", fileDaoName, mapper);
 
-//            // 生成Mapper
-//            writeFile(project, codeGenContext.getMapperDir(), mapper.getModel().getSimpleName() + "Mapper.xml", "domain/orm/mapper.ftl", mapper);
+            // 生成Mapper
+            writeFile(project, codeGenContext.getMapperDir(), mapper.getModel().getSimpleName() + "Mapper.xml", "domain/orm/mapper.ftl", mapper);
+
+            // 生成Service
+            if (Constants.YES.equals(options.getIsCreateService())) {
+                Service service = new Service(table.getComment() + "Service类",
+                        codeGenContext.getServicePackage() + CaseFormat.UPPER_UNDERSCORE.to(CaseFormat.UPPER_CAMEL, table.getName()) + "Service",
+                        model);
+                service.setAuthor(codeGenContext.getAuthor());
+                service.setProjectName(codeGenContext.getProjectName());
+                String fileServiceName = Constants.YES.equals(options.getIsPlus()) ? "domain/orm/plus/PlusService.ftl" : "domain/orm/service.ftl";
+                writeFile(project, codeGenContext.getDaoPackage(), service.getSimpleName() + ".java", fileServiceName, service);
+            }
+
+            if (Constants.YES.equals(options.getIsCreateController())) {
+                if (Constants.YES.equals(options.getIsCreateSwagger())) {
+
+                }
+            }
         }
 
     }

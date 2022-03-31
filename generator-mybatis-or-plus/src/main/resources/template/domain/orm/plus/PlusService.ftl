@@ -1,5 +1,6 @@
 package ${package};
 
+import com.baomidou.mybatisplus.extension.service.IService;
 <#list imports as import>
 import ${import};
 </#list>
@@ -12,7 +13,7 @@ import ${import};
 * @author: ${author}
 * @create: ${.now?string('yyyy-MM-dd HH:mm:ss')}
 **/
-public interface ${simpleName} {
+public interface ${simpleName} extends IService<${model.simpleName}> {
 <#list model.fields as field>
 <#if field.id>
     /**

@@ -1,5 +1,9 @@
 package com.simple.idea.plugin.mybatis.infrastructure.po;
 
+import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
+
 /**
  * 项目: idea-plugins
  * <p>
@@ -8,5 +12,29 @@ package com.simple.idea.plugin.mybatis.infrastructure.po;
  * @author: WuChengXing
  * @create: 2022-03-31 17:18
  **/
-public class Service {
+public class Service extends Base {
+    private Model model;
+
+    public Service(String comment, String name, Model model) {
+        super(comment, name);
+        this.model = model;
+    }
+
+    public Model getModel() {
+        return model;
+    }
+
+    @Override
+    public Set<String> getImports() {
+        Set<String> imports = new HashSet<>();
+        imports.add(model.getPackage() + "." + model.getSimpleName());
+        List<Field> fields = model.getFields();
+        for (Field field : fields) {
+            if (field.isId() && field.isImport()) {
+                imports.add(field.getTypeName());
+                break;
+            }
+        }
+        return imports;
+    }
 }
