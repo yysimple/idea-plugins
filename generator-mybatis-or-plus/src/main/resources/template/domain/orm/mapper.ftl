@@ -2,7 +2,7 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="${package}.${simpleName}">
 
-    <resultMap id="${model.varName}Map" type="${package}.${model.simpleName}">
+    <resultMap id="${model.varName}Map" type="${model.package}.${model.simpleName}">
         <#list model.fields as field>
         <#if field.id>
         <id property="${field.name}" column="${field.columnName}"/>
