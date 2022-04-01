@@ -40,6 +40,7 @@ public class ProjectGeneratorImpl extends AbstractProjectGenerator {
             Model model = new Model(table.getComment(), codeGenContext.getModelPackage() + CaseFormat.UPPER_UNDERSCORE.to(CaseFormat.UPPER_CAMEL, table.getName()), table.getName(), fields);
             model.setAuthor(codeGenContext.getAuthor());
             model.setProjectName(codeGenContext.getProjectName());
+            String fileModelName = Constants.YES.equals(options.getIsCreateSwagger()) ? "domain/orm/SwaggerModel.ftl" : "domain/orm/model.ftl";
             writeFile(project, codeGenContext.getModelPackage(), model.getSimpleName() + ".java", "domain/orm/model.ftl", model);
 
             // 生成DAO
@@ -76,19 +77,30 @@ public class ProjectGeneratorImpl extends AbstractProjectGenerator {
                 // 生成controller需要的返回类
                 createResponse(project, codeGenContext, model, "BaseResponse", "domain/orm/BaseResponse.ftl");
                 Response simpleResponse = createResponse(project, codeGenContext, model, "SimpleResponse", "domain/orm/SimpleResponse.ftl");
+                Controller controller = new Controller(table.getComment() + "Controller类",
+                        codeGenContext.getControllerPackage() + CaseFormat.UPPER_UNDERSCORE.to(CaseFormat.UPPER_CAMEL, table.getName()) + "Controller",
+                        model, service, simpleResponse);
+                controller.setAuthor(codeGenContext.getAuthor());
+                controller.setProjectName(codeGenContext.getProjectName());
                 if (Constants.YES.equals(options.getIsCreateSwagger())) {
-                    // todo
+                    // 生成swagger的配置文件
+                    createSwaggerConfig(project, codeGenContext, model);
+                    writeFile(project, codeGenContext.getControllerPackage(), controller.getSimpleName() + ".java", "domain/orm/SwaggerController.ftl", controller);
                 } else {
-                    Controller controller = new Controller(table.getComment() + "Controller类",
-                            codeGenContext.getControllerPackage() + CaseFormat.UPPER_UNDERSCORE.to(CaseFormat.UPPER_CAMEL, table.getName()) + "Controller",
-                            model, service, simpleResponse);
-                    controller.setAuthor(codeGenContext.getAuthor());
-                    controller.setProjectName(codeGenContext.getProjectName());
                     writeFile(project, codeGenContext.getControllerPackage(), controller.getSimpleName() + ".java", "domain/orm/controller.ftl", controller);
                 }
             }
         }
 
+    }
+
+    private Swagger createSwaggerConfig(Project project, CodeGenContextVO codeGenContext, Model model) {
+        Swagger swagger = new Swagger("Swagger的基础配置", codeGenContext.getControllerPackage() + "SwaggerConfig", model);
+        String fileName = "";
+        swagger.setAuthor(codeGenContext.getAuthor());
+        swagger.setProjectName(codeGenContext.getProjectName());
+        writeFile(project, codeGenContext.getControllerPackage() + "config/", swagger.getSimpleName() + ".java", fileName, swagger);
+        return swagger;
     }
 
     private Response createResponse(Project project, CodeGenContextVO codeGenContext, Model model, String className, String fileName) {
