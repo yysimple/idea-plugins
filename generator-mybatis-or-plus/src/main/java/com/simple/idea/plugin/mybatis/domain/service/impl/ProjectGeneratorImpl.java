@@ -52,11 +52,11 @@ public class ProjectGeneratorImpl extends AbstractProjectGenerator {
             // 生成Mapper
             writeFile(project, codeGenContext.getMapperDir(), mapper.getModel().getSimpleName() + "Mapper.xml", "domain/orm/mapper.ftl", mapper);
 
+            Service service = new Service(table.getComment() + "Service类",
+                    codeGenContext.getServicePackage() + CaseFormat.UPPER_UNDERSCORE.to(CaseFormat.UPPER_CAMEL, table.getName()) + "Service",
+                    model);
             // 生成Service
             if (Constants.YES.equals(options.getIsCreateService())) {
-                Service service = new Service(table.getComment() + "Service类",
-                        codeGenContext.getServicePackage() + CaseFormat.UPPER_UNDERSCORE.to(CaseFormat.UPPER_CAMEL, table.getName()) + "Service",
-                        model);
                 service.setAuthor(codeGenContext.getAuthor());
                 service.setProjectName(codeGenContext.getProjectName());
                 String fileServiceName = Constants.YES.equals(options.getIsPlus()) ? "domain/orm/plus/PlusService.ftl" : "domain/orm/service.ftl";
@@ -73,11 +73,29 @@ public class ProjectGeneratorImpl extends AbstractProjectGenerator {
             }
 
             if (Constants.YES.equals(options.getIsCreateController())) {
+                // 生成controller需要的返回类
+                createResponse(project, codeGenContext, model, "BaseResponse", "domain/orm/BaseResponse.ftl");
+                Response simpleResponse = createResponse(project, codeGenContext, model, "SimpleResponse", "domain/orm/SimpleResponse.ftl");
                 if (Constants.YES.equals(options.getIsCreateSwagger())) {
-
+                    // todo
+                } else {
+                    Controller controller = new Controller(table.getComment() + "Controller类",
+                            codeGenContext.getControllerPackage() + CaseFormat.UPPER_UNDERSCORE.to(CaseFormat.UPPER_CAMEL, table.getName()) + "Controller",
+                            model, service, simpleResponse);
+                    controller.setAuthor(codeGenContext.getAuthor());
+                    controller.setProjectName(codeGenContext.getProjectName());
+                    writeFile(project, codeGenContext.getControllerPackage(), controller.getSimpleName() + ".java", "domain/orm/controller.ftl", controller);
                 }
             }
         }
 
+    }
+
+    private Response createResponse(Project project, CodeGenContextVO codeGenContext, Model model, String className, String fileName) {
+        Response baseResponse = new Response("controller返回消息体", codeGenContext.getModelPackage() + className, model);
+        baseResponse.setAuthor(codeGenContext.getAuthor());
+        baseResponse.setProjectName(codeGenContext.getProjectName());
+        writeFile(project, codeGenContext.getModelPackage(), baseResponse.getSimpleName() + ".java", fileName, baseResponse);
+        return baseResponse;
     }
 }

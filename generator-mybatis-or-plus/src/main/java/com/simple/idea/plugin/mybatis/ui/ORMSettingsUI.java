@@ -242,7 +242,7 @@ public class ORMSettingsUI implements Configurable {
         createDirYes.setSelected(Constants.YES.equals(options.getIsCreateDir()));
         serviceYes.setSelected(Constants.YES.equals(options.getIsCreateService()));
         controllerYes.setSelected(Constants.YES.equals(options.getIsCreateController()));
-        swaggerYes.setSelected(Constants.YES.equals(options.getIsCreateController()));
+        swaggerYes.setSelected(Constants.YES.equals(options.getIsCreateSwagger()));
     }
 
     @Override

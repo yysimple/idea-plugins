@@ -19,7 +19,7 @@ import ${import};
 public class ${simpleName} extends ServiceImpl<${mapper.simpleName}, ${model.simpleName}> implements ${service.simpleName} {
 
     @Resource
-    private ${mapper.simpleName} ${mapper.varName}
+    private ${mapper.simpleName} ${mapper.varName};
 
 <#list model.fields as field>
 <#if field.id>
