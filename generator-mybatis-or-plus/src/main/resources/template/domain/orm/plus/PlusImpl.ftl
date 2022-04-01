@@ -1,6 +1,7 @@
 package ${package};
 
 import org.springframework.stereotype.Service;
+import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import javax.annotation.Resource;
 <#list imports as import>
 import ${import};
@@ -15,7 +16,7 @@ import ${import};
 * @create: ${.now?string('yyyy-MM-dd HH:mm:ss')}
 **/
 @Service
-public class ${simpleName} extends ServiceImpl<${mapper.simpleName}, ${model.simpleName}}> implements ${service.simpleName} {
+public class ${simpleName} extends ServiceImpl<${mapper.simpleName}, ${model.simpleName}> implements ${service.simpleName} {
 
     @Resource
     private ${mapper.simpleName} ${mapper.varName}
@@ -28,6 +29,7 @@ public class ${simpleName} extends ServiceImpl<${mapper.simpleName}, ${model.sim
     * @param id ID
     * @return {@link ${model.simpleName}}
     */
+    @Override
     public ${model.simpleName} find${model.simpleName}ById(${field.typeSimpleName} id) {
         return ${mapper.varName}.find${model.simpleName}ById(id);
     }
@@ -37,6 +39,7 @@ public class ${simpleName} extends ServiceImpl<${mapper.simpleName}, ${model.sim
     *
     * @param ${model.varName} ${model.comment}
     */
+    @Override
     public void insert${model.simpleName}(${model.simpleName} ${model.varName}) {
         ${mapper.varName}.insert${model.simpleName}(${model.varName});
     }
@@ -46,6 +49,7 @@ public class ${simpleName} extends ServiceImpl<${mapper.simpleName}, ${model.sim
     *
     * @param ${model.varName} ${model.comment}
     */
+    @Override
     public void update${model.simpleName}(${model.simpleName} ${model.varName}) {
         ${mapper.varName}.update${model.simpleName}(${model.varName});
     }
@@ -55,6 +59,7 @@ public class ${simpleName} extends ServiceImpl<${mapper.simpleName}, ${model.sim
     *
     * @param id ID
     */
+    @Override
     public void delete${model.simpleName}ById(${field.typeSimpleName} id) {
         ${mapper.varName}.delete${model.simpleName}ById(id);
     }

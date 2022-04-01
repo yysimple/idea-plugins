@@ -66,10 +66,10 @@ public class ProjectGeneratorImpl extends AbstractProjectGenerator {
                 Impl impl = new Impl(table.getComment() + "ServiceImpl类",
                         codeGenContext.getImplPackage() + CaseFormat.UPPER_UNDERSCORE.to(CaseFormat.UPPER_CAMEL, table.getName()) + "ServiceImpl",
                         model, service, mapper);
-                service.setAuthor(codeGenContext.getAuthor());
-                service.setProjectName(codeGenContext.getProjectName());
+                impl.setAuthor(codeGenContext.getAuthor());
+                impl.setProjectName(codeGenContext.getProjectName());
                 String fileServiceImplName = Constants.YES.equals(options.getIsPlus()) ? "domain/orm/plus/PlusImpl.ftl" : "domain/orm/impl.ftl";
-                writeFile(project, codeGenContext.getImplPackage(), service.getSimpleName() + ".java", fileServiceImplName, impl);
+                writeFile(project, codeGenContext.getImplPackage(), impl.getSimpleName() + ".java", fileServiceImplName, impl);
             }
 
             if (Constants.YES.equals(options.getIsCreateController())) {

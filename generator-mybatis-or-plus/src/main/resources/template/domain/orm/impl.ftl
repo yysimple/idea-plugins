@@ -28,6 +28,7 @@ public class ${simpleName} implements ${service.simpleName} {
     * @param id ID
     * @return {@link ${model.simpleName}}
     */
+    @Override
     public ${model.simpleName} find${model.simpleName}ById(${field.typeSimpleName} id) {
         return ${mapper.varName}.find${model.simpleName}ById(id);
     }
@@ -37,6 +38,7 @@ public class ${simpleName} implements ${service.simpleName} {
     *
     * @param ${model.varName} ${model.comment}
     */
+    @Override
     public void insert${model.simpleName}(${model.simpleName} ${model.varName}) {
         ${mapper.varName}.insert${model.simpleName}(${model.varName});
     }
@@ -46,6 +48,7 @@ public class ${simpleName} implements ${service.simpleName} {
     *
     * @param ${model.varName} ${model.comment}
     */
+    @Override
     public void update${model.simpleName}(${model.simpleName} ${model.varName}) {
         ${mapper.varName}.update${model.simpleName}(${model.varName});
     }
@@ -55,6 +58,7 @@ public class ${simpleName} implements ${service.simpleName} {
     *
     * @param id ID
     */
+    @Override
     public void delete${model.simpleName}ById(${field.typeSimpleName} id) {
         ${mapper.varName}.delete${model.simpleName}ById(id);
     }
