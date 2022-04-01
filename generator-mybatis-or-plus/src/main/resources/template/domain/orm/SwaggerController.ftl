@@ -2,6 +2,8 @@ package ${package};
 
 import javax.annotation.Resource;
 import org.springframework.web.bind.annotation.*;
+import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
 <#list imports as import>
 import ${import};
 </#list>
@@ -41,6 +43,7 @@ public class ${simpleName} {
     *
     * @param ${model.varName} ${model.comment}
     */
+    @ApiOperation(value = "新增${model.simpleName}")
     @PostMapping("/insert${model.simpleName}")
     public ${response.simpleName}<String> insert${model.simpleName}(@RequestBody ${model.simpleName} ${model.varName}) {
         ${service.varName}.insert${model.simpleName}(${model.varName});
@@ -52,6 +55,7 @@ public class ${simpleName} {
     *
     * @param ${model.varName} ${model.comment}
     */
+    @ApiOperation(value = "更新${model.simpleName}")
     @PostMapping("/update${model.simpleName}")
     public ${response.simpleName}<String> update${model.simpleName}(@RequestBody ${model.simpleName} ${model.varName}) {
     ${service.varName}.update${model.simpleName}(${model.varName});
@@ -63,6 +67,7 @@ public class ${simpleName} {
     *
     * @param id ID
     */
+    @ApiOperation(value = "新增${model.simpleName}")
     @PostMapping("/delete${model.simpleName}ById")
     public ${response.simpleName}<String> delete${model.simpleName}ById(@RequestParam("id") ${field.typeSimpleName} id) {
     ${service.varName}.delete${model.simpleName}ById(id);
