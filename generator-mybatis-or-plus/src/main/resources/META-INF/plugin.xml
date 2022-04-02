@@ -3,7 +3,7 @@
     <name>generator-orm</name>
     <vendor email="1449697757@qq.com">wcx</vendor>
 
-    <description>开发DDD框架生成小插件，完成自己自定义的插件开发！！！！！！！！！！！！！！！！！！！！！！！！</description>
+    <description>ORM生成框架，支持Controller、Service、Swagger等选配；支持多表同时生成；</description>
 
     <!-- please see https://www.jetbrains.org/intellij/sdk/docs/basics/getting_started/plugin_compatibility.html
          on how to target different products -->

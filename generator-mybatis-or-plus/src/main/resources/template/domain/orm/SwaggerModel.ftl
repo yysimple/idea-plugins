@@ -16,7 +16,7 @@ import ${import};
 * @create: ${.now?string('yyyy-MM-dd HH:mm:ss')}
 **/
 @Data
-@ApiModel(value="${simpleName}对象", description="simpleName基本信息表")
+@ApiModel(value="${simpleName}对象", description="${simpleName}基本信息表")
 public class ${simpleName} {
 <#list fields as field>
     /**

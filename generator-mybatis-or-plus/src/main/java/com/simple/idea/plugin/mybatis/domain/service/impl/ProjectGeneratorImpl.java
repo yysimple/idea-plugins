@@ -41,7 +41,7 @@ public class ProjectGeneratorImpl extends AbstractProjectGenerator {
             model.setAuthor(codeGenContext.getAuthor());
             model.setProjectName(codeGenContext.getProjectName());
             String fileModelName = Constants.YES.equals(options.getIsCreateSwagger()) ? "domain/orm/SwaggerModel.ftl" : "domain/orm/model.ftl";
-            writeFile(project, codeGenContext.getModelPackage(), model.getSimpleName() + ".java", "domain/orm/model.ftl", model);
+            writeFile(project, codeGenContext.getModelPackage(), model.getSimpleName() + ".java", fileModelName, model);
 
             // 生成DAO
             Mapper mapper = new Mapper(table.getComment(), codeGenContext.getDaoPackage() + CaseFormat.UPPER_UNDERSCORE.to(CaseFormat.UPPER_CAMEL, table.getName()) + "Mapper", model);
@@ -96,7 +96,7 @@ public class ProjectGeneratorImpl extends AbstractProjectGenerator {
 
     private Swagger createSwaggerConfig(Project project, CodeGenContextVO codeGenContext, Model model) {
         Swagger swagger = new Swagger("Swagger的基础配置", codeGenContext.getControllerPackage() + "SwaggerConfig", model);
-        String fileName = "";
+        String fileName = "domain/orm/swagger.ftl";
         swagger.setAuthor(codeGenContext.getAuthor());
         swagger.setProjectName(codeGenContext.getProjectName());
         writeFile(project, codeGenContext.getControllerPackage() + "config/", swagger.getSimpleName() + ".java", fileName, swagger);
