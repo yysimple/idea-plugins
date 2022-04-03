@@ -3,10 +3,13 @@ plugins {
     id 'org.jetbrains.intellij' version '0.6.3'
 }
 
-group 'com.simple'
-version 'v1.0.0'
+group 'com.simple.idea.plugin'
+version '1.0.0'
 
 apply plugin: 'java'
+apply plugin: 'idea'
+apply plugin: 'org.jetbrains.intellij'
+
 sourceCompatibility = 11.0
 
 repositories {
@@ -23,6 +26,8 @@ dependencies {
 // See https://github.com/JetBrains/gradle-intellij-plugin/
 intellij {
     version '2020.3.2'
+    plugins = ['git4idea', 'java']
+    updateSinceUntilBuild = false
 }
 
 tasks.withType(JavaCompile) {
@@ -31,13 +36,4 @@ tasks.withType(JavaCompile) {
 
 tasks.withType(Javadoc) {
     options.encoding = 'UTF-8'
-}
-
-patchPluginXml {
-    changeNotes """
-      Add change notes here.<br>
-      <em>most HTML tags may be used</em>"""
-}
-test {
-    useJUnitPlatform()
 }
