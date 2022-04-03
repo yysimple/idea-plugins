@@ -1,6 +1,6 @@
 <idea-plugin>
     <id>com.simple.plugin-orm</id>
-    <name>generator-orm</name>
+    <name>Code Generate ORM</name>
     <vendor email="1449697757@qq.com">wcx</vendor>
 
     <description>ORM生成框架，支持Controller、Service、Swagger等选配；支持多表同时生成；</description>
