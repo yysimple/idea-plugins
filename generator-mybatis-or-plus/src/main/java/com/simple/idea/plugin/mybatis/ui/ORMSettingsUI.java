@@ -125,7 +125,7 @@ public class ORMSettingsUI implements Configurable {
                 DBHelper dbHelper = new DBHelper(this.host.getText(), Integer.parseInt(this.port.getText()), this.user.getText(), this.password.getText(), this.database.getText());
                 List<String> tableList = dbHelper.getAllTableName(this.database.getText());
 
-                String[] title = {"", "表名"};
+                String[] title = {"", "tableName"};
                 Object[][] data = new Object[tableList.size()][2];
                 for (int i = 0; i < tableList.size(); i++) {
                     // 将表格的第二列进行数据赋值
