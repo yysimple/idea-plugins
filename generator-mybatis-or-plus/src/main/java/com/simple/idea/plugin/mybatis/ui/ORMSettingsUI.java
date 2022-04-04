@@ -128,9 +128,10 @@ public class ORMSettingsUI implements Configurable {
                 String[] title = {"", "表名"};
                 Object[][] data = new Object[tableList.size()][2];
                 for (int i = 0; i < tableList.size(); i++) {
+                    // 将表格的第二列进行数据赋值
                     data[i][1] = tableList.get(i);
                 }
-
+                // 第一列是多选框供用户选择需要生成的表
                 table1.setModel(new DefaultTableModel(data, title));
                 TableColumn tc = table1.getColumnModel().getColumn(0);
                 tc.setCellEditor(new DefaultCellEditor(new JCheckBox()));
