@@ -4,7 +4,7 @@ plugins {
 }
 
 group 'com.simple.idea.plugin'
-version '1.0.2'
+version '1.0.3'
 
 apply plugin: 'java'
 apply plugin: 'idea'
@@ -28,6 +28,12 @@ intellij {
     version '2020.3.2'
     plugins = ['git4idea', 'java']
     updateSinceUntilBuild = false
+}
+
+publishPlugin {
+    channels = 'Stable'
+    // 申请的Token值
+    token = System.getenv('code_generate_orm_token');
 }
 
 tasks.withType(JavaCompile) {

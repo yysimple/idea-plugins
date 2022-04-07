@@ -96,8 +96,9 @@ public class DBHelper {
         this.database = database;
         Connection conn = getConnection(this.database);
         try {
-            DatabaseMetaData metaData = conn.getMetaData();
-            ResultSet rs = metaData.getTables(null, null, "%", new String[]{"TABLE"});
+            String sql = "select table_name from information_schema.tables where table_schema='" + database + "'";
+            Statement statement = conn.createStatement();
+            ResultSet rs = statement.executeQuery(sql);
             List<String> ls = new ArrayList<>();
             while (rs.next()) {
                 String s = rs.getString("TABLE_NAME");
