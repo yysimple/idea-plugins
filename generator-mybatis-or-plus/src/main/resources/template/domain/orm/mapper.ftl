@@ -13,25 +13,25 @@
     </resultMap>
 
     <!--通过ID查询单个${model.comment}-->
-    <select id="findById" resultMap="${model.varName}Map">
+    <select id="find${model.simpleName}ById" resultMap="${model.varName}Map">
         SELECT <#list model.fields as field><#if field_index!=0>,</#if>${field.columnName}</#list> FROM ${model.tableName}
         WHERE <#list model.fields as field><#if field.id>${field.columnName}</#if></#list>=<#noparse>#{id}</#noparse>
     </select>
 
     <!--新增${model.comment}-->
-    <insert id="insert">
+    <insert id="insert${model.simpleName}">
         INSERT INTO ${model.tableName}(<#list model.fields as field><#if field_index!=0>,</#if>${field.columnName}</#list>)
         VALUES (<#list model.fields as field><#if field_index!=0>,</#if><#noparse>#{</#noparse>${field.name}}</#list>)
     </insert>
 
     <!--修改${model.comment}-->
-    <update id="update">
+    <update id="update${model.simpleName}">
         UPDATE ${model.tableName} SET <#list model.fields as field><#if !field.id><#if model.fields[0].id&&field_index!=1>,</#if>${field.columnName}=<#noparse>#{</#noparse>${field.name}}</#if></#list>
         WHERE <#list model.fields as field><#if field.id>${field.columnName}=<#noparse>#{</#noparse>${field.name}}</#if></#list>
     </update>
 
     <!--通过ID删除单个${model.comment}-->
-    <delete id="deleteById">
+    <delete id="delete${model.simpleName}ById">
         DELETE FROM ${model.tableName}
         WHERE <#list model.fields as field><#if field.id>${field.columnName}</#if></#list>=<#noparse>#{id}</#noparse>
     </delete>
