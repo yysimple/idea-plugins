@@ -2,6 +2,7 @@ package ${package};
 
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 import org.apache.ibatis.annotations.Mapper;
+import org.apache.ibatis.annotations.Param;
 <#list imports as import>
 import ${import};
 </#list>
@@ -25,7 +26,7 @@ public interface ${simpleName} extends BaseMapper<${model.simpleName}> {
     * @param id ID
     * @return {@link ${model.simpleName}}
     */
-    ${model.simpleName} find${model.simpleName}ById(${field.typeSimpleName} id);
+    ${model.simpleName} find${model.simpleName}ById(@Param("id") ${field.typeSimpleName} id);
 
     /**
     * 新增${model.comment}
@@ -46,7 +47,7 @@ public interface ${simpleName} extends BaseMapper<${model.simpleName}> {
     *
     * @param id ID
     */
-    void delete${model.simpleName}ById(${field.typeSimpleName} id);
+    void delete${model.simpleName}ById(@Param("id") ${field.typeSimpleName} id);
 </#if>
 </#list>
 

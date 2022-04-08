@@ -96,12 +96,12 @@ public class ORMConfigVO {
     /**
      * 作者名称
      */
-    private String author;
+    private String author = "yysimple";
 
     /**
      * 下面这些是连接信息
      */
-    private String host;
+    private String host = "127.0.0.1";
 
     private String port = "3306";
 

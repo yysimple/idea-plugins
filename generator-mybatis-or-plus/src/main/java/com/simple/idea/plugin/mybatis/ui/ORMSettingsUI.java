@@ -101,6 +101,8 @@ public class ORMSettingsUI implements Configurable {
         this.projectName.setText(project.getName());
         this.classpath.setText(project.getBasePath());
 
+        this.user.setText(config.getUser());
+        this.password.setText(config.getPassword());
         this.database.setText(config.getDatabase());
         this.host.setText(config.getHost());
         this.port.setText(config.getPort());
