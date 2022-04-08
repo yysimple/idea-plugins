@@ -12,10 +12,29 @@
         </#list>
     </resultMap>
 
+    <sql id="Base_Column_List">
+        <#list model.fields as field><#if field_index!=0>,</#if>${field.columnName}</#list>
+    </sql>
+
     <!--通过ID查询单个${model.comment}-->
     <select id="find${model.simpleName}ById" resultMap="${model.varName}Map">
-        SELECT <#list model.fields as field><#if field_index!=0>,</#if>${field.columnName}</#list> FROM ${model.tableName}
+        SELECT
+            <include refid="Base_Column_List"/>
+        FROM ${model.tableName}
         WHERE <#list model.fields as field><#if field.id>${field.columnName}</#if></#list>=<#noparse>#{id}</#noparse>
+    </select>
+
+    <!--多条件查询${model.simpleName}列表-->
+    <select id="list${model.simpleName}" resultMap="${model.varName}Map">
+        SELECT
+            <include refid="Base_Column_List"/>
+        FROM ${model.tableName}
+        WHERE 1=1
+        <#list model.fields as field>
+        <if test="${field.name} != null">
+            and ${field.columnName}=<#noparse>#{</#noparse>${field.name}}
+        </if>
+        </#list>
     </select>
 
     <!--新增${model.comment}-->

@@ -2,6 +2,7 @@ package ${package};
 
 import org.springframework.stereotype.Service;
 import javax.annotation.Resource;
+import java.util.List;
 <#list imports as import>
 import ${import};
 </#list>
@@ -31,6 +32,17 @@ public class ${simpleName} implements ${service.simpleName} {
     @Override
     public ${model.simpleName} find${model.simpleName}ById(${field.typeSimpleName} id) {
         return ${mapper.varName}.find${model.simpleName}ById(id);
+    }
+
+    /**
+    * 多条件查询${model.simpleName}列表
+    *
+    * @param ${model.varName}
+    * @return java.util.List<${model.simpleName}>
+    */
+    @Override
+    public List<${model.simpleName}> list${model.simpleName}(${model.simpleName} ${model.varName}) {
+        return ${mapper.varName}.list${model.simpleName}(${model.varName});
     }
 
     /**

@@ -6,6 +6,7 @@ import org.apache.ibatis.annotations.Param;
 <#list imports as import>
 import ${import};
 </#list>
+import java.util.List;
 
 /**
 * 项目: ${projectName}
@@ -27,6 +28,14 @@ public interface ${simpleName} extends BaseMapper<${model.simpleName}> {
     * @return {@link ${model.simpleName}}
     */
     ${model.simpleName} find${model.simpleName}ById(@Param("id") ${field.typeSimpleName} id);
+
+    /**
+    * 多条件查询${model.simpleName}列表
+    *
+    * @param ${model.varName}
+    * @return java.util.List<${model.simpleName}>
+    */
+    List<${model.simpleName}> list${model.simpleName}(${model.simpleName} ${model.varName});
 
     /**
     * 新增${model.comment}
