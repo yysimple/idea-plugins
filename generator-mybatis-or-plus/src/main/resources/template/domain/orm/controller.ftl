@@ -2,6 +2,7 @@ package ${package};
 
 import javax.annotation.Resource;
 import org.springframework.web.bind.annotation.*;
+import java.util.List;
 <#list imports as import>
 import ${import};
 </#list>
@@ -32,6 +33,17 @@ public class ${simpleName} {
     @GetMapping("/find${model.simpleName}ById")
     public ${response.simpleName}<${model.simpleName}> find${model.simpleName}ById(@RequestParam("id") ${field.typeSimpleName} id) {
         return new ${response.simpleName}<>(${service.varName}.find${model.simpleName}ById(id));
+    }
+
+    /**
+    * 多条件查询${model.simpleName}列表
+    *
+    * @param ${model.varName}
+    * @return
+    */
+    @PostMapping("/list${model.simpleName}")
+    public ${response.simpleName}<List<${model.simpleName}>> list${model.simpleName}(@RequestBody ${model.simpleName} ${model.varName}) {
+        return new ${response.simpleName}<>(${service.varName}.list${model.simpleName}(${model.varName}));
     }
 
     /**
