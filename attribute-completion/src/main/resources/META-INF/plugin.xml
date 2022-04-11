@@ -1,12 +1,9 @@
 <idea-plugin>
     <id>com.simple.attribute-completion</id>
-    <name>Plugin display name here</name>
-    <vendor email="support@yourcompany.com" url="http://www.yourcompany.com">YourCompany</vendor>
+    <name>Attribute Completion</name>
+    <vendor email="1449697757@qq.com">wcx</vendor>
 
-    <description><![CDATA[
-    Enter short description for your plugin here.<br>
-    <em>most HTML tags may be used</em>
-    ]]></description>
+    <description>自己开发的代码属性补全的插件！！！！！！！！！！！！！！！！！！！！！！！！！！</description>
 
     <!-- please see https://www.jetbrains.org/intellij/sdk/docs/basics/getting_started/plugin_compatibility.html
          on how to target different products -->

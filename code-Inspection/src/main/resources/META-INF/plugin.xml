@@ -16,7 +16,7 @@
     <depends>com.intellij.modules.java</depends>
 
     <!-- please see http://www.jetbrains.org/intellij/sdk/docs/basics/getting_started/build_number_ranges.html for description -->
-    <idea-version since-build="183.4284"/>
+    <idea-version since-build="193.5662"/>
 
     <extensions defaultExtensionNs="com.intellij">
 
