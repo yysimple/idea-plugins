@@ -19,27 +19,27 @@
     <idea-version since-build="193.5662"/>
 
     <extensions defaultExtensionNs="com.intellij">
-
-       <!-- <localInspection
+    <!-- 关于CodeInspection的官网描述 https://plugins.jetbrains.com/docs/intellij/code-inspections.html  -->
+        <localInspection
                 language="JAVA"       groupPath="Java"
                 groupName="X-PMD"   enabledByDefault="true"   level="ERROR"
                 bundle="InspectionBundle"     key="replace.pseudorandom.generator.name"
-                implementationClass="cn.bugstack.guide.idea.plugin.rule.RandomRule"
+                implementationClass="com.simple.idea.plugin.inspection.rule.RandomRule"
         />
 
         <localInspection
                 language="JAVA"       groupPath="Java"
                 groupName="X-PMD"   enabledByDefault="true"   level="ERROR"
                 bundle="InspectionBundle"     key="fastjson.auto.type.name"
-                implementationClass="cn.bugstack.guide.idea.plugin.rule.FastJsonRule"
+                implementationClass="com.simple.idea.plugin.inspection.rule.FastJsonRule"
         />
 
         <localInspection
                 language="JAVA"      groupPath="Java"
                 groupName="X-PMD"  enabledByDefault="true"     level="WARNING"
                 bundle="InspectionBundle"     key="hardcoded.ip.name"
-                implementationClass="cn.bugstack.guide.idea.plugin.rule.IPRule"
-        />-->
+                implementationClass="com.simple.idea.plugin.inspection.rule.IPRule"
+        />
 
     </extensions>
 
