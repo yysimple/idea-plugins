@@ -26,14 +26,26 @@ import java.util.Objects;
  **/
 public class RandomRule extends AbstractBaseJavaLocalInspectionTool {
 
+    /**
+     * 继承这个方法在对应我们的java文件中，就会开始扫描
+     *
+     * @param holder
+     * @param isOnTheFly
+     * @param session
+     * @return
+     */
     @Override
     public @NotNull PsiElementVisitor buildVisitor(@NotNull ProblemsHolder holder, boolean isOnTheFly, @NotNull LocalInspectionToolSession session) {
         return new JavaElementVisitor() {
+            /**
+             * 这里的 PsiNewExpression 是用来在文件中搜索new 相关的信息
+             */
             @Override
             public void visitNewExpression(PsiNewExpression expression) {
+                // 如果表达式全限定名 == 这个 那么 将提示一些信息
                 if ("java.util.Random".equals(Objects.requireNonNull(expression.getClassReference()).getQualifiedName())) {
                     holder.registerProblem(expression,
-                            "Unsafe pseudorandom generator used",
+                            "请不要使用伪随机API-Random",
                             ProblemHighlightType.GENERIC_ERROR_OR_WARNING,
                             new ReplacePseudorandomGeneratorQuickFix()
                     );
@@ -42,7 +54,11 @@ public class RandomRule extends AbstractBaseJavaLocalInspectionTool {
         };
     }
 
-    public static class ReplacePseudorandomGeneratorQuickFix implements LocalQuickFix {
+    class ReplacePseudorandomGeneratorQuickFix implements LocalQuickFix {
+
+        /**
+         * 修复插件的名称，提示的信息，光标放在对应提示处就可以触发
+         */
         @Override
         public @Nls(capitalization = Nls.Capitalization.Sentence) @NotNull String getFamilyName() {
             return "!Fix：replace by SecureRandom";
@@ -54,8 +70,9 @@ public class RandomRule extends AbstractBaseJavaLocalInspectionTool {
             if (newExp == null) {
                 return;
             }
-
+            // 这里的parent其实就是 new XXX()前面的Random r 相关的信息
             PsiElement parent = newExp.getParent();
+            // Random r 中的 Random，这里可能是 field、局部变量等
             PsiTypeElement typeElement = null;
             if (parent instanceof PsiAssignmentExpression) {
                 // 变量初始化, parent指向声明点
@@ -69,7 +86,7 @@ public class RandomRule extends AbstractBaseJavaLocalInspectionTool {
             }
 
             if (parent instanceof PsiLocalVariable) {
-                // 变量声明同时初始化
+                // 变量声明同时初始化（局部变量）
                 PsiLocalVariable localVariable = ObjectUtils.tryCast(parent, PsiLocalVariable.class);
                 if (localVariable != null) {
                     typeElement = localVariable.getTypeElement();
@@ -87,7 +104,9 @@ public class RandomRule extends AbstractBaseJavaLocalInspectionTool {
             }
 
             PsiElementFactory factory = JavaPsiFacade.getElementFactory(project);
+            // 修改类类型，也就是 Random r -> SecureRandom r
             typeElement.replace(factory.createTypeElementFromText("SecureRandom", null));
+            // 构建新的 new 的表达式，之后进行文本替换
             PsiNewExpression secureNewExp = (PsiNewExpression) factory.createExpressionFromText("new SecureRandom()", null);
             newExp.replace(secureNewExp);
 
@@ -100,6 +119,7 @@ public class RandomRule extends AbstractBaseJavaLocalInspectionTool {
             // import java.security.SecureRandom
             try {
                 PsiFile file = descriptor.getPsiElement().getContainingFile();
+                // 拿到文件的元数据信息，整个java文件的文本信息
                 Document document = PsiDocumentManager.getInstance(project).getDocument(file);
                 PsiJavaCodeReferenceElement secureRefElem = secureNewExp.getClassOrAnonymousClassReference();
 
@@ -113,8 +133,7 @@ public class RandomRule extends AbstractBaseJavaLocalInspectionTool {
                     }
 
                     ApplicationManager.getApplication().runWriteAction(() -> {
-                        PsiClass[] classes = PsiShortNamesCache.getInstance(project)
-                                .getClassesByName(secureRefElem.getReferenceName(), secureRefElem.getResolveScope());
+                        PsiClass[] classes = PsiShortNamesCache.getInstance(project).getClassesByName(secureRefElem.getReferenceName(), secureRefElem.getResolveScope());
                         for (PsiClass clazz : classes) {
                             if ("java.security.SecureRandom".equals(clazz.getQualifiedName())) {
                                 (new AddImportAction(project, secureRefElem, editors[0], new PsiClass[]{clazz}) {

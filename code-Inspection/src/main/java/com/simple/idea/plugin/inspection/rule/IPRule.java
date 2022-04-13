@@ -19,6 +19,7 @@ import org.jetbrains.annotations.NotNull;
  * @create: 2022-04-11 21:50
  **/
 public class IPRule extends AbstractBaseJavaLocalInspectionTool {
+
     @Override
     public @NotNull PsiElementVisitor buildVisitor(@NotNull ProblemsHolder holder, boolean isOnTheFly) {
 
