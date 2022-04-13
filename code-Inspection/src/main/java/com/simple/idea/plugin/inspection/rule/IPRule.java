@@ -27,12 +27,13 @@ public class IPRule extends AbstractBaseJavaLocalInspectionTool {
             @Override
             public void visitLiteralExpression(PsiLiteralExpression expression) {
                 IElementType type = expression.getFirstChild().getNode().getElementType();
+                // 判断文档节点是否是String，然后再判断是否是IP格式的，是的话给出提示
                 if (type == JavaTokenType.STRING_LITERAL) {
                     Object v = expression.getValue();
                     if (v != null && isSensitiveIp(v.toString())) {
                         holder.registerProblem(
                                 expression,
-                                "Hardcoded IP Address",
+                                "IP地址请不要写死在代码里，请选则域名或配置文件方式",
                                 ProblemHighlightType.GENERIC_ERROR_OR_WARNING);
                     }
                 }
