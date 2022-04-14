@@ -31,7 +31,7 @@ public class PluginUtil {
      * @return String
      */
     public static String getAgentCoreJarPath() {
-        return getJarPathByStartWith("sql-probe-agent");
+        return getJarPathByStartWith("SqlProbeAgent");
     }
 
     /**
