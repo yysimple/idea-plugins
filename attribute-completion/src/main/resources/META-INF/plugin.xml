@@ -8,8 +8,18 @@
     <!-- please see https://www.jetbrains.org/intellij/sdk/docs/basics/getting_started/plugin_compatibility.html
          on how to target different products -->
     <depends>com.intellij.modules.platform</depends>
+    <depends>com.intellij.modules.lang</depends>
+    <depends>com.intellij.modules.java</depends>
+
+    <idea-version since-build="193.5662"/>
 
     <extensions defaultExtensionNs="com.intellij">
+        <!-- Add your extensions here -->
+        <applicationService serviceImplementation="com.simple.idea.plugin.completion.domain.service.WordManageServiceImpl"/>
+        <!-- 这个是扩展点里面单词补全的操作组，java里面 首个字母的提示补全 -->
+        <completion.contributor language="JAVA"
+                                order="first"
+                                implementationClass="com.simple.idea.plugin.completion.action.RemindCompletionContributor"/>
         <!-- Add your extensions here -->
     </extensions>
 
