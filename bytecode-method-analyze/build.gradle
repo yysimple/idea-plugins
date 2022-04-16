@@ -1,25 +1,29 @@
 plugins {
     id 'java'
-    id 'org.jetbrains.intellij' version '0.6.3'
+    id 'org.jetbrains.intellij' version '0.7.2'
 }
 
 group 'com.simple'
 version '1.0-SNAPSHOT'
 
 sourceCompatibility = 11.0
+jar.enabled = true
 
 repositories {
     mavenCentral()
 }
 
 dependencies {
-
+    implementation group: 'cn.hutool', name: 'hutool-all', version: '5.7.16'
+    // compile project(":probe-agent") 另一种引入工程的方式
+    implementation fileTree(dir: 'libs', includes: ['*jar'])
+    testCompile group: 'junit', name: 'junit', version: '4.12'
 }
 
 // See https://github.com/JetBrains/gradle-intellij-plugin/
 intellij {
     version '2020.3.2'
-    plugins = ['git4idea', 'java']
+    plugins = ['com.intellij.java']
     updateSinceUntilBuild = false
 }
 

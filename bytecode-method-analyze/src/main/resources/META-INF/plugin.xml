@@ -5,12 +5,18 @@
 
     <description>自己开发的通过字节码增强监控方法的插件！！！！！！！！！！！！！！！！！！！！！！！！！！</description>
 
+    <idea-version since-build="193.5662"/>
+
     <!-- please see https://www.jetbrains.org/intellij/sdk/docs/basics/getting_started/plugin_compatibility.html
          on how to target different products -->
     <depends>com.intellij.modules.platform</depends>
+    <!--  应该是2019 2版本之后的idea都需要加上java的依赖  -->
+    <depends>com.intellij.modules.java</depends>
 
     <extensions defaultExtensionNs="com.intellij">
         <!-- Add your extensions here -->
+        <executor implementation="com.simple.idea.plugin.analyze.executor.RunExecutor"/>
+        <programRunner implementation="com.simple.idea.plugin.analyze.runner.RunCodeRunner"/>
     </extensions>
 
     <actions>
