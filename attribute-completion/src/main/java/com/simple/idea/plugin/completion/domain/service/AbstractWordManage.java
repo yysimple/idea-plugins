@@ -32,7 +32,7 @@ public abstract class AbstractWordManage {
     protected final Node wordsTree = new Node();
 
     protected int RESULT_LIMIT = 15;
-
+    /** 正则匹配，匹配字母 */
     private final Pattern compile = Pattern.compile("^[A-Za-z]+$");
 
     private final Pattern explainPattern = Pattern.compile("(\\w{1,3}\\.)(.*?)(?=\\w{1,3}\\.|$)");
@@ -50,6 +50,7 @@ public abstract class AbstractWordManage {
             String line;
             while ((line = br.readLine()) != null) {
                 String[] wordInfo = line.split("#");
+                // 这里是匹配是否是单词
                 if (!compile.matcher(wordInfo[0]).matches()) {
                     continue;
                 }

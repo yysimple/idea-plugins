@@ -18,8 +18,10 @@ import java.util.List;
 public class WordManageServiceImpl extends AbstractWordManage implements IWordManageService {
     @Override
     public List<Node> searchPrefix(String prefix) {
-        Node root = wordsTree;// 拿到单词树 a -> z
-        char[] chars = prefix.toCharArray();// 拿到前缀信息
+        // 拿到单词树 a -> z
+        Node root = wordsTree;
+        // 拿到前缀信息
+        char[] chars = prefix.toCharArray();
         StringBuilder sb = new StringBuilder();
         // 判断是不是
         for (char aChar : chars) {
