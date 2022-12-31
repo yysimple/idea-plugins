@@ -10,6 +10,8 @@
       <br/>github：<a href="https://github.com/yysimple/idea-plugins">https://github.com/yysimple/idea-plugins</a>
       <br/>gitee：<a href="https://gitee.com/yysimple/idea-plugins">https://gitee.com/yysimple/idea-plugins</a>
       <br/>对应的项目名称是：generator-mybatis-or-plus!! / The corresponding project name is generator-mybatis-or-plus!!
+      <br/>
+      <br/>version 1.2.0：新增表名模糊搜索 / Add fuzzy search for table name；
       ]]>
     </description>
 
