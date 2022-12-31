@@ -7,7 +7,9 @@
       <br/>English：ORM generation framework, supports options such as Controller, Service, Swagger, etc.;
       supports simultaneous generation of multiple tables;
       <br/>Chinese：ORM生成框架，支持Controller、Service、Swagger等选配；支持多表同时生成；
-      <br/>github：<a href="https://gitee.com/yysimple/idea-plugins/tree/master/generator-mybatis-or-plus">https://gitee.com/yysimple/idea-plugins/tree/master/generator-mybatis-or-plus</a>
+      <br/>github：<a href="https://github.com/yysimple/idea-plugins">https://github.com/yysimple/idea-plugins</a>
+      <br/>gitee：<a href="https://gitee.com/yysimple/idea-plugins">https://gitee.com/yysimple/idea-plugins</a>
+      <br/>对应的项目名称是：generator-mybatis-or-plus!! / The corresponding project name is generator-mybatis-or-plus!!
       ]]>
     </description>
 
