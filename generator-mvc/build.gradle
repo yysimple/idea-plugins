@@ -7,7 +7,7 @@ group 'com.simple'
 version '1.0'
 
 apply plugin: 'java'
-sourceCompatibility = 11.0
+sourceCompatibility = 1.8
 
 repositories {
     mavenCentral()
@@ -20,7 +20,7 @@ dependencies {
 
 // See https://github.com/JetBrains/gradle-intellij-plugin/
 intellij {
-    version '2020.3.2'
+    version '2020.2.4'
     plugins = ['git4idea', 'java']
     updateSinceUntilBuild = false
 }

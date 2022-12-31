@@ -4,6 +4,7 @@ import com.intellij.openapi.options.Configurable;
 import com.intellij.openapi.project.Project;
 import com.intellij.openapi.project.ProjectManager;
 import com.intellij.openapi.ui.Messages;
+import com.intellij.openapi.util.text.StringUtil;
 import com.intellij.openapi.vfs.VirtualFile;
 import com.simple.idea.plugin.mybatis.domain.model.vo.CodeGenContextVO;
 import com.simple.idea.plugin.mybatis.domain.model.vo.ORMConfigVO;
@@ -67,6 +68,7 @@ public class ORMSettingsUI implements Configurable {
     private JCheckBox controllerYes;
     private JCheckBox swaggerYes;
     private JTextField authorField;
+    private JTextField tableNameField;
 
     /**
      * 我们自己的一些配置信息
@@ -125,8 +127,14 @@ public class ORMSettingsUI implements Configurable {
         this.selectButton.addActionListener(e -> {
             try {
                 DBHelper dbHelper = new DBHelper(this.host.getText(), Integer.parseInt(this.port.getText()), this.user.getText(), this.password.getText(), this.database.getText());
-                List<String> tableList = dbHelper.getAllTableName(this.database.getText());
-
+                List<String> tableList;
+                String tableNameFieldText = this.tableNameField.getText();
+                // 如果传了表名称，则根据表名进行模糊匹配
+                if (!StringUtil.isEmpty(tableNameFieldText)) {
+                    tableList = dbHelper.getAllTableName(this.database.getText(), tableNameFieldText);
+                } else {
+                    tableList = dbHelper.getAllTableName(this.database.getText());
+                }
                 String[] title = {"", "tableName"};
                 Object[][] data = new Object[tableList.size()][2];
                 for (int i = 0; i < tableList.size(); i++) {

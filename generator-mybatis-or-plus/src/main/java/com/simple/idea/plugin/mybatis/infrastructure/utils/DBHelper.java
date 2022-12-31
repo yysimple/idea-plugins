@@ -92,11 +92,44 @@ public class DBHelper {
         }
     }
 
+    /**
+     * 查询数据库里面所有的表名
+     *
+     * @param database
+     * @return
+     */
     public List<String> getAllTableName(String database) {
         this.database = database;
         Connection conn = getConnection(this.database);
         try {
             String sql = "select table_name from information_schema.tables where table_schema='" + database + "'";
+            Statement statement = conn.createStatement();
+            ResultSet rs = statement.executeQuery(sql);
+            List<String> ls = new ArrayList<>();
+            while (rs.next()) {
+                String s = rs.getString("TABLE_NAME");
+                ls.add(s);
+            }
+            return ls;
+        } catch (SQLException e) {
+            throw new RuntimeException(e.getMessage(), e);
+        } finally {
+            closeConnection(conn);
+        }
+    }
+
+    /**
+     * 查询数据库里面所有的表名
+     *
+     * @param database
+     * @return
+     */
+    public List<String> getAllTableName(String database, String keyword) {
+        this.database = database;
+        Connection conn = getConnection(this.database);
+        try {
+            String sql = "select table_name from information_schema.tables where table_schema='" + database + "'" 
+                    + "and table_name like '%" + keyword + "%'";
             Statement statement = conn.createStatement();
             ResultSet rs = statement.executeQuery(sql);
             List<String> ls = new ArrayList<>();
@@ -155,6 +188,7 @@ public class DBHelper {
 
     /**
      * 这里的话是UI界面上面的按钮来触发此操作的，进入此处验证数据库是否连接
+     *
      * @return
      */
     public String testDatabase() {
