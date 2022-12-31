@@ -137,7 +137,11 @@ public class ORMSettingsUI implements Configurable {
                 }
                 String[] title = {"", "tableName"};
                 Object[][] data = new Object[tableList.size()][2];
+                // 已经选中过的表
+                Set<String> tableNames = ORMSettingsUI.this.config.getTableNames();
                 for (int i = 0; i < tableList.size(); i++) {
+                    // 将表格第一列复制，如果之前有选中，这里则默认勾选上
+                    data[i][0] = tableNames.contains(tableList.get(i));
                     // 将表格的第二列进行数据赋值
                     data[i][1] = tableList.get(i);
                 }
