@@ -5,6 +5,7 @@ import com.intellij.openapi.actionSystem.AnActionEvent;
 import com.intellij.openapi.editor.Editor;
 import com.intellij.openapi.editor.SelectionModel;
 import com.intellij.openapi.project.Project;
+import com.intellij.openapi.ui.Messages;
 import org.jetbrains.annotations.NotNull;
 
 /**
@@ -32,6 +33,8 @@ public class EnumKnowAction extends AnAction {
             // 打印选中的文本
             if (selectedText != null) {
                 System.out.println("Selected text: " + selectedText);
+                // 这里的 project：对应的是后面内容将会在 窗体中展示；title：这个是窗体的标题
+                Messages.showMessageDialog(project, selectedText, "枚举含义：", Messages.getInformationIcon());
             } else {
                 System.out.println("No text selected.");
             }
