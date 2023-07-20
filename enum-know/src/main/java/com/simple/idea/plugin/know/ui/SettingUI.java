@@ -21,6 +21,15 @@ public class SettingUI {
     private JLabel selectDesc;
     private JTextField filePathText;
     private JButton fileSelectButton;
+    private JRadioButton dbRead;
+    private JRadioButton allRead;
+    private JRadioButton fileRead;
+    private JTextField hostTextField;
+    private JTextField portTextField;
+    private JTextField usernameTextField;
+    private JTextField passwordTextField;
+    private JTextField databaseTextField;
+    private JTextField tableTextField;
 
     public SettingUI(Project project) {
         // 初始化操作，默认值加入
