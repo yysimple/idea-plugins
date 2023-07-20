@@ -4,6 +4,7 @@ import com.intellij.openapi.options.ConfigurationException;
 import com.intellij.openapi.options.SearchableConfigurable;
 import com.intellij.openapi.project.Project;
 import com.intellij.openapi.project.ProjectManager;
+import com.simple.idea.plugin.know.data.CacheInit;
 import com.simple.idea.plugin.know.data.DataSetting;
 import com.simple.idea.plugin.know.ui.SettingUI;
 import com.simple.idea.plugin.know.util.StringUtils;
@@ -72,20 +73,7 @@ public class SettingFactory implements SearchableConfigurable {
             url = settingUI.getUrlTextField().getText();
         }
         System.out.println("拿到的文件路径：" + url);
-        // 设置文本信息
-        try {
-            // 下面这些信息将文件读取出来放到对应的UI里面
-            File file = new File(url);
-            RandomAccessFile randomAccessFile = new RandomAccessFile(file, "r");
-            randomAccessFile.seek(0);
-            byte[] bytes = new byte[1024 * 1024];
-            int readSize = randomAccessFile.read(bytes);
-            byte[] copy = new byte[readSize];
-            System.arraycopy(bytes, 0, copy, 0, readSize);
-            String str = new String(copy, StandardCharsets.UTF_8);
-
-            // 设置内容，这里全局的一个Config，在ReadUI里面可以使用
-        } catch (Exception ignore) {
-        }
+        // 设置缓存信息
+        CacheInit.initCache(url);
     }
 }

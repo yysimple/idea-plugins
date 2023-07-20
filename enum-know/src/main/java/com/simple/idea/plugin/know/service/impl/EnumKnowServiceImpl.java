@@ -1,5 +1,6 @@
 package com.simple.idea.plugin.know.service.impl;
 
+import com.simple.idea.plugin.know.data.CacheInit;
 import com.simple.idea.plugin.know.service.EnumKnowService;
 
 /**
@@ -15,6 +16,6 @@ public class EnumKnowServiceImpl implements EnumKnowService {
 
     @Override
     public String getMessage(String keyword) {
-        return null;
+        return CacheInit.search(keyword);
     }
 }
