@@ -1,7 +1,7 @@
 <idea-plugin>
     <id>com.simple.plugin</id>
     <name>Enum Know</name>
-    <version>1.0</version>
+    <version>1.0.0</version>
     <vendor email="1449697757@qq.com">wcx</vendor>
 
     <description><![CDATA[
@@ -24,6 +24,12 @@
     <extensions defaultExtensionNs="com.intellij">
         <!-- Add your extensions here -->
         <projectService serviceImplementation="com.simple.idea.plugin.know.data.DataSetting"/>
+
+        <!-- 打开项目时进行加载；低版本：
+        https://github.com/JetBrains/intellij-community/blob/master/platform/service-container/overview.md#startup-activity
+        高版本可以选择：startupActivity；
+        更多：https://plugins.jetbrains.com/docs/intellij/plugin-components.html#project-and-application-close -->
+        <postStartupActivity implementation="com.simple.idea.plugin.know.active.EnumKnowPluginStartupActivity"/>
 
         <!-- 配置 File -> Settings -> Tools -->
         <projectConfigurable groupId="tools" displayName="Enum Know Setting" id="EnumKnow"

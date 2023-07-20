@@ -1,5 +1,7 @@
 package com.simple.idea.plugin.know.data;
 
+import com.simple.idea.plugin.know.util.StringUtils;
+
 import java.io.*;
 import java.nio.charset.StandardCharsets;
 import java.util.HashMap;
@@ -19,6 +21,9 @@ public class CacheInit {
     public static Map<String, Object> FILE_CACHE = new HashMap<>(256);
 
     public static void initCache(String file) {
+        if (StringUtils.isEmpty(file)) {
+            return;
+        }
         loadFile(file);
     }
 
