@@ -1,4 +1,4 @@
-package com.simple.idea.plugin.know;
+package com.simple.idea.plugin.know.action;
 
 import com.intellij.openapi.actionSystem.AnAction;
 import com.intellij.openapi.actionSystem.AnActionEvent;
@@ -6,6 +6,8 @@ import com.intellij.openapi.editor.Editor;
 import com.intellij.openapi.editor.SelectionModel;
 import com.intellij.openapi.project.Project;
 import com.intellij.openapi.ui.Messages;
+import com.simple.idea.plugin.know.service.EnumKnowService;
+import com.simple.idea.plugin.know.service.impl.EnumKnowServiceImpl;
 import org.jetbrains.annotations.NotNull;
 
 /**
@@ -29,7 +31,7 @@ public class EnumKnowAction extends AnAction {
             // 获取选中的文本
             SelectionModel selectionModel = editor.getSelectionModel();
             String selectedText = selectionModel.getSelectedText();
-
+            EnumKnowService enumKnowService = new EnumKnowServiceImpl();
             // 打印选中的文本
             if (selectedText != null) {
                 System.out.println("Selected text: " + selectedText);

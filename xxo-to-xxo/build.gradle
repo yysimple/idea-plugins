@@ -10,7 +10,7 @@ apply plugin: 'java'
 apply plugin: 'idea'
 apply plugin: 'org.jetbrains.intellij'
 
-sourceCompatibility = 11.0
+sourceCompatibility = 1.8
 
 dependencies {
 }
@@ -21,7 +21,7 @@ repositories {
 
 // See https://github.com/JetBrains/gradle-intellij-plugin/
 intellij {
-    version '2020.3.2'
+    version '2020.2.4'
     plugins = ['git4idea', 'java']
     updateSinceUntilBuild = false
 }

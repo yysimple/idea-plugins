@@ -5,17 +5,15 @@
     <vendor email="1449697757@qq.com">wcx</vendor>
 
     <description><![CDATA[
-      基于IDEA插件模板方式创建测试工程<br>
-      <em>1. 学习IDEA插件工程搭建</em>
-      <em>2. 验证插件基础功能实现</em>
+      用于老项目的枚举魔法值识别的项目：<br>
+      <em>1. 自己把枚举和对应的含义放在某个文件中</em>
+      <em>2. 配置可以直接从库表里面查询的数据源</em>
+      <em>配置案例eg：FH01010.10#订单完成，枚举排序：10</em>
     ]]></description>
 
     <change-notes><![CDATA[
-      插件开发学习功能点<br>
+      暂无<br>
       <em>1. 工程搭建</em>
-      <em>2. 菜单读取</em>
-      <em>3. 获取配置</em>
-      <em>4. 回显页面</em>
     ]]>
     </change-notes>
 
@@ -25,13 +23,21 @@
 
     <extensions defaultExtensionNs="com.intellij">
         <!-- Add your extensions here -->
+        <projectService serviceImplementation="com.simple.idea.plugin.know.data.DataSetting"/>
+
+        <!-- 配置 File -> Settings -> Tools -->
+        <projectConfigurable groupId="tools" displayName="Enum Know Setting" id="EnumKnow"
+                             instance="com.simple.idea.plugin.know.factory.SettingFactory"/>
     </extensions>
 
     <actions>
-        <!-- Add your actions here -->
-        <action id="MyAction" class="com.simple.idea.plugin.know.EnumKnowAction" text="MyAction" description="MyAction">
-            <add-to-group group-id="FileMenu" anchor="first"/>
-        </action>
+        <group id="C2FuturePlugin.C2FutureHelp" text="C2Future Help" description="C2Future Help">
+            <!-- Add your actions here -->
+            <add-to-group group-id="MainMenu" anchor="last"/>
+            <action id="Enum Know" class="com.simple.idea.plugin.know.action.EnumKnowAction" text="Enum Know"
+                    description="识别枚举值"/>
+            <separator/>
+        </group>
 
     </actions>
 </idea-plugin>
