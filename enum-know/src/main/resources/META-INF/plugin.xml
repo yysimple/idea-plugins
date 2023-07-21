@@ -38,6 +38,10 @@
          on how to target different products -->
     <depends>com.intellij.modules.platform</depends>
 
+    <!-- please see http://www.jetbrains.org/intellij/sdk/docs/basics/getting_started/build_number_ranges.html for description -->
+    <!-- please see https://plugins.jetbrains.com/plugin/18891-code-generate-orm/versions/stable/165866#verification-results -->
+    <idea-version since-build="193.5662"/>
+
     <extensions defaultExtensionNs="com.intellij">
         <!-- Add your extensions here -->
         <projectService serviceImplementation="com.simple.idea.plugin.know.data.DataSetting"/>
