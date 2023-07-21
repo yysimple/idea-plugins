@@ -86,16 +86,16 @@ public class SettingFactory implements SearchableConfigurable {
     }
 
     private void dealOptions() {
-        DataSetting.EnumKnowOptionsConfig enumKnowOptionsConfig = new DataSetting.EnumKnowOptionsConfig();
+        DataSetting.EnumKnowOptionsConfig enumKnowOptionsConfig = DataSetting.getInstance(null != project ? project : ProjectManager.getInstance().getDefaultProject()).getEnumKnowOptionsConfig();
         if (settingUI.getFileRead().isSelected()) {
             enumKnowOptionsConfig.setReadMode(EnumKnowConstants.READ_FILE);
         } else if (settingUI.getDbRead().isSelected()) {
             enumKnowOptionsConfig.setReadMode(EnumKnowConstants.READ_DB);
         } else if (settingUI.getAllRead().isSelected()) {
             enumKnowOptionsConfig.setReadMode(EnumKnowConstants.READ_ALL);
+        } else {
+            enumKnowOptionsConfig.setReadMode("");
         }
-        enumKnowOptionsConfig.setReadMode("");
-
     }
 
     private void dealDb() {
@@ -105,7 +105,7 @@ public class SettingFactory implements SearchableConfigurable {
     }
 
     public DataSetting.EnumKnowDataSourceConfig buildDbData() {
-        DataSetting.EnumKnowDataSourceConfig enumKnowDataSourceConfig = new DataSetting.EnumKnowDataSourceConfig();
+        DataSetting.EnumKnowDataSourceConfig enumKnowDataSourceConfig = DataSetting.getInstance(null != project ? project : ProjectManager.getInstance().getDefaultProject()).getEnumKnowDataSourceConfig();
         enumKnowDataSourceConfig.setHost(settingUI.getHostTextField().getText());
         enumKnowDataSourceConfig.setPort(settingUI.getPortTextField().getText());
         enumKnowDataSourceConfig.setUsername(settingUI.getUsernameTextField().getText());

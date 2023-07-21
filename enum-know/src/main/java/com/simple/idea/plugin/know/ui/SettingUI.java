@@ -31,11 +31,13 @@ public class SettingUI {
     private JTextField hostTextField;
     private JTextField portTextField;
     private JTextField usernameTextField;
-    private JTextField passwordTextField;
     private JTextField databaseTextField;
     private JTextField tableTextField;
     private JTextField columnTextField;
     private JButton testConn;
+    private JPasswordField passwordTextField;
+    private JTextField showInfoTextField;
+    private JTextField searchPairTextField;
     private DataSetting.EnumKnowFileConfig enumKnowFileConfig;
     private DataSetting.EnumKnowOptionsConfig enumKnowOptionsConfig;
     private DataSetting.EnumKnowDataSourceConfig enumKnowDataSourceConfig;
@@ -61,7 +63,7 @@ public class SettingUI {
         // 测试数据库链接
         testConn.addActionListener(e -> {
             try {
-                DBHelper dbHelper = new DBHelper(this.hostTextField.getText(), Integer.parseInt(this.passwordTextField.getText()),
+                DBHelper dbHelper = new DBHelper(this.hostTextField.getText(), Integer.parseInt(this.portTextField.getText()),
                         this.usernameTextField.getText(), this.passwordTextField.getText(), this.databaseTextField.getText());
                 String mysqlVersion = dbHelper.testDatabase();
                 Messages.showInfoMessage(project, "Connection successful! \r\nMySQL version : " + mysqlVersion, "OK");
@@ -109,6 +111,9 @@ public class SettingUI {
         passwordTextField.setText(enumKnowDataSourceConfig.getPassword());
         databaseTextField.setText(enumKnowDataSourceConfig.getDatabase());
         tableTextField.setText(enumKnowDataSourceConfig.getTableName());
+        columnTextField.setText(enumKnowDataSourceConfig.getColumn());
+        showInfoTextField.setText(enumKnowDataSourceConfig.getShowInfo());
+        searchPairTextField.setText(enumKnowDataSourceConfig.getSearchPair());
     }
 
     public JComponent getComponent() {
@@ -207,11 +212,11 @@ public class SettingUI {
         this.usernameTextField = usernameTextField;
     }
 
-    public JTextField getPasswordTextField() {
+    public JPasswordField getPasswordTextField() {
         return passwordTextField;
     }
 
-    public void setPasswordTextField(JTextField passwordTextField) {
+    public void setPasswordTextField(JPasswordField passwordTextField) {
         this.passwordTextField = passwordTextField;
     }
 
@@ -269,6 +274,22 @@ public class SettingUI {
 
     public void setTestConn(JButton testConn) {
         this.testConn = testConn;
+    }
+
+    public JTextField getShowInfoTextField() {
+        return showInfoTextField;
+    }
+
+    public void setShowInfoTextField(JTextField showInfoTextField) {
+        this.showInfoTextField = showInfoTextField;
+    }
+
+    public JTextField getSearchPairTextField() {
+        return searchPairTextField;
+    }
+
+    public void setSearchPairTextField(JTextField searchPairTextField) {
+        this.searchPairTextField = searchPairTextField;
     }
 
     private void createUIComponents() {

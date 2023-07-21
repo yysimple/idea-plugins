@@ -23,6 +23,7 @@ public class EnumKnowPluginStartupActivity implements StartupActivity {
         DataSetting.EnumKnowFileConfig enumKnowFileConfig = DataSetting.getInstance(project).getState().getEnumKnowFileConfig();
         System.out.println("启动项目：" + enumKnowFileConfig.getEnumKnowFilePath());
         CacheInit.initCache(enumKnowFileConfig.getEnumKnowFilePath());
+
         // === 初始化mysql数据 ===
         DataSetting.EnumKnowDataSourceConfig enumKnowDataSourceConfig = DataSetting.getInstance(project).getState().getEnumKnowDataSourceConfig();
         CacheInit.initCache(enumKnowDataSourceConfig);

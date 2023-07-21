@@ -151,6 +151,16 @@ public class DataSetting implements PersistentStateComponent<DataSetting.DataCon
          */
         private String column;
 
+        /**
+         * 需要展示的信息，列名eg：id,name,active
+         */
+        private String showInfo;
+
+        /**
+         * 搜索条件：{"code": "FH001.01", "code_name": "水果"}
+         */
+        private String searchPair;
+
         public String getUsername() {
             return username;
         }
@@ -205,6 +215,22 @@ public class DataSetting implements PersistentStateComponent<DataSetting.DataCon
 
         public void setColumn(String column) {
             this.column = column;
+        }
+
+        public String getShowInfo() {
+            return showInfo;
+        }
+
+        public void setShowInfo(String showInfo) {
+            this.showInfo = showInfo;
+        }
+
+        public String getSearchPair() {
+            return searchPair;
+        }
+
+        public void setSearchPair(String searchPair) {
+            this.searchPair = searchPair;
         }
     }
 

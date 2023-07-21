@@ -1,5 +1,8 @@
 package com.simple.idea.plugin.know.util;
 
+import com.alibaba.fastjson.JSON;
+import com.alibaba.fastjson.JSONObject;
+
 import java.lang.reflect.Method;
 import java.sql.*;
 import java.sql.Date;
@@ -143,6 +146,69 @@ public class DBHelper {
         } finally {
             closeConnection(conn);
         }
+    }
+
+    public ResultSet getResultSet(String tableName, String searchPair) {
+        Connection conn = getConnection(this.database);
+        try {
+            String sql = buildSql(this.database, tableName, searchPair);
+            Statement statement = conn.createStatement();
+            return statement.executeQuery(sql);
+        } catch (SQLException e) {
+            throw new RuntimeException(e.getMessage(), e);
+        } finally {
+            closeConnection(conn);
+        }
+    }
+
+    public static String buildSql(String database, String tableName, String searchPair) {
+        String sql = "select * from " + database + "." + tableName;
+        if (StringUtils.isEmpty(searchPair)) {
+            return sql;
+        }
+        JSONObject jsonObject = null;
+        StringBuilder buildSql = null;
+        try {
+            jsonObject = JSONObject.parseObject(searchPair);
+            buildSql = new StringBuilder(sql);
+            int size = jsonObject.size();
+            int andNum = size - 1;
+            if (size > 0) {
+                buildSql.append(" where");
+                for (String key : jsonObject.keySet()) {
+                    String[] multiValues = jsonObject.getObject(key, String.class).split(",");
+                    if (Objects.nonNull(multiValues) && multiValues.length > 0 && StringUtils.isNotEmpty(multiValues[0])) {
+                        buildSql.append(" " + key + " in (");
+                        int commaNum = multiValues.length - 1;
+                        for (String multiValue : multiValues) {
+                            buildSql.append("'" + multiValue + "'");
+                            if (commaNum > 0) {
+                                buildSql.append(",");
+                                commaNum--;
+                            }
+                        }
+                        buildSql.append(")");
+                        if (andNum > 0) {
+                            buildSql.append(" and");
+                            andNum--;
+                        } else {
+                            buildSql.append(";");
+                        }
+                    } else {
+                        andNum--;
+                    }
+                }
+            }
+        } catch (Exception e) {
+            throw new RuntimeException(e.getMessage(), e);
+        }
+        return buildSql.toString();
+    }
+
+
+    public static void main(String[] args) {
+        String json = "{\"id\": \"1,2,2,3\", \"name\":\"\", \"age\": \"18\"}";
+        System.out.println(buildSql("test", "test", json));
     }
 
     public ResultSet getResultSet(String tableName) {
