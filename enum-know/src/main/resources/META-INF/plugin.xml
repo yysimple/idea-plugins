@@ -5,21 +5,32 @@
     <vendor email="1449697757@qq.com">wcx</vendor>
 
     <description><![CDATA[
-      Enumeration used for old items to identify items with magic values
-      （用于老项目的枚举魔法值识别的项目）：
-      <br>
-      <em>1. Put the enumeration and its corresponding meaning in a file.
-      （自己把枚举和对应的含义放在某个文件中）</em>
-      <em>2. Configure data sources that can be queried directly from inside the library tables.
-      （配置可以直接从库表里面查询的数据源）</em>
-      <em>配置案例eg：FH01010.10#订单完成，枚举排序：10</em>
+      Enumeration used for old items to identify items with magic values：<br>
+      &#160;&#160;&#160;&#160;
+      1. Place the enumeration and its corresponding meaning in a certain file yourself,
+      using the "#" sign to separate it.
+      The front represents the magic value,
+      and the back represents the description.<br>
+      &#x0020;&#x0020;&#160;&#160;
+      2. Configure data sources that can be queried directly from inside the library tables.<br>
+      &#x0020;&#x0020;&#160;&#160;
+      Configuration case eg: FH01010.10#Order completed, enumeration sort: 10
+      <br><br><br>
+      用于老项目的枚举魔法值识别的项目：<br>
+      &#160;&#160;&#160;&#160;
+      1. 自己把枚举和对应的含义放在某个文件中，使用“#”号分割，前面代表魔法值，后面是描述<br>
+      &#160;&#160;&#160;&#160;
+      2. 配置可以直接从库表里面查询的数据源;<br>
+      &#160;&#160;&#160;&#160;
+      配置案例eg：FH01010.10#订单完成，枚举排序：10
+
     ]]></description>
 
     <change-notes><![CDATA[
       Enum Know发布日志：<br>
-      <em>2023-07-21：完成第一版，支持mysql、file形式</em>
+      2023-07-21：Complete the first version, supporting MySQL and file formats（完成第一版，支持mysql、file形式）
       <br>
-      <em>2023-07-21：支持快捷键（control alt/option 0）自动弹出</em>
+      2023-07-22：Support for automatic pop-up of shortcut keys (control+0)（支持快捷键（control + 0）自动弹出）
     ]]>
     </change-notes>
 
@@ -43,7 +54,8 @@
     </extensions>
 
     <actions>
-        <group id="C2FuturePlugin.C2FutureHelp" text="C2Future Help" description="C2Future帮助中心扩展">
+        <!-- <group id="C2FuturePlugin.C2FutureHelp" text="C2Future Help" description="C2Future帮助中心扩展"> -->
+        <group id="Personal.Help.Center" text="Personal" description="Personal帮助中心扩展">
             <!-- Add your actions here -->
             <add-to-group group-id="MainMenu" anchor="last"/>
             <action id="Enum Know"
@@ -57,13 +69,6 @@
             </action>
             <separator/>
         </group>
-
-<!--        <action id="EnumKnow.keyboard-shortcut"-->
-<!--                class="com.simple.idea.plugin.know.action.EnumKnowAction"-->
-<!--                text="Enum Know" description="EnumKnow快捷键">-->
-<!--            <add-to-group group-id="PopupMenuActions" anchor="first"/>-->
-<!--            <keyboard-shortcut first-keystroke="control alt 0" keymap="Mac OS X 10.5+"/>-->
-<!--        </action>-->
 
     </actions>
 </idea-plugin>

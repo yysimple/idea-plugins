@@ -30,7 +30,8 @@ public class EnumKnowAction extends AnAction {
         Project project = e.getProject();
         Editor editor = e.getData(com.intellij.openapi.actionSystem.CommonDataKeys.EDITOR);
 
-        Icon customIcon = IconLoader.getIcon("/icons/search-32.png");
+        Icon tureIcon = IconLoader.getIcon("/icons/精准匹配-32.png");
+        Icon errorIcon = IconLoader.getIcon("/icons/警告-32.png");
 
         if (editor != null) {
             // 获取选中的文本
@@ -39,12 +40,10 @@ public class EnumKnowAction extends AnAction {
             EnumKnowService enumKnowService = new EnumKnowServiceImpl(project);
             // 打印选中的文本
             if (selectedText != null) {
-                System.out.println("Selected text: " + selectedText);
                 // 这里的 project：对应的是后面内容将会在 窗体中展示；title：这个是窗体的标题
-                Messages.showMessageDialog(project, enumKnowService.getMessage(selectedText), "枚举含义：", customIcon);
+                Messages.showMessageDialog(project, enumKnowService.getMessage(selectedText), "Enum Know：", tureIcon);
             } else {
-                Messages.showMessageDialog(project, "Please you select text", "请选择文本：", Messages.getErrorIcon());
-                System.out.println("No text selected.");
+                Messages.showMessageDialog(project, "Please you select text", "请选择文本：", errorIcon);
             }
         }
     }
