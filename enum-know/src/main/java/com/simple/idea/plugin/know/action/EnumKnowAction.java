@@ -31,13 +31,14 @@ public class EnumKnowAction extends AnAction {
             // 获取选中的文本
             SelectionModel selectionModel = editor.getSelectionModel();
             String selectedText = selectionModel.getSelectedText();
-            EnumKnowService enumKnowService = new EnumKnowServiceImpl();
+            EnumKnowService enumKnowService = new EnumKnowServiceImpl(project);
             // 打印选中的文本
             if (selectedText != null) {
                 System.out.println("Selected text: " + selectedText);
                 // 这里的 project：对应的是后面内容将会在 窗体中展示；title：这个是窗体的标题
                 Messages.showMessageDialog(project, enumKnowService.getMessage(selectedText), "枚举含义：", Messages.getInformationIcon());
             } else {
+                Messages.showMessageDialog(project, "Please you select text", "请选择文本：：", Messages.getInformationIcon());
                 System.out.println("No text selected.");
             }
         }

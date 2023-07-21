@@ -1,5 +1,7 @@
 package com.simple.idea.plugin.know.data;
 
+import com.simple.idea.plugin.know.util.DBHelper;
+import com.simple.idea.plugin.know.util.PluginUtils;
 import com.simple.idea.plugin.know.util.StringUtils;
 
 import java.io.*;
@@ -19,6 +21,7 @@ import java.util.Map;
 public class CacheInit {
 
     public static Map<String, Object> FILE_CACHE = new HashMap<>(256);
+    public static Map<String, Object> DB_CACHE = new HashMap<>(256);
 
     public static void initCache(String file) {
         if (StringUtils.isEmpty(file)) {
@@ -58,4 +61,35 @@ public class CacheInit {
         return (String) FILE_CACHE.get(key);
     }
 
+    public static String search(String key, String option) {
+        if (EnumKnowConstants.READ_FILE.equals(option)) {
+            return (String) FILE_CACHE.get(key);
+        } else if (EnumKnowConstants.READ_DB.equals(option)) {
+            return (String) DB_CACHE.get(key);
+        } else if (EnumKnowConstants.READ_ALL.equals(option)) {
+            StringBuilder stringBuilder = new StringBuilder();
+            String fileShow = "Find By FIle: " + (String) FILE_CACHE.get(key);
+            String dbShow = "Find By DB: " + (String) DB_CACHE.get(key);
+            stringBuilder.append(fileShow);
+            stringBuilder.append("\n");
+            stringBuilder.append(dbShow);
+            return stringBuilder.toString();
+        }
+        return "";
+
+    }
+
+    public static void initCache(DataSetting.EnumKnowDataSourceConfig enumKnowDataSourceConfig) {
+        if (!checkDb(enumKnowDataSourceConfig)) {
+            return;
+        }
+        DBHelper dbHelper = new DBHelper(enumKnowDataSourceConfig.getHost(), Integer.parseInt(enumKnowDataSourceConfig.getPort()),
+                enumKnowDataSourceConfig.getUsername(), enumKnowDataSourceConfig.getPassword(), enumKnowDataSourceConfig.getDatabase());
+        DB_CACHE = dbHelper.resultSet2Map(enumKnowDataSourceConfig.getTableName(), enumKnowDataSourceConfig.getColumn());
+
+    }
+
+    public static boolean checkDb(DataSetting.EnumKnowDataSourceConfig enumKnowDataSourceConfig) {
+        return PluginUtils.allFieldNonNULL(enumKnowDataSourceConfig);
+    }
 }

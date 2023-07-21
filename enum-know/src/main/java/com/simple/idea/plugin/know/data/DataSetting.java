@@ -45,11 +45,17 @@ public class DataSetting implements PersistentStateComponent<DataSetting.DataCon
         return dataConfig.getEnumKnowDataSourceConfig();
     }
 
+    public EnumKnowOptionsConfig getEnumKnowOptionsConfig() {
+        return dataConfig.getEnumKnowOptionsConfig();
+    }
+
     public static class DataConfig {
 
         private EnumKnowFileConfig enumKnowFileConfig = new EnumKnowFileConfig();
 
         private EnumKnowDataSourceConfig enumKnowDataSourceConfig = new EnumKnowDataSourceConfig();
+
+        private EnumKnowOptionsConfig enumKnowOptionsConfig = new EnumKnowOptionsConfig();
 
         public EnumKnowFileConfig getEnumKnowFileConfig() {
             return enumKnowFileConfig;
@@ -65,6 +71,14 @@ public class DataSetting implements PersistentStateComponent<DataSetting.DataCon
 
         public void setEnumKnowDataSourceConfig(EnumKnowDataSourceConfig enumKnowDataSourceConfig) {
             this.enumKnowDataSourceConfig = enumKnowDataSourceConfig;
+        }
+
+        public EnumKnowOptionsConfig getEnumKnowOptionsConfig() {
+            return enumKnowOptionsConfig;
+        }
+
+        public void setEnumKnowOptionsConfig(EnumKnowOptionsConfig enumKnowOptionsConfig) {
+            this.enumKnowOptionsConfig = enumKnowOptionsConfig;
         }
     }
 
@@ -84,12 +98,28 @@ public class DataSetting implements PersistentStateComponent<DataSetting.DataCon
         }
     }
 
+    public static class EnumKnowOptionsConfig {
+
+        /**
+         * 读取模式：1=读文件；2=读db；3=两者都读；
+         */
+        private String readMode;
+
+        public String getReadMode() {
+            return readMode;
+        }
+
+        public void setReadMode(String readMode) {
+            this.readMode = readMode;
+        }
+    }
+
     public static class EnumKnowDataSourceConfig {
 
         /**
          * 数据库用户名
          */
-        private String user;
+        private String username;
 
         /**
          * 数据库密码
@@ -116,12 +146,17 @@ public class DataSetting implements PersistentStateComponent<DataSetting.DataCon
          */
         private String tableName;
 
-        public String getUser() {
-            return user;
+        /**
+         * 列名
+         */
+        private String column;
+
+        public String getUsername() {
+            return username;
         }
 
-        public void setUser(String user) {
-            this.user = user;
+        public void setUsername(String username) {
+            this.username = username;
         }
 
         public String getPassword() {
@@ -162,6 +197,14 @@ public class DataSetting implements PersistentStateComponent<DataSetting.DataCon
 
         public void setTableName(String tableName) {
             this.tableName = tableName;
+        }
+
+        public String getColumn() {
+            return column;
+        }
+
+        public void setColumn(String column) {
+            this.column = column;
         }
     }
 

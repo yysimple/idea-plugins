@@ -2,6 +2,8 @@ package com.simple.idea.plugin.know.util;
 
 import com.intellij.psi.codeStyle.NameUtil;
 
+import java.lang.reflect.Field;
+
 /**
  * 项目: idea-plugins
  *
@@ -45,5 +47,43 @@ public class PluginUtils {
             }
         }
         return false;
+    }
+
+    public static boolean allFieldIsNULL(Object object) {
+        if (null == object) {
+            return true;
+        }
+        try {
+            // 挨个获取对象属性值
+            for (Field f : object.getClass().getDeclaredFields()) {
+                f.setAccessible(true);
+                // 如果有一个属性值不为null，且值不是空字符串，就返回false
+                if (f.get(object) != null && StringUtils.isNotEmpty(f.get(object).toString())) {
+                    return false;
+                }
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return true;
+    }
+
+    public static boolean allFieldNonNULL(Object object) {
+        if (null == object) {
+            return false;
+        }
+        try {
+            // 挨个获取对象属性值
+            for (Field f : object.getClass().getDeclaredFields()) {
+                f.setAccessible(true);
+                // 如果有一个属性值不为null，且值不是空字符串，就返回false
+                if (f.get(object) == null || StringUtils.isEmpty(f.get(object).toString())) {
+                    return false;
+                }
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return true;
     }
 }
