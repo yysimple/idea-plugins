@@ -50,17 +50,20 @@
                     class="com.simple.idea.plugin.know.action.EnumKnowAction"
                     text="Enum Know"
                     description="EnumKnow识别枚举值的插件"
-                    icon="/icons/search-16.png"/>
-
+                    icon="/icons/search-16.png">
+                <keyboard-shortcut
+                        keymap="$default"
+                        first-keystroke="control 0"/>
+            </action>
             <separator/>
         </group>
 
-        <action id="EnumKnow.keyboard-shortcut"
-                class="com.simple.idea.plugin.know.action.EnumKnowAction"
-                text="Enum Know" description="EnumKnow快捷键">
-            <add-to-group group-id="PopupMenuActions" anchor="first"/>
-            <keyboard-shortcut first-keystroke="control alt 0" keymap="Mac OS X 10.5+"/>
-        </action>
+<!--        <action id="EnumKnow.keyboard-shortcut"-->
+<!--                class="com.simple.idea.plugin.know.action.EnumKnowAction"-->
+<!--                text="Enum Know" description="EnumKnow快捷键">-->
+<!--            <add-to-group group-id="PopupMenuActions" anchor="first"/>-->
+<!--            <keyboard-shortcut first-keystroke="control alt 0" keymap="Mac OS X 10.5+"/>-->
+<!--        </action>-->
 
     </actions>
 </idea-plugin>
