@@ -14,6 +14,8 @@
     <change-notes><![CDATA[
       Enum Know发布日志：<br>
       <em>2023-07-21：完成第一版，支持mysql、file形式</em>
+      <br>
+      <em>2023-07-21：支持快捷键（control alt/option 0）自动弹出</em>
     ]]>
     </change-notes>
 
@@ -37,13 +39,24 @@
     </extensions>
 
     <actions>
-        <group id="C2FuturePlugin.C2FutureHelp" text="C2Future Help" description="C2Future Help">
+        <group id="C2FuturePlugin.C2FutureHelp" text="C2Future Help" description="C2Future帮助中心扩展">
             <!-- Add your actions here -->
             <add-to-group group-id="MainMenu" anchor="last"/>
-            <action id="Enum Know" class="com.simple.idea.plugin.know.action.EnumKnowAction" text="Enum Know"
-                    description="识别枚举值" icon="/icons/search-16.png"/>
+            <action id="Enum Know"
+                    class="com.simple.idea.plugin.know.action.EnumKnowAction"
+                    text="Enum Know"
+                    description="EnumKnow识别枚举值的插件"
+                    icon="/icons/search-16.png"/>
+
             <separator/>
         </group>
+
+        <action id="EnumKnow.keyboard-shortcut"
+                class="com.simple.idea.plugin.know.action.EnumKnowAction"
+                text="Enum Know" description="EnumKnow快捷键">
+            <add-to-group group-id="PopupMenuActions" anchor="first"/>
+            <keyboard-shortcut first-keystroke="control alt 0" keymap="Mac OS X 10.5+"/>
+        </action>
 
     </actions>
 </idea-plugin>
