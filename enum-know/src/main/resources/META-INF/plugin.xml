@@ -41,7 +41,7 @@
             <!-- Add your actions here -->
             <add-to-group group-id="MainMenu" anchor="last"/>
             <action id="Enum Know" class="com.simple.idea.plugin.know.action.EnumKnowAction" text="Enum Know"
-                    description="识别枚举值"/>
+                    description="识别枚举值" icon="/icons/search-16.png"/>
             <separator/>
         </group>
 
