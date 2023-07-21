@@ -5,9 +5,13 @@
     <vendor email="1449697757@qq.com">wcx</vendor>
 
     <description><![CDATA[
-      用于老项目的枚举魔法值识别的项目：<br>
-      <em>1. 自己把枚举和对应的含义放在某个文件中</em>
-      <em>2. 配置可以直接从库表里面查询的数据源</em>
+      Enumeration used for old items to identify items with magic values
+      （用于老项目的枚举魔法值识别的项目）：
+      <br>
+      <em>1. Put the enumeration and its corresponding meaning in a file.
+      （自己把枚举和对应的含义放在某个文件中）</em>
+      <em>2. Configure data sources that can be queried directly from inside the library tables.
+      （配置可以直接从库表里面查询的数据源）</em>
       <em>配置案例eg：FH01010.10#订单完成，枚举排序：10</em>
     ]]></description>
 
