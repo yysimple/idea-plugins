@@ -12,8 +12,8 @@
     ]]></description>
 
     <change-notes><![CDATA[
-      暂无<br>
-      <em>1. 工程搭建</em>
+      Enum Know发布日志：<br>
+      <em>2023-07-21：完成第一版，支持mysql、file形式</em>
     ]]>
     </change-notes>
 
