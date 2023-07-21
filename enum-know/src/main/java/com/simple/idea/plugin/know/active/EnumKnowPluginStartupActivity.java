@@ -6,6 +6,9 @@ import com.simple.idea.plugin.know.data.CacheInit;
 import com.simple.idea.plugin.know.data.DataSetting;
 import org.jetbrains.annotations.NotNull;
 
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
+
 /**
  * 项目: idea-plugins
  *
@@ -17,15 +20,22 @@ import org.jetbrains.annotations.NotNull;
  **/
 public class EnumKnowPluginStartupActivity implements StartupActivity {
 
+    ExecutorService executorService = Executors.newFixedThreadPool(4);
+
     @Override
     public void runActivity(@NotNull Project project) {
         // === 初始化文件数据 ===
-        DataSetting.EnumKnowFileConfig enumKnowFileConfig = DataSetting.getInstance(project).getState().getEnumKnowFileConfig();
-        System.out.println("启动项目：" + enumKnowFileConfig.getEnumKnowFilePath());
-        CacheInit.initCache(enumKnowFileConfig.getEnumKnowFilePath());
+        executorService.submit(() -> {
+            DataSetting.EnumKnowFileConfig enumKnowFileConfig = DataSetting.getInstance(project).getState().getEnumKnowFileConfig();
+            System.out.println("启动项目：" + enumKnowFileConfig.getEnumKnowFilePath());
+            CacheInit.initCache(enumKnowFileConfig.getEnumKnowFilePath());
+        });
 
         // === 初始化mysql数据 ===
-        DataSetting.EnumKnowDataSourceConfig enumKnowDataSourceConfig = DataSetting.getInstance(project).getState().getEnumKnowDataSourceConfig();
-        CacheInit.initCache(enumKnowDataSourceConfig);
+        executorService.submit(() -> {
+            DataSetting.EnumKnowDataSourceConfig enumKnowDataSourceConfig = DataSetting.getInstance(project).getState().getEnumKnowDataSourceConfig();
+            CacheInit.initCache(enumKnowDataSourceConfig);
+        });
+
     }
 }
