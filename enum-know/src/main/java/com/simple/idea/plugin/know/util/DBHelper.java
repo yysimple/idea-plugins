@@ -148,16 +148,13 @@ public class DBHelper {
         }
     }
 
-    public ResultSet getResultSet(String tableName, String searchPair) {
-        Connection conn = getConnection(this.database);
+    public ResultSet getResultSet(String tableName, String searchPair, Connection conn) {
         try {
             String sql = buildSql(this.database, tableName, searchPair);
             Statement statement = conn.createStatement();
             return statement.executeQuery(sql);
         } catch (SQLException e) {
             throw new RuntimeException(e.getMessage(), e);
-        } finally {
-            closeConnection(conn);
         }
     }
 
@@ -275,8 +272,9 @@ public class DBHelper {
         return list;
     }
 
-    public Map<String, Object> resultSet2Map(String tableName, String columnName) {
-        ResultSet resultSet = this.getResultSet(tableName);
+    public Map<String, Object> resultSet2Map(String tableName, String columnName, String showInfo, String searchPair) {
+        Connection conn = getConnection(this.database);
+        ResultSet resultSet = this.getResultSet(tableName, searchPair, conn);
         Map<String, Object> cache = new HashMap<>(128);
         try {
             ResultSetMetaData metaData = resultSet.getMetaData();
@@ -292,14 +290,24 @@ public class DBHelper {
                     if (dbColumnName.equals(columnName)) {
                         cacheKey = value.toString();
                     } else {
-                        stringBuilder.append(value.toString() + ";");
+                        if (StringUtils.isNotEmpty(showInfo)) {
+                            String[] showColumns = showInfo.split(",");
+                            List<String> showColumnList = Arrays.asList(showColumns);
+                            if (showColumnList.contains(dbColumnName)) {
+                                stringBuilder.append(value.toString() + ";");
+                            }
+                        } else {
+                            stringBuilder.append(value.toString() + ";");
+                        }
                     }
                 }
                 cacheValue = stringBuilder.toString();
-                cache.put(cacheKey, cacheValue);
+                cache.putIfAbsent(cacheKey, cacheValue);
             }
         } catch (Exception e) {
             e.printStackTrace();
+        } finally {
+            closeConnection(conn);
         }
         return cache;
     }

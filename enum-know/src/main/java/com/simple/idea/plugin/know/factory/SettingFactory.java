@@ -113,6 +113,8 @@ public class SettingFactory implements SearchableConfigurable {
         enumKnowDataSourceConfig.setDatabase(settingUI.getDatabaseTextField().getText());
         enumKnowDataSourceConfig.setTableName(settingUI.getTableTextField().getText());
         enumKnowDataSourceConfig.setColumn(settingUI.getColumnTextField().getText());
+        enumKnowDataSourceConfig.setShowInfo(settingUI.getShowInfoTextField().getText());
+        enumKnowDataSourceConfig.setSearchPair(settingUI.getSearchPairTextField().getText());
         return enumKnowDataSourceConfig;
     }
 }

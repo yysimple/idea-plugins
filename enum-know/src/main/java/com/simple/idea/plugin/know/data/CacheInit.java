@@ -41,7 +41,7 @@ public class CacheInit {
                 if (enumInfo.length != 2) {
                     continue;
                 }
-                FILE_CACHE.put(enumInfo[0], enumInfo[1]);
+                FILE_CACHE.putIfAbsent(enumInfo[0], enumInfo[1]);
             }
         } catch (Exception e) {
             e.printStackTrace();
@@ -68,11 +68,19 @@ public class CacheInit {
             return (String) DB_CACHE.get(key);
         } else if (EnumKnowConstants.READ_ALL.equals(option)) {
             StringBuilder stringBuilder = new StringBuilder();
-            String fileShow = "Find By FIle: " + (String) FILE_CACHE.get(key);
-            String dbShow = "Find By DB: " + (String) DB_CACHE.get(key);
-            stringBuilder.append(fileShow);
+            String fileShow = "Find By FIle: ";
+            String dbShow = "Find By DB: ";
+            String fileValue = (String) FILE_CACHE.get(key);
+            if (StringUtils.isEmpty(fileValue)) {
+                fileValue = "no match value in file";
+            }
+            String dbValue = (String) DB_CACHE.get(key);
+            if (StringUtils.isEmpty(dbValue)) {
+                dbValue = "no match value in db";
+            }
+            stringBuilder.append(fileShow + fileValue);
             stringBuilder.append("\n");
-            stringBuilder.append(dbShow);
+            stringBuilder.append(dbShow + dbValue);
             return stringBuilder.toString();
         }
         return "";
@@ -85,7 +93,8 @@ public class CacheInit {
         }
         DBHelper dbHelper = new DBHelper(enumKnowDataSourceConfig.getHost(), Integer.parseInt(enumKnowDataSourceConfig.getPort()),
                 enumKnowDataSourceConfig.getUsername(), enumKnowDataSourceConfig.getPassword(), enumKnowDataSourceConfig.getDatabase());
-        DB_CACHE = dbHelper.resultSet2Map(enumKnowDataSourceConfig.getTableName(), enumKnowDataSourceConfig.getColumn());
+        DB_CACHE = dbHelper.resultSet2Map(enumKnowDataSourceConfig.getTableName(), enumKnowDataSourceConfig.getColumn(),
+                enumKnowDataSourceConfig.getShowInfo(), enumKnowDataSourceConfig.getSearchPair());
 
     }
 
