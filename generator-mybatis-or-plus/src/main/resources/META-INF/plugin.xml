@@ -31,7 +31,7 @@
     <actions>
         <!-- Add your actions here -->
         <action id="CodeGenerateAction" class="com.simple.idea.plugin.mybatis.action.CodeGenerateAction"
-                text="ORMCodeGenerate" description="Code Generate ORM" icon="/icons/logo.png">
+                text="ORMCodeGenerate" description="Code Generate ORM" icon="/icons/对象创建.png">
             <!-- 这里是我门触发操作的位置，这里是光标选中选中，然后右键点击，就能触发 -->
             <add-to-group group-id="ProjectViewPopupMenu" anchor="last"/>
         </action>
