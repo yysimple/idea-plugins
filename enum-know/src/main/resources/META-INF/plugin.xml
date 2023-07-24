@@ -1,7 +1,6 @@
 <idea-plugin>
     <id>com.simple.plugin</id>
     <name>Enum Know</name>
-    <version>1.0.0</version>
     <vendor email="1449697757@qq.com">wcx</vendor>
 
     <description><![CDATA[
@@ -31,6 +30,8 @@
       2023-07-21：Complete the first version, supporting MySQL and file formats（完成第一版，支持mysql、file形式）
       <br>
       2023-07-22：Support for automatic pop-up of shortcut keys (control+0)（支持快捷键（control + 0）自动弹出）
+      <br>
+      2023-07-24：Delete the old version of the class and register the action in the ToolMenu（删除旧版本工具类，在ToolMenu里面注册action）
     ]]>
     </change-notes>
 
@@ -62,7 +63,7 @@
         <group id="Personal.Help.Center" text="Personal" description="Personal帮助中心扩展">
             <!-- Add your actions here -->
             <add-to-group group-id="MainMenu" anchor="last"/>
-            <action id="Enum Know"
+            <action id="Personal.Help.Center.EnumKnow"
                     class="com.simple.idea.plugin.know.action.EnumKnowAction"
                     text="Enum Know"
                     description="EnumKnow识别枚举值的插件"
@@ -74,5 +75,14 @@
             <separator/>
         </group>
 
+        <!-- 注册到ToolsMenu -->
+        <action id="ToolsMenu.EnumKnowAction" class="com.simple.idea.plugin.know.action.EnumKnowAction"
+                text="Enum Know" description="EnumKnow识别枚举值的插件" icon="/icons/search-16.png">
+            <!-- 这里是我门触发操作的位置，这里是光标选中选中，然后右键点击，就能触发 -->
+            <add-to-group group-id="ToolsMenu" anchor="last"/>
+            <keyboard-shortcut
+                    keymap="$default"
+                    first-keystroke="control 0"/>
+        </action>
     </actions>
 </idea-plugin>

@@ -74,27 +74,6 @@ public class DBHelper {
         }
     }
 
-    public List<String> getDatabases() {
-        Connection conn = getConnection();
-        try {
-            DatabaseMetaData metaData = conn.getMetaData();
-            ResultSet catalogs = metaData.getCatalogs();
-            List<String> rs = new ArrayList<>();
-            while (catalogs.next()) {
-                String db = catalogs.getString("TABLE_CAT");
-                if (org.apache.commons.lang3.StringUtils.equalsIgnoreCase(db, "information_schema")) {
-                    continue;
-                }
-                rs.add(db);
-            }
-            return rs;
-        } catch (SQLException e) {
-            throw new RuntimeException(e.getMessage(), e);
-        } finally {
-            closeConnection(conn);
-        }
-    }
-
     /**
      * 查询数据库里面所有的表名
      *
