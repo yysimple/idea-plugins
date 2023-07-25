@@ -4,7 +4,7 @@ plugins {
 }
 
 group 'com.simple.idea.plugin'
-version '1.2.0'
+version '1.2.1'
 
 apply plugin: 'java'
 apply plugin: 'idea'

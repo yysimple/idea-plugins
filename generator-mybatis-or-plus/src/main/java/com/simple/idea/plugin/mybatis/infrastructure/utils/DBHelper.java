@@ -79,7 +79,7 @@ public class DBHelper {
             List<String> rs = new ArrayList<>();
             while (catalogs.next()) {
                 String db = catalogs.getString("TABLE_CAT");
-                if (org.apache.commons.lang3.StringUtils.equalsIgnoreCase(db, "information_schema")) {
+                if (StringUtils.equalsIgnoreCase(db, "information_schema")) {
                     continue;
                 }
                 rs.add(db);

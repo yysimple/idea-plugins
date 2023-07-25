@@ -4,16 +4,64 @@
     <vendor email="1449697757@qq.com">wcx</vendor>
 
     <description><![CDATA[
-      <br/>English：ORM generation framework, supports options such as Controller, Service, Swagger, etc.;
+      Plugin Description: <br>
+      &#160;&#160;&#160;&#160;
+      ORM generation framework, supports options such as Controller, Service, Swagger, etc.;
       supports simultaneous generation of multiple tables;
-      <br/>Chinese：ORM生成框架，支持Controller、Service、Swagger等选配；支持多表同时生成；
-      <br/>github：<a href="https://github.com/yysimple/idea-plugins">https://github.com/yysimple/idea-plugins</a>
-      <br/>gitee：<a href="https://gitee.com/yysimple/idea-plugins">https://gitee.com/yysimple/idea-plugins</a>
-      <br/>对应的项目名称是：generator-mybatis-or-plus!! / The corresponding project name is generator-mybatis-or-plus!!
+      <br><br>
+      插件描述：<br>
+      &#160;&#160;&#160;&#160;
+      ORM生成框架，支持Controller、Service、Swagger等选配；支持多表同时生成；
+      <br><br>
+      Source Code：<br>
+      &#160;&#160;&#160;&#160;
+      github：<a href="https://github.com/yysimple/idea-plugins">https://github.com/yysimple/idea-plugins</a>
       <br/>
-      <br/>version 1.2.0：新增表名模糊搜索 / Add fuzzy search for table name；
+      &#160;&#160;&#160;&#160;
+      gitee：<a href="https://gitee.com/yysimple/idea-plugins">https://gitee.com/yysimple/idea-plugins</a>
+
+      <br/>对应的项目名称是：generator-mybatis-or-plus!! / The corresponding project name is generator-mybatis-or-plus!!
+      <br/><br/>
+      If you are currently in my country, China, please use Gitee to access, and other countries please use GitHub
+
       ]]>
     </description>
+
+    <change-notes><![CDATA[
+      Code Generate ORM发布日志：<br>
+      <ul>
+          <li>2023-07-24：Added some small features（新增了一些小功能）：</li>
+               <ol>
+                    <li>added1：Added plugin logo
+                    （新增插件logo）</li>
+                    <li>added2：Added plugin icon and add plugin to ToolsMenu
+                    （新增插件icon，并且把插件入口加到Tools菜单）</li>
+                    <li>added3：Added keyboard-shortcut (control 9)
+                    （新增插件快捷键control+9）</li>
+                    <li>added4：Added plugin “change-notes”
+                    （新增更改日志）</li>
+               </ol>
+
+          <li>2022-12-31：New features (新增功能）：</li>
+               <ol>
+                    <li>added1：Add a list query interface template
+                    （新增列表查询接口模板）</li>
+                    <li>added2：Add table search function for situations where there are many databases in a connection
+                    （新增表搜索，针对一个连接里面很多数据库的情况，增加表搜索功能）</li>
+               </ol>
+          <li>2022-04-16：Fix several bugs one by one (陆续修复几个bug）：</li>
+               <ol>
+                    <li>fix1：The generated mapper file does not include the corresponding entity name in the corresponding SQL ID
+                    （生成的mapper文件里面对应sql的id没加上对应实体的名字）</li>
+                    <li>fix2：No @Param annotation added in mapper's Java file
+                    （在mapper的java文件中，没有加上@Param注解）</li>
+                    <li>fix3：Username and password do not have memory function
+                    （username和password没有记忆功能）</li>
+               </ol>
+            <li>2022-04-05：Complete the first version（完成第一版）</li>
+       </ul>
+    ]]>
+    </change-notes>
 
     <!-- please see https://www.jetbrains.org/intellij/sdk/docs/basics/getting_started/plugin_compatibility.html
          on how to target different products -->
@@ -30,7 +78,8 @@
 
     <actions>
         <!-- Add your actions here -->
-        <action id="ProjectViewPopupMenu.CodeGenerateAction" class="com.simple.idea.plugin.mybatis.action.CodeGenerateAction"
+        <action id="ProjectViewPopupMenu.CodeGenerateAction"
+                class="com.simple.idea.plugin.mybatis.action.CodeGenerateAction"
                 text="ORMCodeGenerate" description="Code Generate ORM" icon="/icons/对象创建.png">
             <!-- 这里是我门触发操作的位置，这里是光标选中选中，然后右键点击，就能触发 -->
             <add-to-group group-id="ProjectViewPopupMenu" anchor="last"/>

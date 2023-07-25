@@ -1,7 +1,7 @@
 package com.simple.idea.plugin.mybatis.infrastructure.po;
 
 import com.google.common.base.CaseFormat;
-import org.apache.commons.lang3.StringUtils;
+import com.simple.idea.plugin.mybatis.infrastructure.utils.StringUtils;
 
 /**
  * 项目: idea-plugins
